@@ -43,13 +43,13 @@ int				render_next_frame(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	while ((y + vars->offset_y) < (vars->offset_y + 21))
 	{
-	x = 0;
-	while ((x + vars->offset_x) < (vars->offset_x + 21))
-	{
-		ft_pixelput(vars, (x + vars->offset_x), (y + vars->offset_y), create_trgb(0, 0, 150, 255));
-		x++;
-	}
-	y++;
+		x = 0;
+		while ((x + vars->offset_x) < (vars->offset_x + 21))
+		{
+			ft_pixelput(vars, (x + vars->offset_x), (y + vars->offset_y), create_trgb(0, 0, 150, 255));
+			x++;
+		}
+		y++;
 	}
 	return (0);
 }
@@ -60,6 +60,12 @@ int				keypress(int keycode, t_vars *vars, void *p)
 		mlx_destroy_window(vars->mlx, vars->win);
 	else if (keycode == 0x64)
 		vars->offset_x = vars->offset_x + 10;
+	else if (keycode == 0x61)
+		vars->offset_x = vars->offset_x - 10;
+	else if (keycode == 0x77)
+		vars->offset_y = vars->offset_y - 10;
+	else if (keycode == 0x73)
+		vars->offset_y = vars->offset_y + 10;
 	return (0);
 }
 
@@ -67,8 +73,8 @@ int				main(void)
 {
 	t_vars	vars;
 
-	vars.offset_x = 0;
-	vars.offset_y = 0;
+	vars.offset_x = 380;
+	vars.offset_y = 280;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 800, 600, "Wheeee!!!");
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);
