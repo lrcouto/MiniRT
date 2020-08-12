@@ -1,6 +1,7 @@
 /*
 ** THIS MOTHERFUCKER CRASHED MY COMPUTER. Run at your own risk.
 ** DO NOT make the little square go outsite the window boundaries.
+** Will fix this issue later.
 */
 
 #include <mlx.h>
