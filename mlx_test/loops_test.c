@@ -47,6 +47,14 @@ int				render_next_frame(t_vars *vars)
 		x = 0;
 		while ((x + vars->offset_x) < (vars->offset_x + 21))
 		{
+			if (x + vars->offset_x > 800)
+				vars->offset_x = 0;
+			if (x + vars->offset_x < 0)
+				vars->offset_x = 780;
+			if (x + vars->offset_y > 600)
+				vars->offset_y = 0;
+			if (x + vars->offset_y < 0)
+				vars->offset_y = 580;
 			ft_pixelput(vars, (x + vars->offset_x), (y + vars->offset_y), create_trgb(0, 0, 150, 255));
 			x++;
 		}
