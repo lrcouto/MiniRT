@@ -1,34 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   get_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
+/*   Created: 2020/08/14 19:21:42 by lcouto            #+#    #+#             */
 /*   Updated: 2020/08/14 20:09:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int		main(int argc, char **argv)
+void	get_resolution(char *line)
 {
-	int		fd;
-	char	*line;
+	t_reso	reso;
+	int		i;
+	int		j;
+	int		check;
 
-	if (argc == 1)
-		printf("You need to use a file as an argument for this program\n");
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else if (argc > 2)
-		printf("One argument only, please.\n");
-	while (get_next_line(fd, &line) == 1)
+	i = 1;
+	j = 0;
+	while (line)
 	{
-		ft_putendl_fd(line, 1);
-		rt_identify(line);
-		free(line);
+		if (line[i] == ' ')
+			i++;
+		else if (line[i] >= '0' && line[i] <= '9')
+			check++;
+			while (line[i] >= '0' && line[i] <= '9')
+				i++;
+		else
+			printf("Error: invalid character.");
+			exit(0);
 	}
-	return (0);
+	if (check == 2)
+	{
+		i = 1;
+		while (line)
+		{
+			//usar o parametro check pra verificar qual valor está sendo passado pra struct (x ou y).
+		}
+	}
+	else
+		printf(Error: "resolution parameter must contain two arguments");
+		exit(0);
 }
-
