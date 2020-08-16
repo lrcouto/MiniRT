@@ -5,34 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lniehues <lniehues@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/08 23:34:57 by lniehues          #+#    #+#             */
-/*   Updated: 2020/08/16 16:20:41 by lniehues         ###   ########.fr       */
+/*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
+/*   Updated: 2020/08/16 19:07:21 by lniehues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int ac, char** av)
+int		main(int argc, char **argv)
 {
-	int fd;
-	int status;
-	char **line;
+	int		fd;
+	char	*line;
 
-	line = malloc(sizeof(char*) * 2);
-
-	if (ac == 1)
-		write(1, "Error\n", 6);
-	if (ac == 2) {
-		if ((fd = open(av[1], 0)) == -1) {
-			write(1, "Error while opening file\n", 24);
-			return (0);
-		}
-		while ((status = get_next_line(fd, line)))
-		{
-			printf("%s\n", *line);
-		}
+	if (argc == 1)
+		printf("You need to use a file as an argument for this program\n");
+	else if (argc == 2)
+		fd = open(argv[1], O_RDONLY);
+	else if (argc > 2)
+		printf("One argument only, please.\n");
+	while (get_next_line(fd, &line) == 1)
+	{
+		ft_putendl_fd(line, 1);
+		rt_identify(line);
+		free(line);
 	}
-
-	free(line);
 	return (0);
 }
+

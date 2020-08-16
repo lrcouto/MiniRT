@@ -1,0 +1,21 @@
+no terminal, digitar "xev" pra abrir a ferramenta de debug do teclado.
+Apertar a tecla em questão. No stdout, vai aparecer todas as informações
+correspondentes. A que queremos é o parâmetro "keysym".
+
+Por exemplo, a tecla ESC dá o seguinte output:
+
+KeyRelease event, serial 37, synthetic NO, window 0x6e00001,
+    root 0x540, subw 0x0, time 11114442, (480,959), root:(1855,1044),
+    state 0x0, keycode 9 (keysym 0xff1b, Escape), same_screen YES,
+    XLookupString gives 1 bytes: (1b) "
+FilterEvent returns: False
+
+Então para usar a tecla ESC como parâmetro nas funções da MiniLibX,
+usamos 0xFF1B. Por exemplo:
+
+int				close(int keycode, t_vars *vars)
+{
+    if (keycode == 0xFF1B)
+		mlx_destroy_window(vars->mlx, vars->win);
+	return (0);
+}
