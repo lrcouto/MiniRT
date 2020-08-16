@@ -7,7 +7,9 @@ SRCDIR	= srcs/
 LIBS		= libs/
 
 FILES	=	minirt.c \
-				gnl.c \
+				get_next_line.c \
+				# get_resolution.c \
+				# rt_identify.c \
 
 SRCS	= $(addprefix $(SRCDIR), $(FILES))
 
@@ -19,7 +21,7 @@ RM		= rm -f
 
 CFLAGS	= -Wall -Wextra -Werror -I $(HEADERS)
 
-# FLAGS = -L $(LIBS)libft -lft
+FLAGS = -L $(LIBS)libft -lft
 
 MACOS_MACRO = -D MACOS
 
@@ -43,17 +45,17 @@ ifeq ($(UNAME),Linux)
 endif
 
 ${NAME}:	${OBJS}
-			# make -C $(LIBS)libft
-			${CC} ${CFLAGS} $(OBJS) -o ${NAME}
+			make -C $(LIBS)libft
+			${CC} ${CFLAGS} $(OBJS) $(FLAGS) -o ${NAME}
 
 all:		${NAME}
 
 clean:
-			# make clean -C $(LIBS)libft
+			make clean -C $(LIBS)libft
 			${RM} ${OBJS}
 
 fclean:		clean
-			# make fclean -C $(LIBS)libft
+			make fclean -C $(LIBS)libft
 			${RM} ${NAME}
 
 re:			fclean all

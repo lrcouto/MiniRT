@@ -6,7 +6,7 @@
 /*   By: lniehues <lniehues@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/16 19:07:21 by lniehues         ###   ########.fr       */
+/*   Updated: 2020/08/16 19:28:04 by lniehues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		main(int argc, char **argv)
 	while (get_next_line(fd, &line) == 1)
 	{
 		ft_putendl_fd(line, 1);
-		rt_identify(line);
+		// rt_identify(line);
+		ft_putstr_fd(line, 1);
 		free(line);
 	}
 	return (0);
