@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lniehues <lniehues@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/16 19:48:32 by lniehues         ###   ########.fr       */
+/*   Updated: 2020/08/17 19:38:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 typedef struct	s_reso
 {
 	int			width;
-	int			length;
+	int			height;
 }				t_reso;
 
 /*
@@ -62,5 +62,6 @@ typedef struct	s_rt
 
 int				get_next_line(int fd, char **line);
 void			rt_identify(char *line);
+void			get_resolution(char *line);
 
 #endif

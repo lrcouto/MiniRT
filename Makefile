@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/08/17 17:33:45 by lcouto           ###   ########.fr        #
+#    Updated: 2020/08/17 19:39:19 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DIR_OBJS = objs
 
 HEADERS = include
 
-SOURCES = minirt.c get_next_line.c
+SOURCES = minirt.c get_next_line.c rt_identify.c get_resolution.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
@@ -61,10 +61,10 @@ endif
 
 $(NAME): $(OBJS)
 		make -C $(LIBFT)
-		mkdir -p objs
 		-$(CC) $(CFLAGS) $(OBJS) $(FLAGS) $(HEADER) -o $(NAME)
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
+		mkdir -p objs
 		$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 
