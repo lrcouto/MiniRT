@@ -1,33 +1,48 @@
-NAME	= miniRT
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
+#    Updated: 2020/08/17 17:33:45 by lcouto           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-HEADERS	= includes
+NAME = MiniRT
 
-SRCDIR	= srcs/
+HEADERS = include
 
-LIBS		= libs/
+DIR_SRCS = srcs
 
-FILES	=	minirt.c \
-				get_next_line.c \
-				# get_resolution.c \
-				# rt_identify.c \
+DIR_OBJS = objs
 
-SRCS	= $(addprefix $(SRCDIR), $(FILES))
+HEADERS = include
 
-OBJS	= ${SRCS:.c=.o}
+SOURCES = minirt.c get_next_line.c
+
+SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
+
+OBJS = $(addprefix $(DIR_OBJS)/,$(SOURCES:.c=.o))
 
 CC		= gcc -g
 
-RM		= rm -f
+RM		= rm -rf
 
 CFLAGS	= -Wall -Wextra -Werror -I $(HEADERS)
 
-FLAGS = -L $(LIBS)libft -lft
+LIBFT = libft
+
+LIBS = libs
+
+FLAGS = -L $(LIBFT) -lft
 
 MACOS_MACRO = -D MACOS
 
 LINUX_MACRO = -D LINUX
 
-MACOS_FLAGS	= -L $(LIBS)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit 
+MACOS_FLAGS	= -L $(LIBS)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
 LINUX_FLAGS = -L $(LIBS)minilibx-linux -lmlx -lm -lX11 -lXext
 
@@ -44,19 +59,26 @@ ifeq ($(UNAME),Linux)
 	# FLAGS += $(LINUX_FLAGS)
 endif
 
-${NAME}:	${OBJS}
-			make -C $(LIBS)libft
-			${CC} ${CFLAGS} $(OBJS) $(FLAGS) -o ${NAME}
+$(NAME): $(OBJS)
+		make -C $(LIBFT)
+		mkdir -p objs
+		-$(CC) $(CFLAGS) $(OBJS) $(FLAGS) $(HEADER) -o $(NAME)
 
-all:		${NAME}
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
+		$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+		@echo "Compiled "$<" successfully!"
+
+all: $(NAME)
 
 clean:
-			make clean -C $(LIBS)libft
-			${RM} ${OBJS}
+			make clean -C $(LIBFT)
+			$(RM) $(OBJS)
+			$(RM) $(DIR_OBJS)
 
 fclean:		clean
-			make fclean -C $(LIBS)libft
-			${RM} ${NAME}
+			make fclean -C $(LIBFT)
+			$(RM) $(NAME)
+			$(RM) $(DIR_OBJS)
 
 re:			fclean all
 
