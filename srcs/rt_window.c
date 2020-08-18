@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:23:52 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/18 16:59:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/18 18:27:38 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,21 @@ static int		close_wndw(int keycode, t_mlx *mlx)
 void			rt_window(t_rt *rt)
 {
 	t_mlx	mlx;
+	int		max_x;
+	int		max_y;
 
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.win, rt->reso.width, rt->reso.height, "A Window!");
+	mlx_get_screen_size(mlx.mlx, &max_x, &max_y);
+	if (rt->reso.width > max_x)
+		rt->reso.width = max_x;
+	if (rt->reso.height > max_y)
+		rt->reso.height = max_y;
+	if (rt->reso.width < 1 || rt->reso.height < 1)
+	{
+		printf("Error: invalid window size parameter");
+		exit(0);
+	}
+	mlx.win = mlx_new_window(mlx.mlx, rt->reso.width, rt->reso.height, "A Window!");
 	mlx_key_hook(mlx.win, close_wndw, &mlx);
 	mlx_loop(mlx.mlx);
 }
