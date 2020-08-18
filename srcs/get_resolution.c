@@ -6,13 +6,13 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 19:21:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/17 19:47:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:15:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static int		get_reso_values(int i, int j, int check, char *line, t_reso *reso)
+static void		get_reso_values(int i, int j, int check, char *line, t_reso *reso)
 {
 	char *temp;
 
@@ -23,7 +23,6 @@ static int		get_reso_values(int i, int j, int check, char *line, t_reso *reso)
 		reso->height = ft_atoi(temp);
 	free(temp);
 	printf("RESO WIDTH: %d RESO HEIGHT: %d\n", reso->width, reso->height);
-	return (check);
 }
 
 void			get_resolution(char *line)
@@ -35,9 +34,10 @@ void			get_resolution(char *line)
 
 	reso.width = 0;
 	reso.height = 0;
+	check = 0;
 	i = 1;
 	j = 0;
-	while (line)
+	while (line[i] != '\0')
 	{
 		if (line[i] == ' ')
 			i++;
@@ -47,7 +47,7 @@ void			get_resolution(char *line)
 			while (line[i] >= '0' && line[i] <= '9')
 				i++;
 		}
-		else
+		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 		{
 			printf("Error: invalid character.\n");
 			exit(0);
@@ -56,14 +56,16 @@ void			get_resolution(char *line)
 	if (check == 2)
 	{
 		i = 1;
-		while (line)
+		while (line[i] != '\0')
 		{
 			while (line[i + j] >= '0' && line[i + j] <= '9')
 				j++;
 			if (j > 0 && check > 0)
 			{
-				check = get_reso_values(i, j, check, line, &reso);
+				get_reso_values(i, j, check, line, &reso);
+				i = i + j;
 				j = 0;
+				check--;
 			}
 			i++;
 		}

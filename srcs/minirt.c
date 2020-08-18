@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/17 19:30:53 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:18:00 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int		main(int argc, char **argv)
 		printf("One argument only, please.\n");
 	while (get_next_line(fd, &line) == 1)
 	{
-		ft_putendl_fd(line, 1);
 		rt_identify(line);
-		ft_putstr_fd(line, 1);
 		free(line);
 	}
 	return (0);
