@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/08/17 19:39:19 by lcouto           ###   ########.fr        #
+#    Updated: 2020/08/18 16:59:57 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DIR_OBJS = objs
 
 HEADERS = include
 
-SOURCES = minirt.c get_next_line.c rt_identify.c get_resolution.c
+SOURCES = minirt.c get_next_line.c rt_identify.c get_resolution.c init_rt.c rt_window.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
@@ -56,7 +56,7 @@ endif
 ifeq ($(UNAME),Linux)
 	NUM_THREADS = $(shell nproc --all)
 	CFLAGS += $(LINUX_MACRO)
-	# FLAGS += $(LINUX_FLAGS)
+	FLAGS += $(LINUX_FLAGS)
 endif
 
 $(NAME): $(OBJS)

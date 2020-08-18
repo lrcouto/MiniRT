@@ -6,34 +6,31 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 19:21:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/17 22:15:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/18 16:10:48 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void		get_reso_values(int i, int j, int check, char *line, t_reso *reso)
+static void		get_reso_values(int i, int j, int check, char *line, t_rt *rt)
 {
 	char *temp;
 
 	temp = ft_substr(line, i, j);
 	if (check == 2)
-		reso->width = ft_atoi(temp);
+		rt->reso.width = ft_atoi(temp);
 	else if (check == 1)
-		reso->height = ft_atoi(temp);
+		rt->reso.height = ft_atoi(temp);
 	free(temp);
-	printf("RESO WIDTH: %d RESO HEIGHT: %d\n", reso->width, reso->height);
+	printf("RESO WIDTH: %d RESO HEIGHT: %d\n", rt->reso.width, rt->reso.height);
 }
 
-void			get_resolution(char *line)
+void			get_resolution(char *line, t_rt *rt)
 {
-	t_reso	reso;
 	int		i;
 	int		j;
 	int		check;
 
-	reso.width = 0;
-	reso.height = 0;
 	check = 0;
 	i = 1;
 	j = 0;
@@ -62,7 +59,7 @@ void			get_resolution(char *line)
 				j++;
 			if (j > 0 && check > 0)
 			{
-				get_reso_values(i, j, check, line, &reso);
+				get_reso_values(i, j, check, line, rt);
 				i = i + j;
 				j = 0;
 				check--;
