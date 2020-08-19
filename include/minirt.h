@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/19 14:44:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/19 14:50:42 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ void			rt_identify(char *line, t_rt *rt);
 void			get_resolution(char *line, t_rt *rt);
 void			init_rt(t_rt *rt);
 void			rt_window(t_rt *rt);
-//static int		close_wndw(int keycode, t_mlx *mlx);
 
 #endif
