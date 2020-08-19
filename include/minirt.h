@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/14 20:09:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/18 16:59:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define MINIRT_H
 
 # include "mlx.h"
-# include "mlx_int.h"
-# include "../libft/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
@@ -25,6 +24,7 @@
 # include <unistd.h>
 # include <ctype.h>
 # include <stdio.h>
+# include "mlx_int.h"
 
 /*
 ** Holds values for window size.
@@ -33,7 +33,7 @@
 typedef struct	s_reso
 {
 	int			width;
-	int			length;
+	int			height;
 }				t_reso;
 
 /*
@@ -59,8 +59,23 @@ typedef struct	s_rt
 
 }				t_rt;
 
+/*
+** Holds values needed for MiniLibX's functions.
+*/
+
+typedef struct s_mlx
+{
+	void		*mlx;
+	void		*win;
+}				t_mlx;
+
+
 
 int				get_next_line(int fd, char **line);
-void			rt_identify(char *line);
+void			rt_identify(char *line, t_rt *rt);
+void			get_resolution(char *line, t_rt *rt);
+void			init_rt(t_rt *rt);
+void			rt_window(t_rt *rt);
+//static int		close_wndw(int keycode, t_mlx *mlx);
 
 #endif

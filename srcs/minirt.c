@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/14 20:09:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/18 18:27:38 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
+	t_rt	rt;
 
+	init_rt(&rt);
 	if (argc == 1)
 		printf("You need to use a file as an argument for this program\n");
 	else if (argc == 2)
@@ -25,10 +27,10 @@ int		main(int argc, char **argv)
 		printf("One argument only, please.\n");
 	while (get_next_line(fd, &line) == 1)
 	{
-		ft_putendl_fd(line, 1);
-		rt_identify(line);
+		rt_identify(line, &rt);
 		free(line);
 	}
+	rt_window(&rt);
 	return (0);
 }
 
