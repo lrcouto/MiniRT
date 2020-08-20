@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/19 14:44:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/08/20 20:15:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
+	void		*img;
+	char		*address;
+	int			bpp;
+	int			line_leng;
+	int			endian;
 }				t_mlx;
 
 
@@ -76,6 +81,6 @@ void			rt_identify(char *line, t_rt *rt);
 void			get_resolution(char *line, t_rt *rt);
 void			init_rt(t_rt *rt);
 void			rt_window(t_rt *rt);
-//static int		close_wndw(int keycode, t_mlx *mlx);
+void			get_ambient(char *line, t_rt *rt);
 
 #endif

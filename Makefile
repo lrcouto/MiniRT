@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/08/18 16:59:57 by lcouto           ###   ########.fr        #
+#    Updated: 2020/08/20 19:41:04 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DIR_OBJS = objs
 
 HEADERS = include
 
-SOURCES = minirt.c get_next_line.c rt_identify.c get_resolution.c init_rt.c rt_window.c
+SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c get_ambient.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
