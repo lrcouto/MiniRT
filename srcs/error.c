@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_identify.c                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 19:08:06 by lcouto            #+#    #+#             */
+/*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
 /*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	rt_identify(char *line, t_rt *rt)
+void	errormsg(int errornum)
 {
-	if (line[0] == 'R' && line[1] == ' ')
-		get_resolution(line, rt);
-	else if (line[0] == 'A' && line[1] == ' ')
-		get_ambient(line, rt);
+	char	*filename;
+	char	*errstring;
+	int		fd;
+	int		i;
+
+	filename = "srcs/error.txt";
+	fd = open(filename, O_RDONLY);
+	i = 0;
+	while ((get_next_line(fd, &errstring) == 1))
+	{
+		if (i == errornum)
+			break ;
+		free(errstring);
+		i++;
+	}
+	if (errstring)
+		ft_putstr_fd(errstring, 1);
 	else
-		errormsg(2);
+		ft_putstr_fd("ERROR: Error file not found", 1);
+	write(1, "\n", 1);
+	close(fd);
+	exit(0);
 }

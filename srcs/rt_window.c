@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:23:52 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/20 20:20:41 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void			rt_window(t_rt *rt)
 	if (rt->reso.height > max_y)
 		rt->reso.height = max_y;
 	if (rt->reso.width < 1 || rt->reso.height < 1)
-	{
-		ft_putstr_fd("Error: invalid window size parameter", 1);
-		exit(0);
-	}
+		errormsg(3);
 	mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
 	rt->reso.height, "MiniRT");
 	mlx.img = mlx_new_image(mlx.mlx, rt->reso.width, rt->reso.height);
