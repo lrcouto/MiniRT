@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 16:54:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 19:33:45 by gsenra-agsenra-a         ###   ########.fr       */
+/*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/03 20:45:37 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,16 @@ static int		validation_ok(int i, int check, char *line, t_rt *rt)
 	if (j > 0 && (check > 0 && check < 4))
 	{
 		get_rgb_values(i, check, line, rt);
-		i = i + j;
 		check--;
 	}
-	return (i);
+	return (check);
 }
 
 static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 {
+	int		j;
+
+	j = 0;
 	if (check == 4)
 	{
 		i = 1;
@@ -70,7 +72,14 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 				i = i + 3;
 				check--;
 			}
-			validation_ok(i, check, line, rt);
+			check = validation_ok(i, check, line, rt);
+			if (line[i + j] >= '0' && line[i + j] <= '9')
+			{
+				while (line[i + j] >= '0' && line[i + j] <= '9')
+					j++;
+				i = i + j;
+				j = 0;
+			}
 			i++;
 		}
 	}
@@ -95,7 +104,7 @@ static int		get_light(char *line, int check, int i, t_rt *rt)
 		rt->ambi.light = atof(temp);
 		check++;
 		free(temp);
-		return (0);
+		return (check);
 	}
 	else
 		errormsg(6);
