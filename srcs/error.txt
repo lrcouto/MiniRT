@@ -7,3 +7,5 @@ ERROR: Values must be separated exclusively by spaces.
 ERROR: Ambient light intensity values must be between 0.0 and 1.0.
 ERROR: Ambient light parameter receives four parameters, one intensity value and three RGB values.
 ERROR: RGB value must be an integer between 0 and 255.
+ERROR: You cannot have more than one window resolution parameter.
+ERROR: You cannot have more than one ambient light parameter.

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 18:34:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/04 19:52:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_reso
 {
 	int			width;
 	int			height;
+	int			qty;
 }					t_reso;
 
 /*
@@ -66,6 +67,7 @@ typedef struct		s_ambi
 {
 	double		light;
 	t_color		color;
+	int			qty;
 }					t_ambi;
 
 /*
@@ -78,6 +80,18 @@ typedef struct		s_rt
 	t_ambi		ambi;
 
 }					t_rt;
+
+/*
+** Holds values for cameras.
+*/
+
+typedef struct		s_cam
+{
+	t_coord			view;
+	t_coord			pos;
+	int				fov;
+	struct s_cam	*next;
+}					t_cam;
 
 /*
 ** Holds values needed for MiniLibX's functions.
@@ -94,19 +108,6 @@ typedef struct		s_mlx
 	int			endian;
 }					t_mlx;
 
-/*
-** Holds values for cameras.
-*/
-
-typedef struct		s_cam
-{
-	t_coord			view;
-	t_coord			pos;
-	int				fov;
-	struct s_cam	*next;
-}					t_cam;
-
-int					get_next_line(int fd, char **line);
 void				rt_identify(char *line, t_rt *rt);
 void				get_resolution(char *line, t_rt *rt);
 void				init_rt(t_rt *rt);
