@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 17:19:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/04 15:16:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void			init_rt(t_rt *rt);
 void			rt_window(t_rt *rt);
 void			get_ambient(char *line, t_rt *rt);
 void			errormsg(int errornum);
+void			ambi_rgb_values(int i, int check, char *line, t_rt *rt);
 
 #endif
