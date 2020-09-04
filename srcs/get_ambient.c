@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 15:22:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/04 15:34:18 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int		get_light(char *line, int check, int i, t_rt *rt)
 		check == 0))
 	{
 		temp = ft_substr(line, i, i + 2);
-		rt->ambi.light = atof(temp);
+		rt->ambi.light = ft_atof(temp);
 		check++;
 		free(temp);
 		return (check);
