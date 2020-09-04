@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 20:45:37 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/03 21:39:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void		get_rgb_values(int i, int check, char *line, t_rt *rt)
 	j = 0;
 	while (line[i + j] >= '0' && line[i + j] <= '9')
 		j++;
+	if (line[i + j] == '.')
+		errormsg(8);
 	temp = ft_substr(line, i, j);
 	if (check == 3)
 		rt->ambi.red = ft_atoi(temp);
@@ -45,6 +47,14 @@ static int		validation_ok(int i, int check, char *line, t_rt *rt)
 	int j;
 
 	j = 0;
+	if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
+	(line[i + 2] >= '0' && line[i + 2] <= '9') &&
+	(line[i + 3] == ' ' && check == 4))
+	{
+		i = i + 3;
+		check--;
+		return (check);
+	}
 	while (line[i + j] >= '0' && line[i + j] <= '9')
 		j++;
 	if (j > 0 && (check > 0 && check < 4))
@@ -66,8 +76,8 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 		while (line[i] != '\0')
 		{
 			if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
-			(line[i + 2] >= '0' && line[i + 2] <= '9') && (line[i + 3] == ' ' &&
-			check == 4))
+			(line[i + 2] >= '0' && line[i + 2] <= '9') &&
+			(line[i + 3] == ' ' && check == 4))
 			{
 				i = i + 3;
 				check--;
@@ -122,16 +132,13 @@ void			get_ambient(char *line, t_rt *rt)
 	{
 		if (line[i] == ' ')
 			i++;
-		else if ((line[i] >= '0' && line[i] <= '9') &&
-		check == 0)
+		else if ((line[i] >= '0' && line[i] <= '9'))
 		{
-			check = get_light(line, check, i, rt);
-			i = i + 3;
-		}
-		else if (line[i] >= '0' && line[i] <= '9')
-		{
-			check++;
-			while (line[i] >= '0' && line[i] <= '9')
+			if (check == 0)
+				check = get_light(line, check, i, rt);
+			else
+				check++;
+			while ((line[i] >= '0' && line[i] <= '9') || line[i] == '.')
 				i++;
 		}
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))

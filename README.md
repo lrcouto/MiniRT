@@ -12,3 +12,5 @@ August 18th 2020 - Integrated file parsing functions with MiniLibX functions to 
 August 19th 2020 - Restructuring some functions to comply with The Norme. Integrated get_next_line to libft.
 
 August 20th 2020 - Wrote the functions needed to parse ambient lighting parameters from an input file, and right now what they do is set the color of the output window. Having trouble with The Norme because of error messages being too long, and functions having more than 25 lines. We need to figure out a more succint way to write error messages. Also, we need to code our own ASCII-to-Float function, since we are forbidden to use the one from stdlib.h.
+
+September 3rd 2020 - Created a system to handle error messages in a more convenient way, allowing us to store the messages themselves on an external file. Norme is still being troublesome.
