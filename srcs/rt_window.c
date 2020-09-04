@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:23:52 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:34:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void			rt_window(t_rt *rt)
 		x = 0;
 		while (x <= rt->reso.width)
 		{
-			ft_pixelput(&mlx, x, y, create_trgb(0, rt->ambi.red,
-			rt->ambi.gre, rt->ambi.blu));
+			ft_pixelput(&mlx, x, y, create_trgb(0, rt->ambi.color.r,
+			rt->ambi.color.g, rt->ambi.color.b));
 			x++;
 		}
 		y++;
