@@ -6,11 +6,16 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 19:21:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/20 19:41:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+/*
+** There is a printf in this function. It's there just to see if the parameters
+** are being transfered correctly. Don't forget to remove it.
+*/
 
 static void		get_reso_values(int i, int check, char *line, t_rt *rt)
 {
@@ -52,10 +57,7 @@ static void		validate_reso(int i, int check, char *line, t_rt *rt)
 		}
 	}
 	else
-	{
-		ft_putstr_fd("Error: resolution must receive two parameters.\n", 1);
-		exit(0);
-	}
+		errormsg(4);
 }
 
 void			get_resolution(char *line, t_rt *rt)
@@ -76,10 +78,7 @@ void			get_resolution(char *line, t_rt *rt)
 				i++;
 		}
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
-		{
-			ft_putstr_fd("Error: invalid character.\n", 1);
-			exit(0);
-		}
+			errormsg(5);
 	}
 	validate_reso(i, check, line, rt);
 }

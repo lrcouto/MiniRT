@@ -5,12 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 16:54:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/08/20 19:48:29 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/03 21:39:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+/*
+** There is a printf in this function. It's there just to see if the parameters
+** are being transfered correctly. Don't forget to remove it.
+*/
 
 static void		get_rgb_values(int i, int check, char *line, t_rt *rt)
 {
@@ -20,6 +25,8 @@ static void		get_rgb_values(int i, int check, char *line, t_rt *rt)
 	j = 0;
 	while (line[i + j] >= '0' && line[i + j] <= '9')
 		j++;
+	if (line[i + j] == '.')
+		errormsg(8);
 	temp = ft_substr(line, i, j);
 	if (check == 3)
 		rt->ambi.red = ft_atoi(temp);
@@ -30,17 +37,37 @@ static void		get_rgb_values(int i, int check, char *line, t_rt *rt)
 	free(temp);
 	if ((rt->ambi.red < 0 || rt->ambi.red > 255) || (rt->ambi.gre < 0 ||
 	rt->ambi.gre > 255) || (rt->ambi.blu < 0 || rt->ambi.blu > 255))
-	{
-		ft_putstr_fd("Error: RGB values must be between 0 and 255\n", 1);
-		exit(0);
-	}
+		errormsg(8);
 	printf("LIGHT: %f R: %d G: %d B: %d\n", rt->ambi.light, rt->ambi.red,
 	rt->ambi.gre, rt->ambi.blu);
 }
 
-static void		validate_ambi(int i, int check, char *line, t_rt *rt)
+static int		validation_ok(int i, int check, char *line, t_rt *rt)
 {
 	int j;
+
+	j = 0;
+	if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
+	(line[i + 2] >= '0' && line[i + 2] <= '9') &&
+	(line[i + 3] == ' ' && check == 4))
+	{
+		i = i + 3;
+		check--;
+		return (check);
+	}
+	while (line[i + j] >= '0' && line[i + j] <= '9')
+		j++;
+	if (j > 0 && (check > 0 && check < 4))
+	{
+		get_rgb_values(i, check, line, rt);
+		check--;
+	}
+	return (check);
+}
+
+static void		validate_ambi(int i, int check, char *line, t_rt *rt)
+{
+	int		j;
 
 	j = 0;
 	if (check == 4)
@@ -49,29 +76,25 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 		while (line[i] != '\0')
 		{
 			if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
-			(line[i + 2] >= '0' && line[i + 2] <= '9') && (line[i + 3] == ' ' &&
-			check == 4))
+			(line[i + 2] >= '0' && line[i + 2] <= '9') &&
+			(line[i + 3] == ' ' && check == 4))
 			{
 				i = i + 3;
 				check--;
 			}
-			while (line[i + j] >= '0' && line[i + j] <= '9')
-				j++;
-			if (j > 0 && (check > 0 && check < 4))
+			check = validation_ok(i, check, line, rt);
+			if (line[i + j] >= '0' && line[i + j] <= '9')
 			{
-				get_rgb_values(i, check, line, rt);
+				while (line[i + j] >= '0' && line[i + j] <= '9')
+					j++;
 				i = i + j;
 				j = 0;
-				check--;
 			}
 			i++;
 		}
 	}
 	else
-	{
-		ft_putstr_fd("Error: resolution must receive two parameters.\n", 1);
-		exit(0);
-	}
+		errormsg(7);
 }
 
 /*
@@ -81,7 +104,7 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 
 static int		get_light(char *line, int check, int i, t_rt *rt)
 {
-	char *temp;
+	char	*temp;
 
 	if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
 		(line[i + 2] >= '0' && line[i + 2] <= '9') && (line[i + 3] == ' ' &&
@@ -89,14 +112,13 @@ static int		get_light(char *line, int check, int i, t_rt *rt)
 	{
 		temp = ft_substr(line, i, i + 2);
 		rt->ambi.light = atof(temp);
+		check++;
 		free(temp);
-		return (check + 1);
+		return (check);
 	}
 	else
-	{
-		ft_putstr_fd("Error: ambient light intensity must be between 0.0 and 1.0\n", 1);
-		exit(0);
-	}
+		errormsg(6);
+	return (0);
 }
 
 void			get_ambient(char *line, t_rt *rt)
@@ -110,23 +132,17 @@ void			get_ambient(char *line, t_rt *rt)
 	{
 		if (line[i] == ' ')
 			i++;
-		else if ((line[i] >= '0' && line[i] <= '9') &&
-		check == 0)
+		else if ((line[i] >= '0' && line[i] <= '9'))
 		{
-			check = get_light(line, check, i, rt);
-			i = i + 3;
-		}
-		else if (line[i] >= '0' && line[i] <= '9')
-		{
-			check++;
-			while (line[i] >= '0' && line[i] <= '9')
+			if (check == 0)
+				check = get_light(line, check, i, rt);
+			else
+				check++;
+			while ((line[i] >= '0' && line[i] <= '9') || line[i] == '.')
 				i++;
 		}
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
-		{
-			ft_putstr_fd("Error: invalid character.\n", 1);
-			exit(0);
-		}
+			errormsg(5);
 	}
 	validate_ambi(i, check, line, rt);
 }
