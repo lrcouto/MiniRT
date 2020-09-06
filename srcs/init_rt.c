@@ -12,7 +12,7 @@
 
 #include "../include/minirt.h"
 
-static void	init_qts(t_rt *rt)
+static void		init_qts(t_rt *rt)
 {
 	rt->qts.reso = 0;
 	rt->qts.ambi = 0;
@@ -25,7 +25,7 @@ static void	init_qts(t_rt *rt)
 	rt->qts.tr = 0;
 }
 
-static void	init_camera(t_rt *rt)
+static void		init_camera(t_rt *rt)
 {
 	t_cam	*basecam;
 
@@ -41,7 +41,7 @@ static void	init_camera(t_rt *rt)
 	rt->cam = basecam;
 }
 
-void	init_rt(t_rt *rt)
+void			init_rt(t_rt *rt)
 {
 	t_reso	reso;
 	t_ambi	ambi;

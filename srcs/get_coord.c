@@ -26,7 +26,7 @@ static int		check_double_format(char *line, int i)
 			if (!(line[j] >= '0' && line[j] <= '9'))
 			{
 				if (line[j] == ',' || line[j] == ' ')
-					return j;
+					return (j);
 				errormsg(14);
 			}
 			j++;
