@@ -16,15 +16,15 @@ void	rt_identify(char *line, t_rt *rt)
 {
 	if (line[0] == 'R' && line[1] == ' ')
 	{
-		rt->reso.qty = rt->reso.qty + 1;
-		if (rt->reso.qty > 1)
+		rt->qts.reso = rt->qts.reso + 1;
+		if (rt->qts.reso > 1)
 			errormsg(9);
 		get_resolution(line, rt);
 	}
 	else if (line[0] == 'A' && line[1] == ' ')
 	{
-		rt->ambi.qty = rt->ambi.qty + 1;
-		if (rt->ambi.qty > 1)
+		rt->qts.ambi = rt->qts.ambi + 1;
+		if (rt->qts.ambi > 1)
 			errormsg(10);
 		get_ambient(line, rt);
 	}

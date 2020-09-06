@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
+#    By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/05 23:28:21 by lcouto           ###   ########.fr        #
+#    Updated: 2020/09/06 18:05:02 bygsenra-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEADERS = include
 
 SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
 			get_ambient.c error.c ambi_rgb_values.c ft_atof.c get_camera.c \
-			get_coord.c
+			get_coord.c free_lists.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
@@ -59,6 +59,14 @@ ifeq ($(UNAME),Linux)
 	NUM_THREADS = $(shell nproc --all)
 	CFLAGS += $(LINUX_MACRO)
 	FLAGS += $(LINUX_FLAGS)
+endif
+
+ifeq ($(SANITIZE_A),true)
+	CFLAGS += -fsanitize=address
+endif
+
+ifeq ($(SANITIZE_L),true)
+	CFLAGS += -fsanitize=leak
 endif
 
 $(NAME): $(OBJS)

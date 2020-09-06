@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:23:52 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 19:52:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 19:46:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void			rt_window(t_rt *rt)
 		y++;
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+	free_lists(rt);
 	mlx_key_hook(mlx.win, close_wndw, &mlx);
 	mlx_loop(mlx.mlx);
 }

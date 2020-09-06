@@ -12,17 +12,17 @@
 
 #include "../include/minirt.h"
 
-static void printList(t_cam cam)
-{
-		t_cam *temp_cam;
-
-		temp_cam = &cam;
-    while (temp_cam != NULL) {
-        printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n",
-				temp_cam->view.x, temp_cam->view.y, temp_cam->view.z, temp_cam->pos.x, temp_cam->pos.y, temp_cam->pos.z, temp_cam->fov);
-        temp_cam = temp_cam->next;
-    }
-}
+/*
+** static void printList(t_cam *cam)
+** {
+**
+**     while (cam != NULL) {
+**         printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n",
+** 				cam->view.x, cam->view.y, cam->view.z, cam->pos.x, cam->pos.y, cam->pos.z, cam->fov);
+**         cam = cam->next;
+**     }
+** }
+*/
 
 int		main(int argc, char **argv)
 {
@@ -42,7 +42,7 @@ int		main(int argc, char **argv)
 		rt_identify(line, &rt);
 		free(line);
 	}
-	printList(rt.cam);
+	//printList(rt.cam);
 	rt_window(&rt);
 	return (0);
 }

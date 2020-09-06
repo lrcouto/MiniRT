@@ -12,15 +12,29 @@
 
 #include "../include/minirt.h"
 
-static void		push_camera(t_cam head, t_cam new_cam)
+static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 {
 	t_cam *current;
 
-	current = &head;
+	current = head;
+	new_cam->next = NULL;
+	if (rt->qts.cam == 0)
+	{
+		head->view = new_cam->view;
+		head->pos = new_cam->pos;
+		head->fov = new_cam->fov;
+		head->next = new_cam->next;
+		rt->qts.cam = rt->qts.cam + 1;
+		return ;
+	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_cam *) malloc(sizeof(t_cam));
-	current->next = &new_cam;
+	current->next = (t_cam *)malloc(sizeof(t_cam));
+	current->next->view = new_cam->view;
+	current->next->pos = new_cam->pos;
+	current->next->fov = new_cam->fov;
+	current->next->next = new_cam->next;
+	rt->qts.cam = rt->qts.cam + 1;
 }
 
 static int		get_index_nocomma(char *line, int i)
@@ -155,8 +169,9 @@ void			get_camera(char *line, t_rt *rt)
 {
 	int		i;
 	int		check;
-	t_cam	cam;
+	t_cam	*cam;
 
+	cam = (t_cam *)malloc(sizeof(t_cam));
 	check = 0;
 	i = 1;
 	while (line[i] != '\0')
@@ -167,22 +182,23 @@ void			get_camera(char *line, t_rt *rt)
 		{
 			if (check == 0)
 			{
-				check = get_view(line, check, i, &cam);
+				check = get_view(line, check, i, cam);
 				i = get_index(line, i);
 			}
 			else if (check == 3)
 			{
-				check = get_pos(line, check, i, &cam);
+				check = get_pos(line, check, i, cam);
 				i = get_index(line, i);
 			}
 			else if (check == 6)
 			{
-				check = get_fov(line, check, i, &cam);
+				check = get_fov(line, check, i, cam);
 				i = get_index(line, i);
 			}
 		}
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
-	push_camera(rt->cam, cam);
+	push_camera(rt->cam, cam, rt);
+	free(cam);
 }

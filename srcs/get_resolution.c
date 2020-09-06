@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 19:21:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 19:46:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void		validate_reso(int i, int check, char *line, t_rt *rt)
 				j = 0;
 				check--;
 			}
-			i++;
+			i = (line[i] == '\0') ? i : i + 1;
 		}
 	}
 	else

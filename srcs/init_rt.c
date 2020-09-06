@@ -3,27 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: genra-a <gsecora-a@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:35:24 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 01:13:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:13:29 by gsecora-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
+static void	init_qts(t_rt *rt)
+{
+	rt->qts.reso = 0;
+	rt->qts.ambi = 0;
+	rt->qts.cam = 0;
+	rt->qts.lt = 0;
+	rt->qts.sp = 0;
+	rt->qts.pl = 0;
+	rt->qts.sq = 0;
+	rt->qts.cy = 0;
+	rt->qts.tr = 0;
+}
+
 static void	init_camera(t_rt *rt)
 {
-	t_cam	basecam;
+	t_cam	*basecam;
 
-	basecam.view.x = 0;
-	basecam.view.y = 0;
-	basecam.view.z = 0;
-	basecam.pos.x = 0;
-	basecam.pos.y = 0;
-	basecam.pos.z = 0;
-	basecam.fov = 0;
-	basecam.next = NULL;
+	basecam = (t_cam *)malloc(sizeof(t_cam));
+	basecam->view.x = 0;
+	basecam->view.y = 0;
+	basecam->view.z = 0;
+	basecam->pos.x = 0;
+	basecam->pos.y = 0;
+	basecam->pos.z = 0;
+	basecam->fov = 0;
+	basecam->next = NULL;
 	rt->cam = basecam;
 }
 
@@ -32,14 +46,13 @@ void	init_rt(t_rt *rt)
 	t_reso	reso;
 	t_ambi	ambi;
 
+	init_qts(rt);
 	reso.width = 0;
 	reso.height = 0;
-	reso.qty = 0;
 	ambi.light = 0.0;
 	ambi.color.b = 0;
 	ambi.color.r = 0;
 	ambi.color.g = 0;
-	ambi.qty = 0;
 	rt->reso = reso;
 	rt->ambi = ambi;
 	init_camera(rt);
