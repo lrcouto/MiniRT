@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 15:34:18 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/05 23:27:32 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,6 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 	else
 		errormsg(7);
 }
-
-/*
-** This function is using an AtoF from stdlib.h that is forbidden. Do not
-** forget to write your own AtoF.
-*/
 
 static int		get_light(char *line, int check, int i, t_rt *rt)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_identify.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 19:08:06 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 19:52:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/05 20:33:58 bygsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	rt_identify(char *line, t_rt *rt)
 			errormsg(10);
 		get_ambient(line, rt);
 	}
-	/*else if (line[0] == 'c' && line[1] == ' ')
-		get_camera(line);*/
+	else if (line[0] == 'c' && line[1] == ' ')
+		get_camera(line);
 	else
 		errormsg(2);
 }
