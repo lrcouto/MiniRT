@@ -12,12 +12,15 @@
 
 #include "../include/minirt.h"
 
-static void printList(t_cam *cam)
+static void printList(t_cam cam)
 {
-    while (cam != NULL) {
+		t_cam *temp_cam;
+
+		temp_cam = &cam;
+    while (temp_cam != NULL) {
         printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n",
-				cam->view.x, cam->view.y, cam->view.z, cam->pos.x, cam->pos.y, cam->pos.z, cam->fov);
-        cam = cam->next;
+				temp_cam->view.x, temp_cam->view.y, temp_cam->view.z, temp_cam->pos.x, temp_cam->pos.y, temp_cam->pos.z, temp_cam->fov);
+        temp_cam = temp_cam->next;
     }
 }
 

@@ -90,7 +90,7 @@ typedef struct		s_rt
 {
 	t_reso		reso;
 	t_ambi		ambi;
-	t_cam		*cam;
+	t_cam			cam;
 
 }					t_rt;
 

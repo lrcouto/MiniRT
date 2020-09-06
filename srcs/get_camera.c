@@ -184,5 +184,5 @@ void			get_camera(char *line, t_rt *rt)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
-	push_camera(rt->cam, &cam);
+	push_camera(rt->cam, cam);
 }

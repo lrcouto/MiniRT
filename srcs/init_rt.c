@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:35:24 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 01:12:01 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 01:13:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 static void	init_camera(t_rt *rt)
 {
-	t_cam	*basecam;
+	t_cam	basecam;
 
-	basecam = NULL;
-	basecam->view.x = 0;
-	basecam->view.y = 0;
-	basecam->view.z = 0;
-	basecam->pos.x = 0;
-	basecam->pos.y = 0;
-	basecam->pos.z = 0;
-	basecam->fov = 0;
-	basecam->next = NULL;
+	basecam.view.x = 0;
+	basecam.view.y = 0;
+	basecam.view.z = 0;
+	basecam.pos.x = 0;
+	basecam.pos.y = 0;
+	basecam.pos.z = 0;
+	basecam.fov = 0;
+	basecam.next = NULL;
 	rt->cam = basecam;
 }
 
