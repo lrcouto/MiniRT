@@ -29,7 +29,7 @@ void	rt_identify(char *line, t_rt *rt)
 		get_ambient(line, rt);
 	}
 	else if (line[0] == 'c' && line[1] == ' ')
-		get_camera(line);
+		get_camera(line, rt);
 	else
 		errormsg(2);
 }

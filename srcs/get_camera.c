@@ -12,27 +12,24 @@
 
 #include "../include/minirt.h"
 
-/*static	void push_camera(t_cam *head, t_coord view, t_coord pos, int fov)
+static void		push_camera(t_cam head, t_cam new_cam)
 {
 	t_cam *current;
 
-	current = head;
+	current = &head;
 	while (current->next != NULL)
 		current = current->next;
 	current->next = (t_cam *) malloc(sizeof(t_cam));
-	current->next->view = view;
-	current->next->pos = pos;
-	current->next->fov = fov;
-	current->next->next = NULL;
-}*/
+	current->next = &new_cam;
+}
 
 static int		get_index_nocomma(char *line, int i)
 {
 	int j;
 
 	j = i;
-	while ((line[i + j] >= '0' && line[i + j] <= '9') ||
-			line[i + j] == '.' || line[i] == '-')
+	while ((line[j] >= '0' && line[j] <= '9') ||
+			line[j] == '.' || line[j] == '-')
 		j++;
 	return (j);
 }
@@ -43,8 +40,10 @@ static int		get_index(char *line, int i)
 
 	j = i;
 	while ((line[j] >= '0' && line[j] <= '9') ||
-			line[j] == '.' || line[j] == ',' || line[i] == '-')
+			line[j] == '.' || line[j] == ',' || line[j] == '-')
 		j++;
+	if (line[j] != ' ' && line[j] != '\0')
+		errormsg(5);
 	return (j);
 }
 
@@ -103,22 +102,19 @@ static int		get_pos(char *line, int check, int i,t_cam *cam)
 
 	while (line[i] != ' ' && line[i] != '\0')
 	{
-		if (((line[i] >= '0' && line[i] <= '9') ||
-			line[i] == '-') && check == 3)
+		if ((line[i] == '1' || line[i] == '0') && check == 3)
 		{
 			x = get_coord(line, i);
 			i = get_index_nocomma(line, i);
 			check++;
 		}
-		else if (((line[i] >= '0' && line[i] <= '9') ||
-			line[i] == '-') && check == 4)
+		else if ((line[i] == '1' || line[i] == '0') && check == 4)
 		{
 			y = get_coord(line, i);
 			i = get_index_nocomma(line, i);
 			check++;
 		}
-		else if (((line[i] >= '0' && line[i] <= '9') ||
-			line[i] == '-') && check == 5)
+		else if ((line[i] == '1' || line[i] == '0') && check == 5)
 		{
 			z = get_coord(line, i);
 			i = get_index_nocomma(line, i);
@@ -126,6 +122,8 @@ static int		get_pos(char *line, int check, int i,t_cam *cam)
 		}
 		i++;
 	}
+	if ((x > 1 || x < -1) || (y > 1 || y < -1) || (z > 1 || z < -1))
+		errormsg(13);
 	if (check != 6)
 		errormsg(13);
 	cam->pos = fill_coord(x, y, z);
@@ -138,7 +136,7 @@ static int		get_fov(char *line, int check, int i,t_cam *cam)
 	int		j;
 
 	j = i;
-	while ((line[j] >= '0' && line[j] <= '9') && line[j] != '\0')
+	while (line[j] != '\0')
 	{
 		if (line[j] < '0' || line[j] > '9')
 			errormsg(11);
@@ -153,7 +151,7 @@ static int		get_fov(char *line, int check, int i,t_cam *cam)
 	return (check);
 }
 
-void			get_camera(char *line)
+void			get_camera(char *line, t_rt *rt)
 {
 	int		i;
 	int		check;
@@ -186,6 +184,5 @@ void			get_camera(char *line)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
-	printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \n CAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \n CAMERA - FOV %d \n",
-	cam.view.x, cam.view.y, cam.view.z, cam.pos.x, cam.pos.y, cam.pos.z, cam.fov);
+	push_camera(rt->cam, &cam);
 }

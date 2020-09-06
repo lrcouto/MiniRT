@@ -90,7 +90,7 @@ typedef struct		s_rt
 {
 	t_reso		reso;
 	t_ambi		ambi;
-	t_cam		cam;
+	t_cam		*cam;
 
 }					t_rt;
 
@@ -117,7 +117,7 @@ void				get_ambient(char *line, t_rt *rt);
 void				errormsg(int errornum);
 void				ambi_rgb_values(int i, int check, char *line, t_rt *rt);
 double				ft_atof(char s[]);
-void				get_camera(char *line);
+void				get_camera(char *line, t_rt *rt);
 double				get_coord(char *line, int i);
 
 #endif

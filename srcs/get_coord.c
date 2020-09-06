@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_coord.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 21:56:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/05 23:27:32 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 00:23:35 bygsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static int		check_double_format(char *line, int i)
 		while (line[j] != '.')
 		{
 			if (!(line[j] >= '0' && line[j] <= '9'))
+			{
+				if (line[j] == ',' || line[j] == ' ')
+					return j;
 				errormsg(14);
+			}
 			j++;
 		}
 		j++;
