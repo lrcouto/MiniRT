@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/04 16:42:25 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/04 17:31:40 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 00:07:24 by gsenra-a          #+#    #+#             */
+/*   Updated: 2020/09/06 01:12:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ static int		handle_sign(char *s, int i)
 	int sign;
 
 	sign = (s[i] == '-') ? -1 : 1;
-	if (s[i] == '+' || s[i] == '-')
-		i++;
-	sign = sign + i;
 	return (sign);
 }
 
@@ -53,7 +50,7 @@ double			ft_atof(char s[])
 	power = 1.0;
 	i = handle_whitespaces(s, i);
 	sign = handle_sign(s, i);
-	i = (sign < 0) ? (sign * -1) : sign;
+	i = (s[i] == '+' || s[i] == '-') ? i + 1 : i;
 	while (ft_isalnum((int)s[i]) == 1)
 	{
 		val = 10.0 * val + (s[i] - '0');

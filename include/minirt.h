@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-aniehes <gsenra-aniehes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 19:52:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/05 22:49:23 byniehesgsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,6 @@ typedef struct		s_ambi
 }					t_ambi;
 
 /*
-** Holds values from the .rt file.
-*/
-
-typedef struct		s_rt
-{
-	t_reso		reso;
-	t_ambi		ambi;
-
-}					t_rt;
-
-/*
 ** Holds values for cameras.
 */
 
@@ -92,6 +81,18 @@ typedef struct		s_cam
 	int				fov;
 	struct s_cam	*next;
 }					t_cam;
+
+/*
+** Holds values from the .rt file.
+*/
+
+typedef struct		s_rt
+{
+	t_reso		reso;
+	t_ambi		ambi;
+	t_cam			cam;
+
+}					t_rt;
 
 /*
 ** Holds values needed for MiniLibX's functions.
@@ -116,5 +117,7 @@ void				get_ambient(char *line, t_rt *rt);
 void				errormsg(int errornum);
 void				ambi_rgb_values(int i, int check, char *line, t_rt *rt);
 double				ft_atof(char s[]);
+void				get_camera(char *line, t_rt *rt);
+double				get_coord(char *line, int i);
 
 #endif

@@ -6,11 +6,26 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:35:24 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/04 19:52:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/06 01:13:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void	init_camera(t_rt *rt)
+{
+	t_cam	basecam;
+
+	basecam.view.x = 0;
+	basecam.view.y = 0;
+	basecam.view.z = 0;
+	basecam.pos.x = 0;
+	basecam.pos.y = 0;
+	basecam.pos.z = 0;
+	basecam.fov = 0;
+	basecam.next = NULL;
+	rt->cam = basecam;
+}
 
 void	init_rt(t_rt *rt)
 {
@@ -27,4 +42,5 @@ void	init_rt(t_rt *rt)
 	ambi.qty = 0;
 	rt->reso = reso;
 	rt->ambi = ambi;
+	init_camera(rt);
 }
