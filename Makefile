@@ -22,7 +22,8 @@ HEADERS = include
 
 SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
 			get_ambient.c error.c ambi_rgb_values.c ft_atof.c get_camera.c \
-			get_coord.c free_lists.c
+			get_coord.c free_lists.c fill_coord.c get_index.c get_index_nocomma.c \
+			get_cam_pos.c get_cam_view.c get_cam_fov.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 

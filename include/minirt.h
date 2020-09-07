@@ -132,5 +132,11 @@ double				ft_atof(char s[]);
 void				get_camera(char *line, t_rt *rt);
 double				get_coord(char *line, int i);
 void				free_lists(t_rt *rt);
+t_coord				fill_coord(double x, double y, double z);
+int					get_index(char *line, int i);
+int					get_index_nocomma(char *line, int i);
+int					get_cam_view(char *line, int check, int i, t_cam *cam);
+int					get_cam_pos(char *line, int check, int i, t_cam *cam);
+int					get_cam_fov(char *line, int check, int i, t_cam *cam);
 
 #endif

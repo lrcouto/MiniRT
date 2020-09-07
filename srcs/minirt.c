@@ -12,18 +12,6 @@
 
 #include "../include/minirt.h"
 
-/*
-** static void printList(t_cam *cam)
-** {
-**
-**     while (cam != NULL) {
-**         printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n",
-** 				cam->view.x, cam->view.y, cam->view.z, cam->pos.x, cam->pos.y, cam->pos.z, cam->fov);
-**         cam = cam->next;
-**     }
-** }
-*/
-
 int		main(int argc, char **argv)
 {
 	int		fd;

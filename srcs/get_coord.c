@@ -12,6 +12,29 @@
 
 #include "../include/minirt.h"
 
+static int		verification_loop(char *line, int j)
+{
+	while (line[j] != '.')
+	{
+		if (!(line[j] >= '0' && line[j] <= '9'))
+		{
+			if (line[j] == ',' || line[j] == ' ')
+				return (j);
+			errormsg(14);
+		}
+		j++;
+	}
+	j++;
+	if (line[j] >= '0' && line[j] <= '9')
+	{
+		while (line[j] >= '0' && line[j] <= '9')
+			j++;
+	}
+	else if (!(line[j] >= '0' && line[j] <= '9'))
+		errormsg(14);
+	return (j);
+}
+
 static int		check_double_format(char *line, int i)
 {
 	int j;
@@ -20,26 +43,7 @@ static int		check_double_format(char *line, int i)
 	if (line[j] == '-')
 		j++;
 	if (line[j] >= '0' && line[j] <= '9')
-	{
-		while (line[j] != '.')
-		{
-			if (!(line[j] >= '0' && line[j] <= '9'))
-			{
-				if (line[j] == ',' || line[j] == ' ')
-					return (j);
-				errormsg(14);
-			}
-			j++;
-		}
-		j++;
-		if (line[j] >= '0' && line[j] <= '9')
-		{
-			while (line[j] >= '0' && line[j] <= '9')
-				j++;
-		}
-		else if (!(line[j] >= '0' && line[j] <= '9'))
-			errormsg(14);
-	}
+		j = verification_loop(line, j);
 	else
 		errormsg(14);
 	return (j);
