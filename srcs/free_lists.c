@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_identify.c                                      :+:      :+:    :+:   */
+/*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 22:02:10 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 21:59:11 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 21:59:14 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	rt_identify(char *line, t_rt *rt)
+void	free_lists(t_rt *rt)
 {
-	if (line[0] == 'R' && line[1] == ' ')
+	t_cam	*tmp_cam;
+	t_cam	*current;
+
+	current = rt->cam;
+	while (current != NULL)
 	{
-		rt->qts.reso = rt->qts.reso + 1;
-		if (rt->qts.reso > 1)
-			errormsg(9);
-		get_resolution(line, rt);
+		tmp_cam = current;
+		printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n", current->view.x, current->view.y, current->view.z, current->pos.x, current->pos.y, current->pos.z, current->fov);
+		current = current->next;
+		free(tmp_cam);
 	}
-	else if (line[0] == 'A' && line[1] == ' ')
-	{
-		rt->qts.ambi = rt->qts.ambi + 1;
-		if (rt->qts.ambi > 1)
-			errormsg(10);
-		get_ambient(line, rt);
-	}
-	else if (line[0] == 'c' && line[1] == ' ')
-		get_camera(line, rt);
-	else
-		errormsg(2);
 }

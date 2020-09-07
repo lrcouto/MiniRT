@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   get_coord.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/05 21:56:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 00:23:35 bygsenra-a         ###   ########.fr       */
+/*   Created: 2020/09/06 22:00:12 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 22:00:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static int		verification_loop(char *line, int j)
+{
+	while (line[j] != '.')
+	{
+		if (!(line[j] >= '0' && line[j] <= '9'))
+		{
+			if (line[j] == ',' || line[j] == ' ')
+				return (j);
+			errormsg(14);
+		}
+		j++;
+	}
+	j++;
+	if (line[j] >= '0' && line[j] <= '9')
+	{
+		while (line[j] >= '0' && line[j] <= '9')
+			j++;
+	}
+	else if (!(line[j] >= '0' && line[j] <= '9'))
+		errormsg(14);
+	return (j);
+}
 
 static int		check_double_format(char *line, int i)
 {
@@ -20,26 +43,7 @@ static int		check_double_format(char *line, int i)
 	if (line[j] == '-')
 		j++;
 	if (line[j] >= '0' && line[j] <= '9')
-	{
-		while (line[j] != '.')
-		{
-			if (!(line[j] >= '0' && line[j] <= '9'))
-			{
-				if (line[j] == ',' || line[j] == ' ')
-					return j;
-				errormsg(14);
-			}
-			j++;
-		}
-		j++;
-		if (line[j] >= '0' && line[j] <= '9')
-		{
-			while (line[j] >= '0' && line[j] <= '9')
-				j++;
-		}
-		else if (!(line[j] >= '0' && line[j] <= '9'))
-			errormsg(14);
-	}
+		j = verification_loop(line, j);
 	else
 		errormsg(14);
 	return (j);

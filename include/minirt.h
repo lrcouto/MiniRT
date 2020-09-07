@@ -26,6 +26,19 @@
 # include <ctype.h>
 # include <stdio.h>
 
+typedef struct		s_qts
+{
+	int			reso;
+	int			ambi;
+	int			cam;
+	int			lt;
+	int			sp;
+	int			pl;
+	int			sq;
+	int			cy;
+	int			tr;
+}					t_qts;
+
 /*
 ** Holds values for X, Y, Z coordinates.
 */
@@ -56,7 +69,6 @@ typedef struct		s_reso
 {
 	int			width;
 	int			height;
-	int			qty;
 }					t_reso;
 
 /*
@@ -67,7 +79,6 @@ typedef struct		s_ambi
 {
 	double		light;
 	t_color		color;
-	int			qty;
 }					t_ambi;
 
 /*
@@ -90,7 +101,8 @@ typedef struct		s_rt
 {
 	t_reso		reso;
 	t_ambi		ambi;
-	t_cam			cam;
+	t_cam		*cam;
+	t_qts		qts;
 
 }					t_rt;
 
@@ -119,5 +131,12 @@ void				ambi_rgb_values(int i, int check, char *line, t_rt *rt);
 double				ft_atof(char s[]);
 void				get_camera(char *line, t_rt *rt);
 double				get_coord(char *line, int i);
+void				free_lists(t_rt *rt);
+t_coord				fill_coord(double x, double y, double z);
+int					get_index(char *line, int i);
+int					get_index_nocomma(char *line, int i);
+int					get_cam_view(char *line, int check, int i, t_cam *cam);
+int					get_cam_pos(char *line, int check, int i, t_cam *cam);
+int					get_cam_fov(char *line, int check, int i, t_cam *cam);
 
 #endif

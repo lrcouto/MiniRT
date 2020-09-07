@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_identify.c                                      :+:      :+:    :+:   */
+/*   get_cam_fov.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 22:02:10 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 21:59:34 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 21:59:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	rt_identify(char *line, t_rt *rt)
+int		get_cam_fov(char *line, int check, int i, t_cam *cam)
 {
-	if (line[0] == 'R' && line[1] == ' ')
+	char	*temp;
+	int		j;
+
+	j = i;
+	while (line[j] != '\0')
 	{
-		rt->qts.reso = rt->qts.reso + 1;
-		if (rt->qts.reso > 1)
-			errormsg(9);
-		get_resolution(line, rt);
+		if (line[j] < '0' || line[j] > '9')
+			errormsg(11);
+		j++;
 	}
-	else if (line[0] == 'A' && line[1] == ' ')
-	{
-		rt->qts.ambi = rt->qts.ambi + 1;
-		if (rt->qts.ambi > 1)
-			errormsg(10);
-		get_ambient(line, rt);
-	}
-	else if (line[0] == 'c' && line[1] == ' ')
-		get_camera(line, rt);
-	else
-		errormsg(2);
+	temp = ft_substr(line, i, j);
+	cam->fov = ft_atoi(temp);
+	if (cam->fov < 0 || cam->fov > 180)
+		errormsg(11);
+	check++;
+	free(temp);
+	return (check);
 }

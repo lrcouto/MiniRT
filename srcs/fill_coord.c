@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_identify.c                                      :+:      :+:    :+:   */
+/*   fill_coord.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 22:02:10 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 20:15:45 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 21:58:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	rt_identify(char *line, t_rt *rt)
+t_coord		fill_coord(double x, double y, double z)
 {
-	if (line[0] == 'R' && line[1] == ' ')
-	{
-		rt->qts.reso = rt->qts.reso + 1;
-		if (rt->qts.reso > 1)
-			errormsg(9);
-		get_resolution(line, rt);
-	}
-	else if (line[0] == 'A' && line[1] == ' ')
-	{
-		rt->qts.ambi = rt->qts.ambi + 1;
-		if (rt->qts.ambi > 1)
-			errormsg(10);
-		get_ambient(line, rt);
-	}
-	else if (line[0] == 'c' && line[1] == ' ')
-		get_camera(line, rt);
-	else
-		errormsg(2);
+	t_coord	fill;
+
+	fill.x = x;
+	fill.y = y;
+	fill.z = z;
+	return (fill);
 }

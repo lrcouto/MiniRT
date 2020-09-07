@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/03 20:44:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/05 23:27:32 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 21:59:23 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 21:59:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		validation_ok(int i, int check, char *line, t_rt *rt)
 	return (check);
 }
 
-static int		get_index(int i, int j, char *line)
+static int		ambi_get_index(int i, int j, char *line)
 {
 	if (line[i + j] >= '0' && line[i + j] <= '9')
 	{
@@ -56,8 +56,8 @@ static void		validate_ambi(int i, int check, char *line, t_rt *rt)
 				check--;
 			}
 			check = validation_ok(i, check, line, rt);
-			i = get_index(i, j, line);
-			i++;
+			i = ambi_get_index(i, j, line);
+			i = (line[i] == '\0') ? i : i + 1;
 		}
 	}
 	else
