@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 20:45:51 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 21:1:066:52 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/06 21:59:46 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 21:59:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		get_y_pos(char *line, int check, int *idx, double *xyz)
 static int		get_z_pos(char *line, int check, int *idx, double *xyz)
 {
 	xyz[2] = get_coord(line, *idx);
-	*idx = get_index_nocomma(line, *idx);
+	*idx = get_index(line, *idx);
 	check++;
 	return (check);
 }
@@ -59,7 +59,7 @@ int				get_cam_pos(char *line, int check, int i, t_cam *cam)
 	if ((xyz[0] > 1 || xyz[0] < -1) || (xyz[1] > 1 || xyz[1] < -1) ||
 		(xyz[2] > 1 || xyz[2] < -1) || (check != 6))
 		errormsg(13);
-	cam->pos = fill_coord(xyz[0], xyz[1], xyz[1]);
+	cam->pos = fill_coord(xyz[0], xyz[1], xyz[2]);
 	free(xyz);
 	return (check);
 }

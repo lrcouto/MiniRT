@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genra-a <gsecora-a@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 16:26:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 01:05:49 by gsecora-a         ###   ########.fr       */
+/*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/06 22:02:43 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main(int argc, char **argv)
 		rt_identify(line, &rt);
 		free(line);
 	}
-	//printList(rt.cam);
 	rt_window(&rt);
 	return (0);
 }

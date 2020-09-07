@@ -18,3 +18,5 @@ September 3rd 2020 - Created a system to handle error messages in a more conveni
 September 4th 2020 - Finally fixed the code so it complies with The Norme, though the end result is a bit jumbled. Will add comments later. Wrote an AtoF function to replace the one from stdlib.h that we were forbidden to use. Also added some additional error verification, and we are now starting to write the code to handle the information regarding cameras, lights and polygons.
 
 September 5th 2020 - Developed the functions to handle parameters regarding cameras, and all the error handling related to this task. Starting to work on integrating a camera linked list to our main scene struct. Having some trouble with pointers.
+
+September 6th 2020 - Linked list holding values for cameras works correctly, and we're able to de-allocate it properly after using it. We also corrected all memory leaks up to this point, and made all our relevant code compliant with The Norme. We made a mistake interpreting the subject in regard to the ambient light input parameters, and must correct it in the near future.
