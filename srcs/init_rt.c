@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 22:00:58 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 17:221:15 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 18:13:17 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 18:18:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		init_light(t_rt *rt)
 {
 	t_light	*baselight;
-	
+
 	baselight = (t_light *)malloc(sizeof(t_light));
 	baselight->pos.x = 0;
 	baselight->pos.y = 0;

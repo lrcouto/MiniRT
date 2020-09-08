@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 21:59:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 17:36:6:48 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 18:12:23 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** TODO: Remove printfs.
 */
+
 void	free_light(t_rt *rt)
 {
 	t_light	*tmp_light;

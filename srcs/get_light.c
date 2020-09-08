@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:06:37 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 17:57:55 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/08 18:11:09 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int		get_light_light(char *line, int check, int i, t_light *light)
 	return (check);
 }
 
-static int		light_loop(char *line, int i, int check, t_light *light)
+static void		light_loop(char *line, int i, int check, t_light *light)
 {
 	while (line[i] != '\0')
 	{
@@ -84,7 +84,6 @@ static int		light_loop(char *line, int i, int check, t_light *light)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
-	return (check);
 }
 
 void			get_light(char *line, t_rt *rt)
@@ -96,9 +95,7 @@ void			get_light(char *line, t_rt *rt)
 	light = (t_light *)malloc(sizeof(t_light));
 	check = 0;
 	i = 1;
-	check = light_loop(line, i, check, light);
-	if (check != 7)
-		errormsg(15);
+	light_loop(line, i, check, light);
 	push_light(rt->light, light, rt);
 	free(light);
 }
