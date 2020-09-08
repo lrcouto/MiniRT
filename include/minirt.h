@@ -127,7 +127,6 @@ void				init_rt(t_rt *rt);
 void				rt_window(t_rt *rt);
 void				get_ambient(char *line, t_rt *rt);
 void				errormsg(int errornum);
-void				ambi_rgb_values(int i, int check, char *line, t_rt *rt);
 double				ft_atof(char s[]);
 void				get_camera(char *line, t_rt *rt);
 double				get_coord(char *line, int i);
@@ -138,5 +137,9 @@ int					get_index_nocomma(char *line, int i);
 int					get_cam_view(char *line, int check, int i, t_cam *cam);
 int					get_cam_pos(char *line, int check, int i, t_cam *cam);
 int					get_cam_fov(char *line, int check, int i, t_cam *cam);
+void				get_ambient(char *line, t_rt *rt);
+int					get_ambi_rgb(char *line, int check, int i, t_ambi *ambi);
+t_color				fill_color(int r, int g, int b);
+int					get_color(char *line, int i);
 
 #endif

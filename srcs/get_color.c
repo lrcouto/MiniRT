@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cam_fov.c                                      :+:      :+:    :+:   */
+/*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 21:59:34 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 16:13:11 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 15:10:35 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 15:52:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int		get_cam_fov(char *line, int check, int i, t_cam *cam)
+int			get_color(char *line, int i)
 {
+	int		color;
 	char	*temp;
 	int		j;
 
 	j = i;
-	while (line[j] != '\0')
+	if (line[j] == '-')
+		errormsg(8);
+	if (line[j] >= '0' && line[j] <= '9')
 	{
-		if (line[j] < '0' || line[j] > '9')
-			errormsg(11);
-		j++;
+		while (line[j] >= '0' && line[j] <= '9')
+			j++;
 	}
-	temp = ft_substr(line, i, j);
-	cam->fov = ft_atoi(temp);
-	if (cam->fov < 0 || cam->fov > 180)
-		errormsg(11);
-	check++;
+	temp = ft_substr(line, i, i + j);
+	color = ft_atoi(temp);
 	free(temp);
-	return (check);
+	if (color > 255 || color < 0)
+		errormsg(8);
+	return (color);
 }

@@ -6,11 +6,16 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 21:59:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 21:59:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/08 15:50:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+/*
+** TODO: Break function into generic free function and send camera stuff to
+** it's own function. Remove printfs.
+*/
 
 void	free_lists(t_rt *rt)
 {

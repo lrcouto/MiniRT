@@ -5,106 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 21:59:23 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 21:59:26 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 15:52:38 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 16:13:11 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static int		validation_ok(int i, int check, char *line, t_rt *rt)
+static int		get_ambi_light(char *line, int check, int i, t_ambi *ambi)
 {
-	int j;
+	double	light;
 
-	j = 0;
-	while (line[i + j] >= '0' && line[i + j] <= '9')
-		j++;
-	if (j > 0 && (check > 0 && check < 4))
+	while (line[i] != ' ' && line[i] != '\0')
 	{
-		ambi_rgb_values(i, check, line, rt);
-		check--;
+		if ((line[i] == '1' || line[i] == '0') && check == 0)
+		{
+			light = get_coord(line, i);
+			i = get_index(line, i);
+			check++;
+		}
+		i++;
+	}
+	if (light > 1 || light < 0)
+		errormsg(6);
+	ambi->light = light;
+	return (check);
+}
+
+static int		ambient_loop(char *line, int i, int check, t_ambi *ambi)
+{
+	while (line[i] != '\0')
+	{
+	if (line[i] == ' ')
+		i++;
+	else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
+	{
+		if (check == 0)
+		{
+			check = get_ambi_light(line, check, i, ambi);
+			i = get_index(line, i);
+		}
+		else if (check == 1)
+		{
+			check = get_ambi_rgb(line, check, i, ambi);
+			i = get_index(line, i);
+		}
+	}
+	else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
+		errormsg(5);
 	}
 	return (check);
 }
 
-static int		ambi_get_index(int i, int j, char *line)
-{
-	if (line[i + j] >= '0' && line[i + j] <= '9')
-	{
-		while (line[i + j] >= '0' && line[i + j] <= '9')
-			j++;
-		i = i + j;
-	}
-	return (i);
-}
-
-static void		validate_ambi(int i, int check, char *line, t_rt *rt)
-{
-	int		j;
-
-	j = 0;
-	if (check == 4)
-	{
-		i = 1;
-		while (line[i] != '\0')
-		{
-			if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
-			(line[i + 2] >= '0' && line[i + 2] <= '9') &&
-			(line[i + 3] == ' ' && check == 4))
-			{
-				i = i + 3;
-				check--;
-			}
-			check = validation_ok(i, check, line, rt);
-			i = ambi_get_index(i, j, line);
-			i = (line[i] == '\0') ? i : i + 1;
-		}
-	}
-	else
-		errormsg(7);
-}
-
-static int		get_light(char *line, int check, int i, t_rt *rt)
-{
-	char	*temp;
-
-	if ((line[i] == '0' || line[i] == '1') && (line[i + 1] == '.') &&
-		(line[i + 2] >= '0' && line[i + 2] <= '9') && (line[i + 3] == ' ' &&
-		check == 0))
-	{
-		temp = ft_substr(line, i, i + 2);
-		rt->ambi.light = ft_atof(temp);
-		check++;
-		free(temp);
-		return (check);
-	}
-	else
-		errormsg(6);
-	return (0);
-}
+/*
+** TODO: remove printf later.
+*/
 
 void			get_ambient(char *line, t_rt *rt)
 {
 	int		i;
 	int		check;
+	t_ambi	ambi;
 
 	check = 0;
 	i = 1;
-	while (line[i] != '\0')
-	{
-		if (line[i] == ' ')
-			i++;
-		else if ((line[i] >= '0' && line[i] <= '9'))
-		{
-			if (check == 0)
-				check = get_light(line, check, i, rt);
-			else
-				check++;
-			while ((line[i] >= '0' && line[i] <= '9') || line[i] == '.')
-				i++;
-		}
-		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
-			errormsg(5);
-	}
-	validate_ambi(i, check, line, rt);
+	check = ambient_loop(line, i, check, &ambi);
+	if (check != 4)
+		errormsg(7);
+	rt->ambi = ambi;
+	printf("AMBIENT - LIGHT: %f R: %d G: %d B: %d\n", rt->ambi.light,
+	rt->ambi.color.r, rt->ambi.color.g, rt->ambi.color.b);
 }

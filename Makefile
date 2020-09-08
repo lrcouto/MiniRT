@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/06 18:05:02 bygsenra-a         ###   ########.fr        #
+#    Updated: 2020/09/08 16:13:11 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ DIR_OBJS = objs
 HEADERS = include
 
 SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
-			get_ambient.c error.c ambi_rgb_values.c ft_atof.c get_camera.c \
+			get_ambient.c error.c get_ambi_rgb.c ft_atof.c get_camera.c \
 			get_coord.c free_lists.c fill_coord.c get_index.c get_index_nocomma.c \
-			get_cam_pos.c get_cam_view.c get_cam_fov.c
+			get_cam_pos.c get_cam_view.c get_cam_fov.c get_color.c fill_color.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
