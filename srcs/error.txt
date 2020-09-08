@@ -4,8 +4,8 @@ ERROR: Invalid parameter identifier.
 ERROR: Invalid window resolution parameter.
 ERROR: Resolution parameter must receive only two integer values, for width and height.
 ERROR: Values must be separated exclusively by spaces.
-ERROR: Ambient light intensity values must be between 0.0 and 1.0.
-ERROR: Ambient light parameter receives four parameters, one intensity value and three RGB values.
+ERROR: Ambient light intensity value must be between 0.0 and 1.0.
+ERROR: Ambient light parameter should receive four parameters, one intensity value and three RGB values.
 ERROR: RGB value must be an integer between 0 and 255.
 ERROR: You cannot have more than one window resolution parameter.
 ERROR: You cannot have more than one ambient light parameter.
@@ -13,3 +13,5 @@ ERROR: Camera FoV value must be an integer between 0 and 180.
 ERROR: Camera view point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Camera orientation vector parameters must be passed as X,Y,Z coordinates between 0.0 and 1.0.
 ERROR: Coordinates must be entered as a decimal number (e.g. 10.5).
+ERROR: Scene light parameter should receive one set of X,Y,Z coordinates, one intensity value, and one set of RGB values.
+ERROR: Scene light intensity value must be between 0.0 and 1.0.

@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/08 16:49:39 by lcouto           ###   ########.fr        #
+#    Updated: 2020/09/08 17:57:55 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ HEADERS = include
 SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
 			get_ambient.c error.c get_ambi_rgb.c get_camera.c get_coord.c \
 			free_lists.c fill_coord.c get_index.c get_index_nocomma.c \
-			get_cam_pos.c get_cam_view.c get_cam_fov.c get_color.c fill_color.c
+			get_cam_pos.c get_cam_view.c get_cam_fov.c get_color.c fill_color.c \
+			get_light.c get_light_color.c get_light_pos.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
