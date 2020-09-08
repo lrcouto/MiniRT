@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 22:02:10 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/08 18:13:20 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	rt_identify(char *line, t_rt *rt)
 	}
 	else if (line[0] == 'c' && line[1] == ' ')
 		get_camera(line, rt);
+	else if (line[0] == 'l' && line[1] == ' ')
+		get_light(line, rt);
 	else
 		errormsg(2);
 }

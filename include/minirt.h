@@ -26,6 +26,10 @@
 # include <ctype.h>
 # include <stdio.h>
 
+/*
+** Tracks how many of each parameter there is in a given .rt scene.
+*/
+
 typedef struct		s_qts
 {
 	int			reso;
@@ -94,16 +98,28 @@ typedef struct		s_cam
 }					t_cam;
 
 /*
+** Holds values for lights.
+*/
+
+typedef struct 		s_light
+{
+	t_coord			pos;
+	double			light;
+	t_color			color;
+	struct s_light	*next;
+}					t_light;
+
+/*
 ** Holds values from the .rt file.
 */
 
 typedef struct		s_rt
 {
+	t_qts		qts;
 	t_reso		reso;
 	t_ambi		ambi;
 	t_cam		*cam;
-	t_qts		qts;
-
+	t_light		*light;
 }					t_rt;
 
 /*
@@ -121,25 +137,55 @@ typedef struct		s_mlx
 	int			endian;
 }					t_mlx;
 
-void				rt_identify(char *line, t_rt *rt);
-void				get_resolution(char *line, t_rt *rt);
+/*
+** General parsing and error handling functions.
+*/
+
 void				init_rt(t_rt *rt);
-void				rt_window(t_rt *rt);
-void				get_ambient(char *line, t_rt *rt);
 void				errormsg(int errornum);
-double				ft_atof(char s[]);
-void				get_camera(char *line, t_rt *rt);
-double				get_coord(char *line, int i);
-void				free_lists(t_rt *rt);
-t_coord				fill_coord(double x, double y, double z);
+void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);
+double				get_coord(char *line, int i);
+t_coord				fill_coord(double x, double y, double z);
+int					get_color(char *line, int i);
+t_color				fill_color(int r, int g, int b);
+void				free_lists(t_rt *rt);
+
+/*
+** Window resolution parsing functions.
+*/
+
+void				get_resolution(char *line, t_rt *rt);
+
+/*
+** Ambient light and color parsing functions.
+*/
+
+void				get_ambient(char *line, t_rt *rt);
+int					get_ambi_rgb(char *line, int check, int i, t_ambi *ambi);
+
+/*
+** Camera parsing functions.
+*/
+
+void				get_camera(char *line, t_rt *rt);
 int					get_cam_view(char *line, int check, int i, t_cam *cam);
 int					get_cam_pos(char *line, int check, int i, t_cam *cam);
 int					get_cam_fov(char *line, int check, int i, t_cam *cam);
-void				get_ambient(char *line, t_rt *rt);
-int					get_ambi_rgb(char *line, int check, int i, t_ambi *ambi);
-t_color				fill_color(int r, int g, int b);
-int					get_color(char *line, int i);
+
+/*
+** Light parsing functions.
+*/
+
+void			get_light(char *line, t_rt *rt);
+int				get_light_pos(char *line, int check, int i, t_light *light);
+int				get_light_color(char *line, int check, int i, t_light *light);
+
+/*
+** Misc.
+*/
+
+void				rt_window(t_rt *rt);
 
 #endif

@@ -1,64 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ambi_rgb.c                                     :+:      :+:    :+:   */
+/*   get_light_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/08 15:30:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 18:13:20 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 17:23:09 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 18:12:50 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static int		get_r_ambi(char *line, int check, int *idx, int *rgb)
+static int		get_x_pos(char *line, int check, int *idx, double *xyz)
 {
-	rgb[0] = get_color(line, *idx);
+	xyz[0] = get_coord(line, *idx);
 	*idx = get_index_nocomma(line, *idx);
 	check++;
 	return (check);
 }
 
-static int		get_g_ambi(char *line, int check, int *idx, int *rgb)
+static int		get_y_pos(char *line, int check, int *idx, double *xyz)
 {
-	rgb[1] = get_color(line, *idx);
+	xyz[1] = get_coord(line, *idx);
 	*idx = get_index_nocomma(line, *idx);
 	check++;
 	return (check);
 }
 
-static int		get_b_ambi(char *line, int check, int *idx, int *rgb)
+static int		get_z_pos(char *line, int check, int *idx, double *xyz)
 {
-	rgb[2] = get_color(line, *idx);
+	xyz[2] = get_coord(line, *idx);
 	*idx = get_index(line, *idx);
 	check++;
 	return (check);
 }
 
-int				get_ambi_rgb(char *line, int check, int i, t_ambi *ambi)
+int				get_light_pos(char *line, int check, int i, t_light *light)
 {
-	int		*rgb;
+	double	*xyz;
 	int		*idx;
 
 	idx = &i;
-	rgb = (int *)malloc((sizeof(int) * 3));
+	xyz = (double *)malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
 		{
-			if (check == 1)
-				check = get_r_ambi(line, check, idx, rgb);
+			if (check == 0)
+				check = get_x_pos(line, check, idx, xyz);
+			else if (check == 1)
+				check = get_y_pos(line, check, idx, xyz);
 			else if (check == 2)
-				check = get_g_ambi(line, check, idx, rgb);
-			else if (check == 3)
-				check = get_b_ambi(line, check, idx, rgb);
+				check = get_z_pos(line, check, idx, xyz);
 		}
-		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
+		*idx = *idx + 1;
 	}
-	if (check != 4)
-		errormsg(7);
-	ambi->color = fill_color(rgb[0], rgb[1], rgb[2]);
-	free(rgb);
+	if (check != 3)
+		errormsg(12);
+	light->pos = fill_coord(xyz[0], xyz[1], xyz[2]);
+	free(xyz);
 	return (check);
 }

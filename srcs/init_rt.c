@@ -5,12 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/06 22:00:58 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/06 22:01:02 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/08 18:13:17 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/08 18:18:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void		init_light(t_rt *rt)
+{
+	t_light	*baselight;
+
+	baselight = (t_light *)malloc(sizeof(t_light));
+	baselight->pos.x = 0;
+	baselight->pos.y = 0;
+	baselight->pos.z = 0;
+	baselight->light = 0;
+	baselight->color.r = 0;
+	baselight->color.g = 0;
+	baselight->color.b = 0;
+	baselight->next = NULL;
+	rt->light = baselight;
+}
 
 static void		init_qts(t_rt *rt)
 {
@@ -56,4 +72,5 @@ void			init_rt(t_rt *rt)
 	rt->reso = reso;
 	rt->ambi = ambi;
 	init_camera(rt);
+	init_light(rt);
 }

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:52:38 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 16:13:11 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/08 18:14:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ static int		ambient_loop(char *line, int i, int check, t_ambi *ambi)
 {
 	while (line[i] != '\0')
 	{
-	if (line[i] == ' ')
-		i++;
-	else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
-	{
-		if (check == 0)
+		if (line[i] == ' ')
+			i++;
+		else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
 		{
-			check = get_ambi_light(line, check, i, ambi);
-			i = get_index(line, i);
+			if (check == 0)
+			{
+				check = get_ambi_light(line, check, i, ambi);
+				i = get_index(line, i);
+			}
+			else if (check == 1)
+			{
+				check = get_ambi_rgb(line, check, i, ambi);
+				i = get_index(line, i);
+			}
 		}
-		else if (check == 1)
-		{
-			check = get_ambi_rgb(line, check, i, ambi);
-			i = get_index(line, i);
-		}
-	}
-	else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
-		errormsg(5);
+		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
+			errormsg(5);
 	}
 	return (check);
 }
