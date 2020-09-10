@@ -6,11 +6,20 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:13:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 18:18:52 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/10 18:51:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void		init_polys(t_rt *rt)
+{
+	init_sphere(rt);
+	init_plane(rt);
+	//init_square(rt);
+	//init_cylinder(rt);
+	//init_triangle(rt);
+}
 
 static void		init_light(t_rt *rt)
 {
@@ -73,4 +82,5 @@ void			init_rt(t_rt *rt)
 	rt->ambi = ambi;
 	init_camera(rt);
 	init_light(rt);
+	init_polys(rt);
 }

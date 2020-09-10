@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/08 18:13:20 by lcouto           ###   ########.fr        #
+#    Updated: 2020/09/10 18:58:11 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,21 +18,21 @@ DIR_SRCS = srcs
 
 DIR_OBJS = objs
 
-HEADERS = include
-
 SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
 			get_ambient.c error.c get_ambi_rgb.c get_camera.c get_coord.c \
 			free_lists.c fill_coord.c get_index.c get_index_nocomma.c \
 			get_cam_pos.c get_cam_view.c get_cam_fov.c get_color.c fill_color.c \
-			get_light.c get_light_color.c get_light_pos.c
+			get_light.c get_light_color.c get_light_pos.c init_polys.c \
+			get_sphere.c get_sphere_center.c get_sphere_color.c free_polys.c \
+			get_plane.c get_plane_pos.c get_plane_color.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 
 OBJS = $(addprefix $(DIR_OBJS)/,$(SOURCES:.c=.o))
 
-CC		= gcc -g
+CC	= gcc -g
 
-RM		= rm -rf
+RM	= rm -rf
 
 CFLAGS	= -Wall -Wextra -Werror -I $(HEADERS)
 

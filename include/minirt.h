@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-aniehes <gsenra-aniehes@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 15:57:15 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/05 22:49:23 byniehesgsenra-a         ###   ########.fr       */
+/*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
+/*   Updated: 2020/09/10 18:51:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "../libft/libft.h"
 # include "mlx_int.h"
+# include "elements.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
@@ -32,82 +33,16 @@
 
 typedef struct		s_qts
 {
-	int			reso;
-	int			ambi;
-	int			cam;
-	int			lt;
-	int			sp;
-	int			pl;
-	int			sq;
-	int			cy;
-	int			tr;
+	int				reso;
+	int				ambi;
+	int				cam;
+	int				lt;
+	int				sp;
+	int				pl;
+	int				sq;
+	int				cy;
+	int				tr;
 }					t_qts;
-
-/*
-** Holds values for X, Y, Z coordinates.
-*/
-
-typedef struct		s_coord
-{
-	double		x;
-	double		y;
-	double		z;
-}					t_coord;
-
-/*
-** Holds values for RGB colors.
-*/
-
-typedef struct		s_color
-{
-	int			r;
-	int			g;
-	int			b;
-}					t_color;
-
-/*
-** Holds values for window size.
-*/
-
-typedef struct		s_reso
-{
-	int			width;
-	int			height;
-}					t_reso;
-
-/*
-** Holds values for ambient lighting.
-*/
-
-typedef struct		s_ambi
-{
-	double		light;
-	t_color		color;
-}					t_ambi;
-
-/*
-** Holds values for cameras.
-*/
-
-typedef struct		s_cam
-{
-	t_coord			view;
-	t_coord			pos;
-	int				fov;
-	struct s_cam	*next;
-}					t_cam;
-
-/*
-** Holds values for lights.
-*/
-
-typedef struct 		s_light
-{
-	t_coord			pos;
-	double			light;
-	t_color			color;
-	struct s_light	*next;
-}					t_light;
 
 /*
 ** Holds values from the .rt file.
@@ -115,11 +50,16 @@ typedef struct 		s_light
 
 typedef struct		s_rt
 {
-	t_qts		qts;
-	t_reso		reso;
-	t_ambi		ambi;
-	t_cam		*cam;
-	t_light		*light;
+	t_qts			qts;
+	t_reso			reso;
+	t_ambi			ambi;
+	t_cam			*cam;
+	t_light			*light;
+	t_sphere		*sphere;
+	t_plane			*plane;
+	t_square		*square;
+	t_cylinder		*cylinder;
+	t_triangle		*triangle;
 }					t_rt;
 
 /*
@@ -128,13 +68,13 @@ typedef struct		s_rt
 
 typedef struct		s_mlx
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*address;
-	int			bpp;
-	int			line_leng;
-	int			endian;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*address;
+	int				bpp;
+	int				line_leng;
+	int				endian;
 }					t_mlx;
 
 /*
@@ -142,6 +82,11 @@ typedef struct		s_mlx
 */
 
 void				init_rt(t_rt *rt);
+void				init_sphere(t_rt *rt);
+void				init_plane(t_rt *rt);
+/*void				init_square(t_rt *rt);
+void				init_cylinder(t_rt *rt);
+void				init_triangle(t_rt *rt);*/
 void				errormsg(int errornum);
 void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
@@ -150,7 +95,6 @@ double				get_coord(char *line, int i);
 t_coord				fill_coord(double x, double y, double z);
 int					get_color(char *line, int i);
 t_color				fill_color(int r, int g, int b);
-void				free_lists(t_rt *rt);
 
 /*
 ** Window resolution parsing functions.
@@ -178,9 +122,38 @@ int					get_cam_fov(char *line, int check, int i, t_cam *cam);
 ** Light parsing functions.
 */
 
-void			get_light(char *line, t_rt *rt);
-int				get_light_pos(char *line, int check, int i, t_light *light);
-int				get_light_color(char *line, int check, int i, t_light *light);
+void				get_light(char *line, t_rt *rt);
+int					get_light_pos(char *line, int check, int i, t_light *light);
+int					get_light_color(char *line, int check, int i,
+					t_light *light);
+
+/*
+** Sphere parsing functions.
+*/
+
+void				get_sphere(char *line, t_rt *rt);
+int					get_sphere_center(char *line, int check, int i, t_sphere *light);
+int					get_sphere_color(char *line, int check, int i,
+					t_sphere *light);
+
+/*
+** Free functions.
+*/
+
+void				free_lists(t_rt *rt);
+void				free_camera(t_rt *rt);
+void				free_light(t_rt *rt);
+void				free_sphere(t_rt *rt);
+void				free_plane(t_rt *rt);
+
+/*
+** Plane parsing functions.
+*/
+
+void				get_plane(char *line, t_rt *rt);
+int					get_plane_pos(char *line, int check, int i, t_plane *light);
+int					get_plane_color(char *line, int check, int i,
+					t_plane *light);
 
 /*
 ** Misc.

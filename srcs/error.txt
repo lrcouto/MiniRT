@@ -15,3 +15,9 @@ ERROR: Camera orientation vector parameters must be passed as X,Y,Z coordinates 
 ERROR: Coordinates must be entered as a decimal number (e.g. 10.5).
 ERROR: Scene light parameter should receive one set of X,Y,Z coordinates, one intensity value, and one set of RGB values.
 ERROR: Scene light intensity value must be between 0.0 and 1.0.
+ERROR: Sphere parameter should receive one set of X,Y,Z coordinates, one diameter value, and one set of RGB values.
+ERROR: Sphere center point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
+ERROR: Plane position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
+ERROR: Plane parameter should receive one set of X,Y,Z coordinates, one 3D normalized orientation vector value, and one set of RGB values.
+ERROR: Plane 3D normalized orientation vector value must be between 0.0 and 1.0.
+
