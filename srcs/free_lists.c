@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 18:12:23 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/10 19:13:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_light(t_rt *rt)
 	while (current != NULL)
 	{
 		tmp_light = current;
-		printf("LIGHT - POS X %lf POS Y %lf POS Z %lf \nLIGHT - R X %d G Y %d B Z %d \nLIGHT - INTENSITY %lf \n", current->pos.x, current->pos.y, current->pos.z, current->color.r, current->color.g, current->color.b, current->light);
+		printf("LIGHT - POS X %lf POS Y %lf POS Z %lf \nLIGHT - R %d G %d B %d \nLIGHT - INTENSITY %lf \n", current->pos.x, current->pos.y, current->pos.z, current->color.r, current->color.g, current->color.b, current->light);
 		current = current->next;
 		free(tmp_light);
 	}
@@ -50,4 +50,6 @@ void	free_lists(t_rt *rt)
 {
 	free_camera(rt);
 	free_light(rt);
+	free_sphere(rt);
+	free_plane(rt);
 }
