@@ -24,3 +24,5 @@ September 6th 2020 - Linked list holding values for cameras works correctly, and
 September 8th 2020 - Streamlined functions regarding ambient light parsing and wrote functions regarding scene light parsing. Re-structured the library to make it more readable. Integrated our AtoF to libft.
 
 September 10th 2020 - Sphere and plane parsing work, and the functions are already Norme compliant. Fixed some other minor issues with the file parsing structure, now allowing the program to read the file if you skip lines between parameters, which was a requisite in the subject.
+
+September 11th 2020 - File parser is now finished. Tested it for memory leaks and NOrme compliance, and everything seems to be working accordingly. Now we can move to the actual raytracing part.

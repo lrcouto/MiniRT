@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 18:51:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:32:03 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ typedef struct		s_mlx
 void				init_rt(t_rt *rt);
 void				init_sphere(t_rt *rt);
 void				init_plane(t_rt *rt);
-/*void				init_square(t_rt *rt);
+void				init_square(t_rt *rt);
 void				init_cylinder(t_rt *rt);
-void				init_triangle(t_rt *rt);*/
+void				init_triangle(t_rt *rt);
 void				errormsg(int errornum);
 void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
@@ -132,9 +132,63 @@ int					get_light_color(char *line, int check, int i,
 */
 
 void				get_sphere(char *line, t_rt *rt);
-int					get_sphere_center(char *line, int check, int i, t_sphere *light);
+int					get_sphere_center(char *line, int check, int i,
+					t_sphere *light);
 int					get_sphere_color(char *line, int check, int i,
 					t_sphere *light);
+
+/*
+** Plane parsing functions.
+*/
+
+void				get_plane(char *line, t_rt *rt);
+int					get_plane_pos(char *line, int check, int i, t_plane *light);
+int					get_plane_color(char *line, int check, int i,
+					t_plane *light);
+
+/*
+** Square parsing functions.
+*/
+
+void				get_square(char *line, t_rt *rt);
+int					get_square_center(char *line, int check, int i,
+					t_square *light);
+int					get_square_color(char *line, int check, int i,
+					t_square *light);
+int					get_square_side(char *line, int check, int i,
+					t_square *square);
+
+/*
+** Cylinder parsing functions.
+*/
+
+void				get_cylinder(char *line, t_rt *rt);
+int					get_cylinder_pos(char *line, int check, int i,
+					t_cylinder *light);
+int					get_cylinder_color(char *line, int check, int i,
+					t_cylinder *light);
+int					get_cylinder_side(char *line, int check, int i,
+					t_cylinder *cylinder);
+int					get_cylinder_height(char *line, int check, int i,
+					t_cylinder *cylinder);
+int					get_cylinder_diameter(char *line, int check, int i,
+					t_cylinder *cylinder);
+int					get_cylinder_norm(char *line, int check, int i,
+					t_cylinder *cylinder);
+
+/*
+** Triangle parsing functions.
+*/
+
+void				get_triangle(char *line, t_rt *rt);
+int					get_triangle_p1(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_p2(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_p3(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_color(char *line, int check, int i,
+					t_triangle *light);
 
 /*
 ** Free functions.
@@ -145,15 +199,9 @@ void				free_camera(t_rt *rt);
 void				free_light(t_rt *rt);
 void				free_sphere(t_rt *rt);
 void				free_plane(t_rt *rt);
-
-/*
-** Plane parsing functions.
-*/
-
-void				get_plane(char *line, t_rt *rt);
-int					get_plane_pos(char *line, int check, int i, t_plane *light);
-int					get_plane_color(char *line, int check, int i,
-					t_plane *light);
+void				free_square(t_rt *rt);
+void				free_cylinder(t_rt *rt);
+void				free_triangle(t_rt *rt);
 
 /*
 ** Misc.

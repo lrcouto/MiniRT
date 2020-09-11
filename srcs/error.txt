@@ -20,4 +20,11 @@ ERROR: Sphere center point parameters must be passed as X,Y,Z coordinates (e.g. 
 ERROR: Plane position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Plane parameter should receive one set of X,Y,Z coordinates, one 3D normalized orientation vector value, and one set of RGB values.
 ERROR: Plane 3D normalized orientation vector value must be between 0.0 and 1.0.
-
+ERROR: Square parameter should receive the following values: X,Y,Z coordinates, 3D normalized orientation vector, side size, RGB colors.
+ERROR: Square center point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
+ERROR: Square 3D normalized orientation vector value must be between 0.0 and 1.0.
+ERROR: Cylinder position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
+ERROR: Cylinder parameter should receive the following values: X,Y,Z coordinates, 3D normalized orientation vector, diameter, height, RGB colors.
+ERROR: Cylinder 3D normalized orientation vector value must be between 0.0 and 1.0.
+ERROR: Triangle position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
+ERROR: Triangle parameter should receive three sets of X,Y,Z coordinates, and one set of RGB colors.

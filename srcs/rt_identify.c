@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 19:13:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:32:03 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ static void	rt_id_polys(char *line, t_rt *rt)
 {
 	if (ft_strncmp(line, "sp ", 3) == 0)
 		get_sphere(line, rt);
-	if (ft_strncmp(line, "pl ", 3) == 0)
+	else if (ft_strncmp(line, "pl ", 3) == 0)
 		get_plane(line, rt);
+	else if (ft_strncmp(line, "sq ", 3) == 0)
+		get_square(line, rt);
+	else if (ft_strncmp(line, "cy ", 3) == 0)
+		get_cylinder(line, rt);
+	else if (ft_strncmp(line, "tr ", 3) == 0)
+		get_triangle(line, rt);
 }
 
 static int	valid_poly(char *line)

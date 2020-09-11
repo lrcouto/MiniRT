@@ -6,13 +6,13 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:50:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 19:13:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 15:58:46 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/*void		init_triangle(t_rt *rt)
+void		init_triangle(t_rt *rt)
 {
 	t_triangle	*basetriangle;
 
@@ -66,7 +66,7 @@ void		init_square(t_rt *rt)
 	basesquare->color.b = 0;
 	basesquare->next = NULL;
 	rt->square = basesquare;
-}*/
+}
 
 void		init_plane(t_rt *rt)
 {
