@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:13:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 18:51:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 15:24:09 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void		init_polys(t_rt *rt)
 {
 	init_sphere(rt);
 	init_plane(rt);
-	//init_square(rt);
-	//init_cylinder(rt);
+	init_square(rt);
+	init_cylinder(rt);
 	//init_triangle(rt);
 }
 
