@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:54:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:31:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,20 @@ int					get_cylinder_diameter(char *line, int check, int i,
 					t_cylinder *cylinder);
 int					get_cylinder_norm(char *line, int check, int i,
 					t_cylinder *cylinder);
+
+/*
+** Triangle parsing functions.
+*/
+
+void				get_triangle(char *line, t_rt *rt);
+int					get_triangle_p1(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_p2(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_p3(char *line, int check, int i,
+					t_triangle *light);
+int					get_triangle_color(char *line, int check, int i,
+					t_triangle *light);
 
 /*
 ** Free functions.

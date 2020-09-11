@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:55:53 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:31:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	free_lists(t_rt *rt)
 	free_plane(rt);
 	free_square(rt);
 	free_cylinder(rt);
+	free_triangle(rt);
 }

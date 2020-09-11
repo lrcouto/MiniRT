@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 15:38:07 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/11 15:51:36 by lcouto           ###   ########.fr        #
+#    Updated: 2020/09/11 16:09:18 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
 			get_plane.c get_plane_pos.c get_plane_color.c get_square.c \
 			get_square_center.c get_square_color.c get_square_side.c \
 			get_cylinder.c get_cylinder_pos.c get_cylinder_color.c \
-			get_cylinder_doubles.c
+			get_cylinder_doubles.c get_triangle.c get_triangle_p1.c \
+			get_triangle_p2.c get_triangle_p3.c get_triangle_color.c
 
 SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
 

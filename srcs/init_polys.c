@@ -6,13 +6,13 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:50:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:24:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 15:58:46 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/*void		init_triangle(t_rt *rt)
+void		init_triangle(t_rt *rt)
 {
 	t_triangle	*basetriangle;
 
@@ -31,7 +31,7 @@
 	basetriangle->color.b = 0;
 	basetriangle->next = NULL;
 	rt->triangle = basetriangle;
-}*/
+}
 
 void		init_cylinder(t_rt *rt)
 {

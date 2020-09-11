@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:40:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:31:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	rt_id_polys(char *line, t_rt *rt)
 		get_square(line, rt);
 	else if (ft_strncmp(line, "cy ", 3) == 0)
 		get_cylinder(line, rt);
+	else if (ft_strncmp(line, "tr ", 3) == 0)
+		get_triangle(line, rt);
 }
 
 static int	valid_poly(char *line)

@@ -1,65 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cylinder_color.c                               :+:      :+:    :+:   */
+/*   get_triangle_p1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 15:03:05 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/11 16:31:39 by lcouto           ###   ########.fr       */
+/*   Created: 2020/09/11 15:59:20 by gsenra-a          #+#    #+#             */
+/*   Updated: 2020/09/11 16:01:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static int		get_r_cylinder(char *line, int check, int *idx, int *rgb)
+static int		get_x_p1(char *line, int check, int *idx, double *xyz)
 {
-	rgb[0] = get_color(line, *idx);
+	xyz[0] = get_coord(line, *idx);
 	*idx = get_index_nocomma(line, *idx);
 	check++;
 	return (check);
 }
 
-static int		get_g_cylinder(char *line, int check, int *idx, int *rgb)
+static int		get_y_p1(char *line, int check, int *idx, double *xyz)
 {
-	rgb[1] = get_color(line, *idx);
+	xyz[1] = get_coord(line, *idx);
 	*idx = get_index_nocomma(line, *idx);
 	check++;
 	return (check);
 }
 
-static int		get_b_cylinder(char *line, int check, int *idx, int *rgb)
+static int		get_z_p1(char *line, int check, int *idx, double *xyz)
 {
-	rgb[2] = get_color(line, *idx);
+	xyz[2] = get_coord(line, *idx);
 	*idx = get_index(line, *idx);
 	check++;
 	return (check);
 }
 
-int				get_cylinder_color(char *line, int check, int i,
-t_cylinder *cylinder)
+int				get_triangle_p1(char *line, int check, int i,
+t_triangle *triangle)
 {
-	int		*rgb;
+	double	*xyz;
 	int		*idx;
 
 	idx = &i;
-	rgb = (int *)malloc((sizeof(int) * 3));
+	xyz = (double *)malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
 		{
-			if (check == 6)
-				check = get_r_cylinder(line, check, idx, rgb);
-			else if (check == 7)
-				check = get_g_cylinder(line, check, idx, rgb);
-			else if (check == 8)
-				check = get_b_cylinder(line, check, idx, rgb);
+			if (check == 0)
+				check = get_x_p1(line, check, idx, xyz);
+			else if (check == 1)
+				check = get_y_p1(line, check, idx, xyz);
+			else if (check == 2)
+				check = get_z_p1(line, check, idx, xyz);
 		}
-		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
+		*idx = *idx + 1;
 	}
-	if (check != 9)
-		errormsg(26);
-	cylinder->color = fill_color(rgb[0], rgb[1], rgb[2]);
-	free(rgb);
+	if (check != 3)
+		errormsg(28);
+	triangle->p1 = fill_coord(xyz[0], xyz[1], xyz[2]);
+	free(xyz);
 	return (check);
 }

@@ -6,11 +6,26 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:24:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:31:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+void	free_triangle(t_rt *rt)
+{
+	t_triangle	*tmp_triangle;
+	t_triangle	*current;
+
+	current = rt->triangle;
+	while (current != NULL)
+	{
+		tmp_triangle = current;
+		printf("TRIANGLE - P1 X %lf P1 Y %lf P1 Z %lf \nTRIANGLE - P2 X %lf P2 Y %lf P2 Z %lf \nTRIANGLE - P3 X %lf P3 Y %lf P3 Z %lf \nTRIANGLE - R %d G %d B %d \n", current->p1.x, current->p1.y, current->p1.z, current->p2.x, current->p2.y, current->p2.z, current->p3.x, current->p3.y, current->p3.z, current->color.r, current->color.g, current->color.b);
+		current = current->next;
+		free(tmp_triangle);
+	}
+}
 
 void	free_cylinder(t_rt *rt)
 {
