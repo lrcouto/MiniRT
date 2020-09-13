@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_polys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 void	free_triangle(t_rt *rt)
 {

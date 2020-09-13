@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_triangle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:11:17 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		push_triangle(t_triangle *head, t_triangle *new_triangle,
 t_rt *rt)
@@ -31,7 +31,7 @@ t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_triangle *)malloc(sizeof(t_triangle));
+	current->next = (t_triangle *)ec_malloc(sizeof(t_triangle));
 	current->next->p1 = new_triangle->p1;
 	current->next->p2 = new_triangle->p2;
 	current->next->p3 = new_triangle->p3;
@@ -89,7 +89,7 @@ void			get_triangle(char *line, t_rt *rt)
 	int			check;
 	t_triangle	*triangle;
 
-	triangle = (t_triangle *)malloc(sizeof(t_triangle));
+	triangle = (t_triangle *)ec_malloc(sizeof(t_triangle));
 	check = 0;
 	i = 2;
 	triangle_loop(line, i, check, triangle);

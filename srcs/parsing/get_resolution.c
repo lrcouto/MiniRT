@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:49 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/07 18:56:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 /*
 ** There is a printf in this function. It's there just to see if the parameters

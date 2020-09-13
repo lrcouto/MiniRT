@@ -29,3 +29,4 @@ ERROR: Cylinder 3D normalized orientation vector value must be between 0.0 and 1
 ERROR: Triangle position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Triangle parameter should receive three sets of X,Y,Z coordinates, and one set of RGB colors.
 ERROR: Scene file must have a .rt extension.
+ERROR: error in malloc() on memory allocation.

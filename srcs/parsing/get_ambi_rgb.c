@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_ambi_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:30:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 18:13:20 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static int		get_r_ambi(char *line, int check, int *idx, int *rgb)
 {
@@ -42,7 +42,7 @@ int				get_ambi_rgb(char *line, int check, int i, t_ambi *ambi)
 	int		*idx;
 
 	idx = &i;
-	rgb = (int *)malloc((sizeof(int) * 3));
+	rgb = (int *)ec_malloc((sizeof(int) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

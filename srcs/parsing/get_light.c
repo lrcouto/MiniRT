@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:06:37 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/08 18:11:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		push_light(t_light *head, t_light *new_light, t_rt *rt)
 {
@@ -29,7 +29,7 @@ static void		push_light(t_light *head, t_light *new_light, t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_light *)malloc(sizeof(t_light));
+	current->next = (t_light *)ec_malloc(sizeof(t_light));
 	current->next->pos = new_light->pos;
 	current->next->light = new_light->light;
 	current->next->color = new_light->color;
@@ -92,7 +92,7 @@ void			get_light(char *line, t_rt *rt)
 	int		check;
 	t_light	*light;
 
-	light = (t_light *)malloc(sizeof(t_light));
+	light = (t_light *)ec_malloc(sizeof(t_light));
 	check = 0;
 	i = 1;
 	light_loop(line, i, check, light);

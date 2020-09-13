@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 19:13:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 {
@@ -29,7 +29,7 @@ static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_sphere *)malloc(sizeof(t_sphere));
+	current->next = (t_sphere *)ec_malloc(sizeof(t_sphere));
 	current->next->center = new_sphere->center;
 	current->next->diameter = new_sphere->diameter;
 	current->next->color = new_sphere->color;
@@ -91,7 +91,7 @@ void			get_sphere(char *line, t_rt *rt)
 	int			check;
 	t_sphere	*sphere;
 
-	sphere = (t_sphere *)malloc(sizeof(t_sphere));
+	sphere = (t_sphere *)ec_malloc(sizeof(t_sphere));
 	check = 0;
 	i = 2;
 	sphere_loop(line, i, check, sphere);

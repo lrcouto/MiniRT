@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 13:55:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:23:50 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 void	errormsg(int errornum)
 {
@@ -36,4 +36,14 @@ void	errormsg(int errornum)
 	write(1, "\n", 1);
 	close(fd);
 	exit(0);
+}
+
+void		*ec_malloc(size_t size)
+{
+	void *ptr;
+
+	ptr = malloc(size);
+	if (ptr == NULL)
+		errormsg(31);
+	return (ptr);
 }

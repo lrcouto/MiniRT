@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:06:06 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		push_cylinder(t_cylinder *head, t_cylinder *new_cylinder,
 t_rt *rt)
@@ -32,7 +32,7 @@ t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_cylinder *)malloc(sizeof(t_cylinder));
+	current->next = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
 	current->next->pos = new_cylinder->pos;
 	current->next->norm = new_cylinder->norm;
 	current->next->diameter = new_cylinder->diameter;
@@ -99,7 +99,7 @@ void			get_cylinder(char *line, t_rt *rt)
 	int			check;
 	t_cylinder	*cylinder;
 
-	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
+	cylinder = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
 	check = 0;
 	i = 2;
 	cylinder_loop(line, i, check, cylinder);

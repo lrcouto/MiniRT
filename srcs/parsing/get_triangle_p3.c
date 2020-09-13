@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_triangle_p3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:19:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static int		get_x_p3(char *line, int check, int *idx, double *xyz)
 {
@@ -43,7 +43,7 @@ t_triangle *triangle)
 	int		*idx;
 
 	idx = &i;
-	xyz = (double *)malloc((sizeof(double) * 3));
+	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

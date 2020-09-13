@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_plane_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:39:34 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/10 19:13:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:26:16 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static int		get_r_plane(char *line, int check, int *idx, int *rgb)
 {
@@ -42,7 +42,7 @@ int				get_plane_color(char *line, int check, int i, t_plane *plane)
 	int		*idx;
 
 	idx = &i;
-	rgb = (int *)malloc((sizeof(int) * 3));
+	rgb = (int *)ec_malloc((sizeof(int) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

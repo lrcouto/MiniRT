@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:13:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		init_polys(t_rt *rt)
 {
@@ -25,7 +25,7 @@ static void		init_light(t_rt *rt)
 {
 	t_light	*baselight;
 
-	baselight = (t_light *)malloc(sizeof(t_light));
+	baselight = (t_light *)ec_malloc(sizeof(t_light));
 	baselight->pos.x = 0;
 	baselight->pos.y = 0;
 	baselight->pos.z = 0;
@@ -54,7 +54,7 @@ static void		init_camera(t_rt *rt)
 {
 	t_cam	*basecam;
 
-	basecam = (t_cam *)malloc(sizeof(t_cam));
+	basecam = (t_cam *)ec_malloc(sizeof(t_cam));
 	basecam->view.x = 0;
 	basecam->view.y = 0;
 	basecam->view.z = 0;

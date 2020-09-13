@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 12:23:47 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:17:128 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				init_square(t_rt *rt);
 void				init_cylinder(t_rt *rt);
 void				init_triangle(t_rt *rt);
 void				errormsg(int errornum);
+void				*ec_malloc(size_t size);
 void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);

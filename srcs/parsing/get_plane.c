@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:37:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/10 19:13:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 static void		push_plane(t_plane *head, t_plane *new_plane, t_rt *rt)
 {
@@ -29,7 +29,7 @@ static void		push_plane(t_plane *head, t_plane *new_plane, t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_plane *)malloc(sizeof(t_plane));
+	current->next = (t_plane *)ec_malloc(sizeof(t_plane));
 	current->next->pos = new_plane->pos;
 	current->next->norm = new_plane->norm;
 	current->next->color = new_plane->color;
@@ -93,7 +93,7 @@ void			get_plane(char *line, t_rt *rt)
 	int			check;
 	t_plane		*plane;
 
-	plane = (t_plane *)malloc(sizeof(t_plane));
+	plane = (t_plane *)ec_malloc(sizeof(t_plane));
 	check = 0;
 	i = 2;
 	plane_loop(line, i, check, plane);

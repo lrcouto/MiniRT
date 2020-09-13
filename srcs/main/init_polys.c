@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_polys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:50:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:58:46 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 void		init_triangle(t_rt *rt)
 {
 	t_triangle	*basetriangle;
 
-	basetriangle = (t_triangle *)malloc(sizeof(t_triangle));
+	basetriangle = (t_triangle *)ec_malloc(sizeof(t_triangle));
 	basetriangle->p1.x = 0;
 	basetriangle->p1.y = 0;
 	basetriangle->p1.z = 0;
@@ -37,7 +37,7 @@ void		init_cylinder(t_rt *rt)
 {
 	t_cylinder	*basecylinder;
 
-	basecylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
+	basecylinder = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
 	basecylinder->pos.x = 0;
 	basecylinder->pos.y = 0;
 	basecylinder->pos.z = 0;
@@ -55,7 +55,7 @@ void		init_square(t_rt *rt)
 {
 	t_square	*basesquare;
 
-	basesquare = (t_square *)malloc(sizeof(t_square));
+	basesquare = (t_square *)ec_malloc(sizeof(t_square));
 	basesquare->center.x = 0;
 	basesquare->center.y = 0;
 	basesquare->center.z = 0;
@@ -72,7 +72,7 @@ void		init_plane(t_rt *rt)
 {
 	t_plane	*baseplane;
 
-	baseplane = (t_plane *)malloc(sizeof(t_plane));
+	baseplane = (t_plane *)ec_malloc(sizeof(t_plane));
 	baseplane->pos.x = 0;
 	baseplane->pos.y = 0;
 	baseplane->pos.z = 0;
@@ -88,7 +88,7 @@ void		init_sphere(t_rt *rt)
 {
 	t_sphere	*basesphere;
 
-	basesphere = (t_sphere *)malloc(sizeof(t_sphere));
+	basesphere = (t_sphere *)ec_malloc(sizeof(t_sphere));
 	basesphere->center.x = 0;
 	basesphere->center.y = 0;
 	basesphere->center.z = 0;
