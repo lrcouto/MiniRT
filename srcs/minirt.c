@@ -39,9 +39,6 @@ int			main(int argc, char **argv)
 	t_rt	rt;
 
 	init_rt(&rt);
-	int test;
-	test = double_equal(1.00001, 1.00002);
-	printf("** TESTE FDP **: %d\n", test);
 	if (argc == 1)
 		errormsg(0);
 	else if (argc == 2)
