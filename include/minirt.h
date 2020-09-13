@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 16:32:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/12 21:39:19 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include "mlx_int.h"
 # include "elements.h"
+# include "vector.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
@@ -26,6 +27,8 @@
 # include <unistd.h>
 # include <ctype.h>
 # include <stdio.h>
+
+# define EPSILON 0.00001
 
 /*
 ** Tracks how many of each parameter there is in a given .rt scene.
@@ -208,5 +211,11 @@ void				free_triangle(t_rt *rt);
 */
 
 void				rt_window(t_rt *rt);
+
+/*
+** Float utils
+*/
+
+int					double_equal(double a, double b);
 
 #endif
