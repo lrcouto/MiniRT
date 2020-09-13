@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/09/12 21:54:32 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/13 03:02:02 by lcouto           ###   ########.fr        #
+#    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
+#    Updated: 2020/09/13 15:09:20 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,22 +18,12 @@ DIR_SRCS = srcs
 
 DIR_OBJS = objs
 
-SOURCES = minirt.c rt_identify.c get_resolution.c init_rt.c rt_window.c \
-			get_ambient.c error.c get_ambi_rgb.c get_camera.c get_coord.c \
-			free_lists.c fill_coord.c get_index.c get_index_nocomma.c \
-			get_cam_pos.c get_cam_view.c get_cam_fov.c get_color.c fill_color.c \
-			get_light.c get_light_color.c get_light_pos.c init_polys.c \
-			get_sphere.c get_sphere_center.c get_sphere_color.c free_polys.c \
-			get_plane.c get_plane_pos.c get_plane_color.c get_square.c \
-			get_square_center.c get_square_color.c get_square_side.c \
-			get_cylinder.c get_cylinder_pos.c get_cylinder_color.c \
-			get_cylinder_doubles.c get_triangle.c get_triangle_p1.c \
-			get_triangle_p2.c get_triangle_p3.c get_triangle_color.c \
-			utils.c
+DIRS = main parsing operations
+SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
-SRC = $(addprefix $(DIR_SRCS)/,$(SOURCES))
+SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 
-OBJS = $(addprefix $(DIR_OBJS)/,$(SOURCES:.c=.o))
+OBJS = $(subst $(DIR_SRCS),$(DIR_OBJS),$(SOURCES:.c=.o))
 
 CC	= gcc -g
 
@@ -82,6 +72,9 @@ $(NAME): $(OBJS)
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		mkdir -p objs
+		mkdir -p objs/parsing
+		mkdir -p objs/main
+		mkdir -p objs/operations
 		$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 

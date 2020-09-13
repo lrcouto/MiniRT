@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/03 18:54:39 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/13 13:55:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	errormsg(int errornum)
 	int		fd;
 	int		i;
 
-	filename = "srcs/error.txt";
+	filename = "srcs/main/error.txt";
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	while ((get_next_line(fd, &errstring) == 1))
