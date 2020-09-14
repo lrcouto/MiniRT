@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/09/13 21:50:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	free_light(t_rt *rt)
 	while (current != NULL)
 	{
 		tmp_light = current;
-		printf("LIGHT - POS X %lf POS Y %lf POS Z %lf \nLIGHT - R %d G %d B %d \nLIGHT - INTENSITY %lf \n", current->pos.x, current->pos.y, current->pos.z, current->color.r, current->color.g, current->color.b, current->light);
 		current = current->next;
 		free(tmp_light);
 	}
@@ -40,7 +39,6 @@ void	free_camera(t_rt *rt)
 	while (current != NULL)
 	{
 		tmp_cam = current;
-		printf("CAMERA - VIEW X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - POS X %lf VIEW Y %lf VIEW Z %lf \nCAMERA - FOV %d \n", current->view.x, current->view.y, current->view.z, current->pos.x, current->pos.y, current->pos.z, current->fov);
 		current = current->next;
 		free(tmp_cam);
 	}

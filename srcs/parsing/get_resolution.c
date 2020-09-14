@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:49 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/09/13 19:50:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-/*
-** There is a printf in this function. It's there just to see if the parameters
-** are being transfered correctly. Don't forget to remove it.
-*/
 
 static void		get_reso_values(int i, int check, char *line, t_rt *rt)
 {
@@ -31,7 +26,6 @@ static void		get_reso_values(int i, int check, char *line, t_rt *rt)
 	else if (check == 1)
 		rt->reso.height = ft_atoi(temp);
 	free(temp);
-	printf("RESO WIDTH: %d RESO HEIGHT: %d\n", rt->reso.width, rt->reso.height);
 }
 
 static void		validate_reso(int i, int check, char *line, t_rt *rt)

@@ -208,15 +208,16 @@ void				free_cylinder(t_rt *rt);
 void				free_triangle(t_rt *rt);
 
 /*
-** Misc.
-*/
-
-void				rt_window(t_rt *rt);
-
-/*
 ** Float utils
 */
 
 int					double_equal(double a, double b);
+
+/*
+** Test functions.
+*/
+
+void				rt_window(t_rt *rt);
+void  				projectile_test(char *times);
 
 #endif

@@ -32,12 +32,18 @@ static void	valid_rtfile(char *filename)
 	errormsg(30);
 }
 
+/*
+** Function projectile_test() is not actually part of the project
+** and simply prints a pretty rainbow for MiniLibX vector-to-canvas tests.
+*/
+
 int			main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
 	t_rt	rt;
 
+	projectile_test(argv[2]);
 	init_rt(&rt);
 	if (argc == 1)
 		errormsg(0);
