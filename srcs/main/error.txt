@@ -30,3 +30,7 @@ ERROR: Triangle position parameters must be passed as X,Y,Z coordinates (e.g. 0.
 ERROR: Triangle parameter should receive three sets of X,Y,Z coordinates, and one set of RGB colors.
 ERROR: Scene file must have a .rt extension.
 ERROR: error in malloc() on memory allocation.
+ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector.
+ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You cannot add two points.
+ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You cannot subtract a point from a vector.
+ERROR: W parameter negate_tuple output can only be 0, 1 or -1;

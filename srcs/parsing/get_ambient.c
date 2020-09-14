@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:52:38 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/09/13 21:50:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ static int		ambient_loop(char *line, int i, int check, t_ambi *ambi)
 	return (check);
 }
 
-/*
-** TODO: remove printf later.
-*/
-
 void			get_ambient(char *line, t_rt *rt)
 {
 	int		i;
@@ -73,6 +69,4 @@ void			get_ambient(char *line, t_rt *rt)
 	if (check != 4)
 		errormsg(7);
 	rt->ambi = ambi;
-	printf("AMBIENT - LIGHT: %f R: %d G: %d B: %d\n", rt->ambi.light,
-	rt->ambi.color.r, rt->ambi.color.g, rt->ambi.color.b);
 }
