@@ -29,4 +29,4 @@ September 11th 2020 - File parser is now finished. Tested it for memory leaks an
 
 September 12th 2020 - Created function to verify if the input file extension is valid, and started implementing vector operations. Trying to reorganize the project a little bit but having a lot of trouble with the Makefile. Incredibly frustrating.
 
-September 13th 2020 - After one poorly-slept night, Makefile now works to compile files in separate folders, allowing us to organize the project much better. Wrote vector operations and did initial tests on putting pixels on a canvas based on a vector trajectory. The result is the following.
+September 13th 2020 - After one poorly-slept night, Makefile now works to compile files in separate folders, allowing us to organize the project much better. Wrote vector operations and did initial tests on putting pixels on a canvas based on a vector trajectory.
