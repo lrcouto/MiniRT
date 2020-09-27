@@ -18,15 +18,15 @@ DIR_SRCS = srcs
 
 DIR_OBJS = objs
 
-DIRS = main parsing operations
+DIRS = main parsing operations tests
 
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
-# main:	error.c free_lists.c free_polys.c init_polys.c init_polys.c /
-#		init_rt.c minirt.c rt_window.c rainbow.c
+# main:		error.c free_lists.c free_polys.c init_polys.c init_polys.c /
+#			init_rt.c minirt.c rt_window.c
 #
 # parsing:	fill_collor.c fill coord.c get_ambi_rgb.c get_ambient.c /
-#			get_gam_fov.c get_cam_pos.c get_cam_view / get_camera.c /
+#			get_cam_fov.c get_cam_pos.c get_cam_view / get_camera.c /
 #			get_color.c get_coord.c get_cylinder_color.c get_cylinder_doubles.c /
 #			get_cylinder_pos.c get_cylinder.c get_index_nocomma.c get_get_index.c /
 #			get_light_color.c get_light_pos.c get_light.c get_plane_color.c /
@@ -37,7 +37,10 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			get_triangle_p2.c get_triangle_p3.c get_triangle.c /
 #			rt_identify.c
 #						
-# operations: utils.c vector_ops_1.c vector_ops_2.c
+# operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
+#			matrix_ops_1.c
+#
+# tests: 	rainbow.c matrix_test.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 
@@ -93,6 +96,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objs/parsing
 		@mkdir -p objs/main
 		@mkdir -p objs/operations
+		@mkdir -p objs/tests
 		@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 

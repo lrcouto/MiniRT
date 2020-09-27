@@ -219,5 +219,6 @@ int					double_equal(double a, double b);
 
 void				rt_window(t_rt *rt);
 void  				projectile_test(char *times);
+void				matrix_test(int row, int col);
 
 #endif
