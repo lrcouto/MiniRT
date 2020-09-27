@@ -20,8 +20,6 @@ t_tuple	create_tuple(double x, double y, double z, int w)
 	tuple.y = y;
 	tuple.z = z;
 	tuple.w = w;
-	if (w != 1 && w != 0)
-		errormsg(32);
 	return (tuple);
 }
 

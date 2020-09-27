@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/12 18:58:40 bygsenra-a         ###   ########.fr       */
+/*   Updated: 2020/09/26 21:22:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int			main(int argc, char **argv)
 	char	*line;
 	t_rt	rt;
 
-	projectile_test(argv[2]);
+	matrix_test(4, 4);
+	//projectile_test("12");
 	init_rt(&rt);
 	if (argc == 1)
 		errormsg(0);
