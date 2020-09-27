@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/26 21:22:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/27 17:06:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	valid_rtfile(char *filename)
 {
 	int i;
-	
+
 	i = 0;
 	while (filename[i])
 	{
@@ -25,8 +25,8 @@ static void	valid_rtfile(char *filename)
 				&& filename[i + 3] == '\0')
 				return ;
 			else
-				errormsg (30);
-		}			
+				errormsg(30);
+		}
 		i++;
 	}
 	errormsg(30);
