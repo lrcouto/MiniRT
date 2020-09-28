@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 21:04:41 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/26 22:17:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/09/27 22:14:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,13 @@ void			free_matrix(t_matrix matrix);
 int				comp_matrix(t_matrix m1, t_matrix m2);
 t_matrix		mult_matrix(t_matrix m1, t_matrix m2);
 t_tuple			mult_matrix_tuple(t_matrix m1, t_tuple t1);
+t_matrix		transpose_matrix(t_matrix src);
+t_matrix		get_submatrix(t_matrix src, int rmrow, int rmcol);
+double			det_2x2(t_matrix mat);
+double			det_3x3(t_matrix mat);
+double			cofactor_4x4(t_matrix mat, int row, int col);
+double			det_4x4(t_matrix mat);
+t_matrix		invert_matrix(t_matrix mat);
+t_matrix		scalar_matrix(t_matrix mat, double times);
 
 #endif
