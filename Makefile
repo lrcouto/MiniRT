@@ -38,7 +38,7 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			rt_identify.c
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
-#			matrix_ops_1.c
+#			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c
 
