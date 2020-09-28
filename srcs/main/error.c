@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:23:50 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/09/27 17:06:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void	errormsg(int errornum)
+void		errormsg(int errornum)
 {
 	char	*filename;
 	char	*errstring;

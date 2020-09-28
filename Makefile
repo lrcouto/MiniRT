@@ -23,7 +23,7 @@ DIRS = main parsing operations tests
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
 # main:		error.c free_lists.c free_polys.c init_polys.c init_polys.c /
-#			init_rt.c minirt.c rt_window.c
+#			init_rt.c minirt.c
 #
 # parsing:	fill_collor.c fill coord.c get_ambi_rgb.c get_ambient.c /
 #			get_cam_fov.c get_cam_pos.c get_cam_view / get_camera.c /
@@ -40,7 +40,7 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c
 #
-# tests: 	rainbow.c matrix_test.c
+# tests: 	rainbow.c matrix_test.c rt_window.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 
