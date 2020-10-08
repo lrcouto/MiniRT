@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 21:04:41 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 22:14:41 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 22:03:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ typedef struct	s_matrix
 	size_t		row;
 	size_t		col;
 }				t_matrix;
+
+typedef struct	s_shear
+{
+	double		xy;
+	double		xz;
+	double		yx;
+	double		yz;
+	double		zx;
+	double		zy;
+}				t_shear;
+
 
 /*
 ** Vector operations.
@@ -81,5 +92,12 @@ double			cofactor_4x4(t_matrix mat, int row, int col);
 double			det_4x4(t_matrix mat);
 t_matrix		invert_matrix(t_matrix mat);
 t_matrix		scalar_matrix(t_matrix mat, double times);
+t_matrix		translation(double x, double y, double z);
+t_matrix		scaling(double x, double y, double z);
+t_matrix		rotate_x(double rad);
+t_matrix		rotate_y(double rad);
+t_matrix		rotate_z(double rad);
+t_matrix		shearing(t_shear shear);
+
 
 #endif

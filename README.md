@@ -32,3 +32,5 @@ September 12th 2020 - Created function to verify if the input file extension is 
 September 13th 2020 - After one poorly-slept night, Makefile now works to compile files in separate folders, allowing us to organize the project much better. Wrote vector operations and did initial tests on putting pixels on a canvas based on a vector trajectory.
 
 September 26th 2020 - Wrote color normalizing operations, and some matrix operations. Lots of work to do still. Not Norme-complying at this point.
+
+October 7th 2020 - Implemented matrix 3D operations, translation, rotation, scaling, shearing.

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 00:07:04 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 19:30:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:55:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,14 @@ int	double_equal(double a, double b)
 		return (1);
 	else
 		return (0);
+}
+
+double	radians_to_degrees(double rad)
+{
+	return ((rad * 180) / M_PI);
+}
+
+double	degrees_to_radians(double degr)
+{
+	return ((degr * M_PI) / 180);
 }

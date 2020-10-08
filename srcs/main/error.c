@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 19:30:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:20:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ void		*ec_malloc(size_t size)
 	void *ptr;
 
 	ptr = malloc(size);
+	if (ptr == NULL)
+		errormsg(31);
+	return (ptr);
+}
+
+void		*ec_calloc(size_t n, size_t size)
+{
+	void *ptr;
+
+	ptr = ft_calloc(n, size);
 	if (ptr == NULL)
 		errormsg(31);
 	return (ptr);

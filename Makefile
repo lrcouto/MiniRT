@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2020/09/13 18:11:110 by lcouto           ###   ########.fr        #
+#    Updated: 2020/10/07 19:44:55 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			rt_identify.c
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
-#			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c
+#			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c
 #
-# tests: 	rainbow.c matrix_test.c rt_window.c
+# tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 

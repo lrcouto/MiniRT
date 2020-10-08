@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:17:128 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/07 22:03:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				init_cylinder(t_rt *rt);
 void				init_triangle(t_rt *rt);
 void				errormsg(int errornum);
 void				*ec_malloc(size_t size);
+void				*ec_calloc(size_t n, size_t size);
 void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);
@@ -212,6 +213,8 @@ void				free_triangle(t_rt *rt);
 */
 
 int					double_equal(double a, double b);
+double				radians_to_degrees(double rad);
+double				degrees_to_radians(double degr);
 
 /*
 ** Test functions.
@@ -220,5 +223,12 @@ int					double_equal(double a, double b);
 void				rt_window(t_rt *rt);
 void  				projectile_test(char *times);
 void				matrix_test(int row, int col);
+void				test_translation(double mx, double my, double mz,
+					double px, double py, double pz);
+void				test_scaling(double mx, double my, double mz,
+					double px, double py, double pz);
+void				test_rotation();
+void				test_shearing(void);
+
 
 #endif

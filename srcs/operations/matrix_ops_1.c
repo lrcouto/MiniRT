@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 19:49:03 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 19:30:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:23:14 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ t_matrix	create_matrix(int row, int col)
 	i = 0;
 	new.col = col;
 	new.row = row;
-	new.matrix = (double**)malloc(sizeof(double*) * row);
+	new.matrix = (double**)ec_malloc(sizeof(double*) * row);
 	while (i < row)
 	{
-		new.matrix[i] = (double*)malloc(sizeof(double) * col);
+		new.matrix[i] = (double*)ec_malloc(sizeof(double) * col);
 		j = 0;
 		while (j < col)
 		{
@@ -107,7 +107,7 @@ t_tuple		mult_matrix_tuple(t_matrix m1, t_tuple t1)
 	double		current[4];
 
 	i = 0;
-	new = ec_malloc(sizeof(double) * 4);
+	new = ec_calloc(4, sizeof(double));
 	current[0] = t1.x;
 	current[1] = t1.y;
 	current[2] = t1.z;

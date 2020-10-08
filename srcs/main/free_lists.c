@@ -6,15 +6,11 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 21:50:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 22:03:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-/*
-** TODO: Remove printfs.
-*/
 
 void	free_light(t_rt *rt)
 {

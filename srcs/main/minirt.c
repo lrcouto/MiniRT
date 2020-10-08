@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 19:30:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/07 21:27:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int			main(int argc, char **argv)
 	char	*line;
 	t_rt	rt;
 
-	matrix_test(4, 4);
+	//test_translation(5, -3, 2, -3, 4, 5);
+	//test_scaling(2, 3, 4, -4, 6, 8);
+	//test_rotation();
+	test_shearing();
+	//matrix_test(4, 4);
 	//projectile_test("12");
 	init_rt(&rt);
 	if (argc == 1)
