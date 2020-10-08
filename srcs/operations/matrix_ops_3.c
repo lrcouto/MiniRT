@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_ops_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 22:27:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/03 17:46:41 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/07 22:02:55 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double		det_4x4(t_matrix mat)
 	size_t		i;
 	double		result;
 
-	sub_cof = ec_malloc(sizeof(double) * 4);
+	sub_cof = ec_calloc(4, sizeof(double));
 	i = 0;
 	while (i < mat.col)
 	{
@@ -89,10 +89,20 @@ t_matrix	translation(double x, double y, double z)
 	transform.matrix[1][1] = 1;
 	transform.matrix[2][2] = 1;
 	transform.matrix[3][3] = 1;
-
 	transform.matrix[0][3] = x;
 	transform.matrix[1][3] = y;
 	transform.matrix[2][3] = z;
+	return (transform);
+}
 
+t_matrix	scaling(double x, double y, double z)
+{
+	t_matrix	transform;
+
+	transform = create_matrix(4, 4);
+	transform.matrix[0][0] = x;
+	transform.matrix[1][1] = y;
+	transform.matrix[2][2] = z;
+	transform.matrix[3][3] = 1;
 	return (transform);
 }
