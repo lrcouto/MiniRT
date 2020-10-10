@@ -11,9 +11,9 @@ On your terminal, run:
 git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git
 ```
 
-Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run make.
+Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*.
 
-You can use SANITIZE_L=true or SANITIZE_A=true with make to compile the program with the -fsanitize=leak and -fsanitize=address flags respectively.
+You can use *SANITIZE_L=true* or *SANITIZE_A=true* with make to compile the program with the *-fsanitize=leak* and *-fsanitize=address* flags respectively.
 
 Run MiniRT with a .rt file as an argument.
 
