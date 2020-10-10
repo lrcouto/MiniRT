@@ -1,8 +1,26 @@
 # MiniRT
-A basic raytracer made as a student project at 42 São Paulo.
+A basic raytracer made as a student project at 42 São Paulo. It is currently a work in progress, and you can check the work history on the collapsible section below.
+
+# How to Run It
+
+MiniRT relies on its libft submodule and on the MiniLibX library to run.
+
+On your terminal, run:
+
+```
+git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git
+```
+
+Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run make.
+
+You can use SANITIZE_L=true or SANITIZE_A=true with make to compile the program with the -fsanitize=leak and -fsanitize=address flags respectively.
+
+Run MiniRT with a .rt file as an argument.
 
 # Work History
-
+<details>
+  <summary>Click to expand!</summary>
+ 
 August 14th 2020 - Started building the basic functions and structures to open a file, parse its content and process the information accordingly.
 
 August 17th 2020 - Cleaned up the Makefile a little bit, so that .o files will go on their own folder and it keeps Libft as it's own submodule so it can be updated/modified easily. Doing some more work on the file parsing structure, and managed to get information from a file and put it on a struct to use later, plus some very basic error returns for invalid file structures.
@@ -34,3 +52,5 @@ September 13th 2020 - After one poorly-slept night, Makefile now works to compil
 September 26th 2020 - Wrote color normalizing operations, and some matrix operations. Lots of work to do still. Not Norme-complying at this point.
 
 October 7th 2020 - Implemented matrix 3D operations, translation, rotation, scaling, shearing.
+
+</details>
