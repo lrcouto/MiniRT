@@ -53,4 +53,6 @@ September 26th 2020 - Wrote color normalizing operations, and some matrix operat
 
 October 7th 2020 - Implemented matrix 3D operations, translation, rotation, scaling, shearing.
 
+October 17th 2020 - Tested combined transformations and how to use them with MiniLibX to put pixels to the screen.
+
 </details>

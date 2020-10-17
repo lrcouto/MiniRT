@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 21:27:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:39:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int			main(int argc, char **argv)
 	//test_translation(5, -3, 2, -3, 4, 5);
 	//test_scaling(2, 3, 4, -4, 6, 8);
 	//test_rotation();
-	test_shearing();
+	//test_shearing();
+	//test_chain_transform();
 	//matrix_test(4, 4);
 	//projectile_test("12");
 	init_rt(&rt);
@@ -64,6 +65,6 @@ int			main(int argc, char **argv)
 		rt_identify(line, &rt);
 		free(line);
 	}
-	rt_window(&rt);
+	test_clock(&rt);
 	return (0);
 }
