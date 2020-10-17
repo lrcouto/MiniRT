@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 22:03:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:38:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ void				test_scaling(double mx, double my, double mz,
 					double px, double py, double pz);
 void				test_rotation();
 void				test_shearing(void);
+void				test_chain_transform(void);
+void				test_clock(t_rt *rt);
 
 
 #endif

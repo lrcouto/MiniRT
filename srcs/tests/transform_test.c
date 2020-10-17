@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:35:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 22:03:23 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/17 17:08:22 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,4 +205,41 @@ void	test_shearing(void)
 	printf("\n");
 
 	free_matrix(transform);
+}
+
+void	test_chain_transform(void)
+{
+	t_tuple		pt;
+
+	t_matrix	transform_rot;
+	t_matrix	transform_scal;
+	t_matrix	transform_trans;
+
+	t_matrix	transform_result;
+	t_matrix	transform_result_final;
+
+	transform_rot = rotate_x(M_PI / 2);
+	transform_scal = scaling(5, 5, 5);
+	transform_trans = translation(10, 5, 7);
+
+	transform_result = mult_matrix(transform_trans, transform_scal);
+
+	transform_result_final = mult_matrix(transform_result, transform_rot);
+	
+	pt = create_tuple(1, 0, 1, 1);
+
+	printf("\nCHAINING TRANSFORMATIONS\n");
+	printf("BEFORE: point(%f, %f, %f, %d)", pt.x, pt.y, pt.z, pt.w);
+	printf("\n");
+
+	pt = mult_matrix_tuple(transform_result_final, pt);
+
+	printf("AFTER: point(%f, %f, %f, %d)", pt.x, pt.y, pt.z, pt.w);
+	printf("\n");
+
+	free_matrix(transform_result);
+	free_matrix(transform_result_final);
+	free_matrix(transform_rot);
+	free_matrix(transform_scal);
+	free_matrix(transform_trans);
 }
