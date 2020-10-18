@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 21:04:41 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 22:03:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/18 20:07:58 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define VECTOR_H
 
 # include "minirt.h"
+
+/*
+** Holds values for RGB colors.
+*/
+
+typedef struct			s_color
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_color;
 
 typedef struct	s_tuple
 {
@@ -47,7 +58,6 @@ typedef struct	s_shear
 	double		zx;
 	double		zy;
 }				t_shear;
-
 
 /*
 ** Vector operations.
@@ -98,6 +108,5 @@ t_matrix		rotate_x(double rad);
 t_matrix		rotate_y(double rad);
 t_matrix		rotate_z(double rad);
 t_matrix		shearing(t_shear shear);
-
 
 #endif

@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/13 00:07:04 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:33:53 by lcouto           ###   ########.fr       */
+/*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
+/*   Updated: 2020/10/18 20:07:46 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#ifndef RAY_H
+# define RAY_H
 
-int		double_equal(double a, double b)
-{
-	if (fabs(a - b) < EPSILON)
-		return (1);
-	else
-		return (0);
-}
+# include "minirt.h"
 
-double	radians_to_degrees(double rad)
+typedef struct	s_ray
 {
-	return ((rad * 180) / M_PI);
-}
+	t_tuple		origin;
+	t_tuple		direction;
+}				t_ray;
 
-double	degrees_to_radians(double degr)
+typedef struct	s_intersec
 {
-	return ((degr * M_PI) / 180);
-}
+	int			count;
+	double		t1;
+	double		t2;
+}				t_intersec;
+
+/*
+** Ray operations.
+*/
+
+t_ray			create_ray(t_tuple origin, t_tuple direction);
+t_tuple			ray_position(t_ray ray, double t);
+t_intersec		intersection(t_ray ray, t_sphere sphere);
+
+#endif
