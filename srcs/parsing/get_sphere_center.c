@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere_center.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:55:09 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:36:18 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_sphere *sphere)
 	}
 	if (check != 3)
 		errormsg(18);
-	sphere->center = fill_coord(xyz[0], xyz[1], xyz[2]);
+	sphere->center = create_tuple(xyz[0], xyz[1], xyz[2], 1);
 	free(xyz);
 	return (check);
 }

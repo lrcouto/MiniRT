@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_square_center.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 14:00:40 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:38:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_square *square)
 	}
 	if (check != 3)
 		errormsg(23);
-	square->center = fill_coord(xyz[0], xyz[1], xyz[2]);
+	square->center = create_tuple(xyz[0], xyz[1], xyz[2], 1);
 	free(xyz);
 	return (check);
 }

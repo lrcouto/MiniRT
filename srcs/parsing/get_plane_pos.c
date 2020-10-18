@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_plane_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:34:59 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:26:13 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:35:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_plane *plane)
 	}
 	if (check != 3)
 		errormsg(19);
-	plane->pos = fill_coord(xyz[0], xyz[1], xyz[2]);
+	plane->pos = create_tuple(xyz[0], xyz[1], xyz[2], 1);
 	free(xyz);
 	return (check);
 }

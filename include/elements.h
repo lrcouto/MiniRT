@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/11 15:24:09 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/18 20:13:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 # define ELEMENTS_H
 
 # include "minirt.h"
-
-/*
-** Holds values for X, Y, Z coordinates.
-*/
-
-typedef struct			s_coord
-{
-	double				x;
-	double				y;
-	double				z;
-}						t_coord;
-
-/*
-** Holds values for RGB colors.
-*/
-
-typedef struct			s_color
-{
-	int					r;
-	int					g;
-	int					b;
-}						t_color;
 
 /*
 ** Holds values for window size.
@@ -63,8 +41,8 @@ typedef struct			s_ambi
 
 typedef struct			s_cam
 {
-	t_coord				view;
-	t_coord				pos;
+	t_tuple				view;
+	t_tuple				pos;
 	int					fov;
 	struct s_cam		*next;
 }						t_cam;
@@ -75,7 +53,7 @@ typedef struct			s_cam
 
 typedef struct			s_light
 {
-	t_coord				pos;
+	t_tuple				pos;
 	double				light;
 	t_color				color;
 	struct s_light		*next;
@@ -87,8 +65,9 @@ typedef struct			s_light
 
 typedef struct			s_sphere
 {
-	t_coord				center;
+	t_tuple				center;
 	double				diameter;
+	double				radius;
 	t_color				color;
 	struct s_sphere		*next;
 }						t_sphere;
@@ -99,7 +78,7 @@ typedef struct			s_sphere
 
 typedef struct			s_plane
 {
-	t_coord				pos;
+	t_tuple				pos;
 	double				norm;
 	t_color				color;
 	struct s_plane		*next;
@@ -111,7 +90,7 @@ typedef struct			s_plane
 
 typedef struct			s_square
 {
-	t_coord				center;
+	t_tuple				center;
 	double				norm;
 	double				side;
 	t_color				color;
@@ -124,7 +103,7 @@ typedef struct			s_square
 
 typedef struct			s_cylinder
 {
-	t_coord				pos;
+	t_tuple				pos;
 	double				norm;
 	double				diameter;
 	double				height;
@@ -138,9 +117,9 @@ typedef struct			s_cylinder
 
 typedef struct			s_triangle
 {
-	t_coord				p1;
-	t_coord				p2;
-	t_coord				p3;
+	t_tuple				p1;
+	t_tuple				p2;
+	t_tuple				p3;
 	t_color				color;
 	struct s_triangle	*next;
 }						t_triangle;

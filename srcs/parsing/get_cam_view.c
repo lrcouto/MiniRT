@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cam_view.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 20:46:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:31:02 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				get_cam_view(char *line, int check, int i, t_cam *cam)
 	}
 	if (check != 3)
 		errormsg(12);
-	cam->view = fill_coord(xyz[0], xyz[1], xyz[2]);
+	cam->view = create_tuple(xyz[0], xyz[1], xyz[2], 1);
 	free(xyz);
 	return (check);
 }

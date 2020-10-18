@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 20:36:11 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/18 18:38:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void		init_light(t_rt *rt)
 	baselight->pos.x = 0;
 	baselight->pos.y = 0;
 	baselight->pos.z = 0;
+	baselight->pos.w = 0;
 	baselight->light = 0;
 	baselight->color.r = 0;
 	baselight->color.g = 0;
@@ -61,6 +62,7 @@ static void		init_camera(t_rt *rt)
 	basecam->pos.x = 0;
 	basecam->pos.y = 0;
 	basecam->pos.z = 0;
+	basecam->pos.w = 0;
 	basecam->fov = 0;
 	basecam->next = NULL;
 	rt->cam = basecam;

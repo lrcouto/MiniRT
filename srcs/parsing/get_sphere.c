@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/18 20:34:23 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_sphere *sphere)
 		i++;
 	}
 	sphere->diameter = diameter;
+	sphere->radius = diameter / 2;
 	return (check);
 }
 

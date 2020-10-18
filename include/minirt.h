@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/17 17:38:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/18 20:07:58 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include "mlx.h"
 # include "../libft/libft.h"
 # include "mlx_int.h"
-# include "elements.h"
 # include "vector.h"
+# include "elements.h"
+# include "ray.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
@@ -97,7 +98,6 @@ void				rt_identify(char *line, t_rt *rt);
 int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);
 double				get_coord(char *line, int i);
-t_coord				fill_coord(double x, double y, double z);
 int					get_color(char *line, int i);
 t_color				fill_color(int r, int g, int b);
 
@@ -231,6 +231,7 @@ void				test_rotation();
 void				test_shearing(void);
 void				test_chain_transform(void);
 void				test_clock(t_rt *rt);
-
+void				test_ray_position(void);
+void				test_intersection(t_rt *rt);
 
 #endif
