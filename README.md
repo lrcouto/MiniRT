@@ -57,4 +57,6 @@ October 17th 2020 - Tested combined transformations and how to use them with Min
 
 October 18th 2020 - Started on ray/sphere intersections, and created the structures and functions to handle this task. Streamlined our polygon structs to make them easier to use with the ray casting functions.
 
+October 24th 2020 - Started to build the scaffolding for a linked list containing the data from every ray/poly intersection we are going to use, a way to identify those polys, and trying to ensure there are no memory leaks in this process.
+
 </details>

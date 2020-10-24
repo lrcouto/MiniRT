@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:04:46 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/24 20:49:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int			main(int argc, char **argv)
 		free(line);
 	}
 	test_intersection(&rt);
-	test_clock(&rt);
+	rt_window(&rt);
 	return (0);
 }

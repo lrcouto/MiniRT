@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:52:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:29:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/24 20:52:05 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	test_intersection(t_rt *rt)
 	sphere.diameter = rt->sphere->diameter;
 	sphere.radius = rt->sphere->radius;
 
-	new = intersection(ray, sphere);
+	new = intersect_sphere(ray, sphere);
 	printf("\nRAY-SPHERE INTERSECTION\n");
 	printf("\nRAY -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
 	printf("\nRAY -> direction(%f, %f, %f, %d)\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
 	printf("\nSPHERE-CENTER -> point(%f, %f, %f, %d)\n", sphere.center.x, sphere.center.y, sphere.center.z, sphere.center.w);
 	printf("COUNT: %d, T1: %f, T2: %f\n", new.count, new.t1, new.t2);
+	free(new.poly.sphere);
 }
