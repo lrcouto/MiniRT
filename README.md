@@ -55,6 +55,6 @@ October 7th 2020 - Implemented matrix 3D operations, translation, rotation, scal
 
 October 17th 2020 - Tested combined transformations and how to use them with MiniLibX to put pixels to the screen. Also played a bit with MiniLibX key hooks and loops for shits and giggles.
 
-October 17th 20 - Started on ray/sphere intersections, and created the structures and functions to handle this task. Streamlined our polygon structs to make them easier to use with the ray casting functions.
+October 18th 2020 - Started on ray/sphere intersections, and created the structures and functions to handle this task. Streamlined our polygon structs to make them easier to use with the ray casting functions.
 
 </details>
