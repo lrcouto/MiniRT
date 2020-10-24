@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2020/10/18 18:48:11 by lcouto           ###   ########.fr        #
+#    Updated: 2020/10/24 17:12:13 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 # main:		error.c free_lists.c free_polys.c init_polys.c init_polys.c /
 #			init_rt.c minirt.c
 #
-# parsing:	fill_collor.c fill coord.c get_ambi_rgb.c get_ambient.c /
-#			get_cam_fov.c get_cam_pos.c get_cam_view / get_camera.c /
+# parsing:	fill_collor.c get_ambi_rgb.c get_ambient.c /
+#			get_cam_fov.c get_cam_pos.c get_cam_view get_camera.c /
 #			get_color.c get_coord.c get_cylinder_color.c get_cylinder_doubles.c /
 #			get_cylinder_pos.c get_cylinder.c get_index_nocomma.c get_get_index.c /
 #			get_light_color.c get_light_pos.c get_light.c get_plane_color.c /
