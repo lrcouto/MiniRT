@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:52:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/24 20:52:05 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/27 18:58:20 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,45 @@ void	test_intersection(t_rt *rt)
 {
 	t_ray		ray;
 	t_sphere	sphere;
-	t_intersec	new;
+	t_intersec	*intersec_list;
+	t_intersec	*hit;
 
-	ray = create_ray(create_tuple(0, 0, 0, 1), create_tuple(0, 0, 1, 0));
+	intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
+	intersec_list = init_intersec_list(intersec_list);
+
 	sphere.center = rt->sphere->center;
 	sphere.diameter = rt->sphere->diameter;
 	sphere.radius = rt->sphere->radius;
-
-	new = intersect_sphere(ray, sphere);
+	
 	printf("\nRAY-SPHERE INTERSECTION\n");
-	printf("\nRAY -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
-	printf("\nRAY -> direction(%f, %f, %f, %d)\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
 	printf("\nSPHERE-CENTER -> point(%f, %f, %f, %d)\n", sphere.center.x, sphere.center.y, sphere.center.z, sphere.center.w);
-	printf("COUNT: %d, T1: %f, T2: %f\n", new.count, new.t1, new.t2);
-	free(new.poly.sphere);
+
+	// RAY 1
+	ray = create_ray(create_tuple(1, 0, -13, 1), create_tuple(0, 0, 1, 0));
+	intersect_sphere(ray, sphere, intersec_list);
+	printf("\nRAY 1 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+
+	// RAY 2
+	ray = create_ray(create_tuple(0, 1, -10, 1), create_tuple(0, 0, 1, 0));
+	intersect_sphere(ray, sphere, intersec_list);
+	printf("\nRAY 2 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+
+	// RAY 3
+	ray = create_ray(create_tuple(-1, 0, -8, 1), create_tuple(0, 0, 1, 0));
+	intersect_sphere(ray, sphere, intersec_list);
+	printf("\nRAY 3 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+
+	// RAY 4
+	ray = create_ray(create_tuple(0.5, 0.5, -15, 1), create_tuple(0, 0, 1, 0));
+	intersect_sphere(ray, sphere, intersec_list);
+	printf("\nRAY 4 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+
+	hit = intersec_hit(intersec_list);
+
+	if (!hit)
+		printf("NO HIT!\n");
+	else 
+		printf("HIT! T1: %f, T2: %f\n", hit->t1, hit->t2);
+
+	free_intersecs(intersec_list);
 }

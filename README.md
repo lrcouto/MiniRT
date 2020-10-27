@@ -59,4 +59,8 @@ October 18th 2020 - Started on ray/sphere intersections, and created the structu
 
 October 24th 2020 - Started to build the scaffolding for a linked list containing the data from every ray/poly intersection we are going to use, a way to identify those polys, and trying to ensure there are no memory leaks in this process.
 
+October 27th 2020 - Further developed the linked list containing intersection data, and created a function to determine if a ray has "hit" an object based on intersection data. Dealt with the Norme and some memory leaks.
+
+___
+
 </details>

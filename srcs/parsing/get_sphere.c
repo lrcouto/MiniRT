@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:34:23 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/27 19:10:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 	{
 		head->center = new_sphere->center;
 		head->diameter = new_sphere->diameter;
+		head->radius = new_sphere->radius;
 		head->color = new_sphere->color;
 		head->next = new_sphere->next;
 		rt->qts.sp = rt->qts.sp + 1;
@@ -32,6 +33,7 @@ static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 	current->next = (t_sphere *)ec_malloc(sizeof(t_sphere));
 	current->next->center = new_sphere->center;
 	current->next->diameter = new_sphere->diameter;
+	current->next->radius = new_sphere->radius;
 	current->next->color = new_sphere->color;
 	current->next->next = new_sphere->next;
 	rt->qts.sp = rt->qts.sp + 1;
