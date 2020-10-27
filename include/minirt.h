@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:07:58 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/27 19:03:44 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void				free_plane(t_rt *rt);
 void				free_square(t_rt *rt);
 void				free_cylinder(t_rt *rt);
 void				free_triangle(t_rt *rt);
+void				free_intersecs(t_intersec *intersec);
 
 /*
 ** Float utils
@@ -221,7 +222,7 @@ double				degrees_to_radians(double degr);
 */
 
 void				rt_window(t_rt *rt);
-void  				projectile_test(char *times);
+void				projectile_test(char *times);
 void				matrix_test(int row, int col);
 void				test_translation(double mx, double my, double mz,
 					double px, double py, double pz);
