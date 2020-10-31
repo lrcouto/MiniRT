@@ -8,7 +8,7 @@ MiniRT relies on its libft submodule and on the MiniLibX library to run.
 On your terminal, run:
 
 ```
-git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibs-linux
+git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibx-linux
 ```
 
 Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*.
@@ -62,6 +62,8 @@ October 18th 2020 - Started on ray/sphere intersections, and created the structu
 October 24th 2020 - Started to build the scaffolding for a linked list containing the data from every ray/poly intersection we are going to use, a way to identify those polys, and trying to ensure there are no memory leaks in this process.
 
 October 27th 2020 - Further developed the linked list containing intersection data, and created a function to determine if a ray has "hit" an object based on intersection data. Dealt with the Norme and some memory leaks.
+
+October 31st 2020 - Added MiniLibX - Linux as a submodule to ensure we always run the program with the most rec
 
 ___
 
