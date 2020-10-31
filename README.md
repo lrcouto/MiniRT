@@ -63,7 +63,7 @@ October 24th 2020 - Started to build the scaffolding for a linked list containin
 
 October 27th 2020 - Further developed the linked list containing intersection data, and created a function to determine if a ray has "hit" an object based on intersection data. Dealt with the Norme and some memory leaks.
 
-October 31st 2020 - Added MiniLibX - Linux as a submodule to ensure we always run the program with the most rec
+October 31st 2020 - Added MiniLibX - Linux as a submodule to ensure we always run the program with the most recent version of the library directly from the 42 repository.
 
 ___
 
