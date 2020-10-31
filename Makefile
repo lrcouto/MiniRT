@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2020/10/27 18:45:13 by lcouto           ###   ########.fr        #
+#    Updated: 2020/10/31 19:29:18 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SRCS = srcs
 
 DIR_OBJS = objs
 
-DIRS = main parsing operations tests
+DIRS = main parsing operations tests render
 
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
@@ -43,6 +43,8 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
 #			ray_test.c
+#
+# render:	canvas.c render_utils.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 
@@ -99,6 +101,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objs/main
 		@mkdir -p objs/operations
 		@mkdir -p objs/tests
+		@mkdir -p objs/render
 		@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 

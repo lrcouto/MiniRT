@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:11:21 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/17 19:33:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 19:35:59 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,6 @@ typedef struct	s_vars
 	t_reso	reso;
 	t_color	color;
 }				t_vars;
-
-static void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-	
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-static int		create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static int		close_wndw(int keycode, t_vars *vars)
-{
-	if (keycode == 0xFF1B)
-	{
-		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
-		exit(0);
-	}
-	else if (keycode == 0x64)
-		vars->degrees = vars->degrees + 15;
-	else if (keycode == 0x61)
-		vars->degrees = vars->degrees - 15;
-	return (0);
-}
 
 static int		is_valid_pixel(int x, int y, t_vars *vars)
 {

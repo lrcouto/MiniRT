@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:13:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 17:14:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct			s_sphere
 	double				diameter;
 	double				radius;
 	t_color				color;
+	t_matrix			transform;
 	struct s_sphere		*next;
 }						t_sphere;
 

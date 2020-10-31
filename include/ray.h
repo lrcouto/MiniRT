@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/27 19:04:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 19:33:05 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct			s_intersec
 
 t_ray					create_ray(t_tuple origin, t_tuple direction);
 t_tuple					ray_position(t_ray ray, double t);
-void					intersect_sphere(t_ray ray, t_sphere sphere,
+void					intersect_sphere(t_ray ray, t_sphere *sphere,
 						t_intersec *head);
 t_polys					insert_sphere(t_sphere *sphere);
 t_polys					insert_plane(t_plane *plane);
@@ -67,5 +67,7 @@ t_polys					insert_triangle(t_triangle *triangle);
 t_intersec				*init_intersec_list(t_intersec *list);
 void					push_intersec(t_intersec *head, t_intersec *new);
 t_intersec				*intersec_hit(t_intersec *head);
+t_ray					transform_ray(t_ray ray, t_matrix transform);
+void					set_transform_sphere(t_sphere *sphere, t_matrix transform);
 
 #endif

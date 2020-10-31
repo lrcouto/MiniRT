@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 21:04:41 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/27 19:05:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 20:01:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ t_matrix				rotate_x(double rad);
 t_matrix				rotate_y(double rad);
 t_matrix				rotate_z(double rad);
 t_matrix				shearing(t_shear shear);
+t_matrix				create_id_matrix(void);
 
 #endif
