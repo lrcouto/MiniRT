@@ -8,7 +8,7 @@ MiniRT relies on its libft submodule and on the MiniLibX library to run.
 On your terminal, run:
 
 ```
-git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git
+git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibs-linux
 ```
 
 Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*.
@@ -20,7 +20,9 @@ Run MiniRT with a .rt file as an argument.
 # Work History
 <details>
   <summary>Click to expand!</summary>
- 
+
+---
+
 August 14th 2020 - Started building the basic functions and structures to open a file, parse its content and process the information accordingly.
 
 August 17th 2020 - Cleaned up the Makefile a little bit, so that .o files will go on their own folder and it keeps Libft as it's own submodule so it can be updated/modified easily. Doing some more work on the file parsing structure, and managed to get information from a file and put it on a struct to use later, plus some very basic error returns for invalid file structures.
