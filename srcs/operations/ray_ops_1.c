@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:45:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 19:34:39 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/01 17:08:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static t_intersec	get_intersec(t_ray ray, t_tuple sphere_to_ray)
 void				intersect_sphere(t_ray ray, t_sphere *sphere,
 t_intersec *head)
 {
-	t_tuple		sphere_to_ray;
-	t_intersec	new;
-	t_ray		tformed;
+	t_tuple			sphere_to_ray;
+	t_intersec		new;
+	t_ray			tformed;
 	t_matrix		invert;
 
 	invert = invert_matrix(sphere->transform);

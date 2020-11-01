@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 19:49:03 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 18:23:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/01 17:42:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_tuple		mult_matrix_tuple(t_matrix m1, t_tuple t1)
 		}
 		i++;
 	}
-	new_t = create_tuple(new[0], new[1], new[2], new[3]);
+	new_t = create_tuple(new[0], new[1], new[2], round(new[3]));
 	free(new);
 	return (new_t);
 }

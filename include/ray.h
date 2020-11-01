@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 19:33:05 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/01 18:10:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ typedef struct			s_intersec
 	struct s_intersec	*next;
 }						t_intersec;
 
+typedef struct			s_raycaster
+{
+	int					x;
+	int					y;
+	double				world_x;
+	double				world_y;
+	double				pixel_size;
+	double				wall_size;
+	t_ray				ray;
+	t_intersec			*intersec_list;
+	t_intersec			*hit;
+}						t_raycaster;
+
 /*
 ** Ray operations.
 */
@@ -68,6 +81,7 @@ t_intersec				*init_intersec_list(t_intersec *list);
 void					push_intersec(t_intersec *head, t_intersec *new);
 t_intersec				*intersec_hit(t_intersec *head);
 t_ray					transform_ray(t_ray ray, t_matrix transform);
-void					set_transform_sphere(t_sphere *sphere, t_matrix transform);
+void					set_transform_sphere(t_sphere *sphere,
+						t_matrix transform);
 
 #endif

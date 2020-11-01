@@ -6,62 +6,72 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 20:56:18 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/01 18:08:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void			raycaster(t_rt *rt, t_mlx *mlx)
+void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 {
-	int		x;
-	int		y;
-	double	world_x;
-	double	world_y;
-	double	pixelsize;
-	double	wall_size;
-	t_ray	ray;
-	t_intersec	*intersec_list;
-	t_intersec	*hit;
-
-	wall_size = rt->reso.width;
-	pixelsize = (double)wall_size / (double)rt->reso.width;
-	ray.origin = create_tuple(0, 0, -1.01, 1);
-	y = 0;
-	while (y < rt->reso.height)
+	if (rc->hit)
 	{
-		world_y = ((wall_size / 2) - (pixelsize * y));
-		x = 0;
-		while (x < rt->reso.width)
-		{
-			intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
-			intersec_list = init_intersec_list(intersec_list);
-
-			world_x = (((wall_size / 2) * -1) + (pixelsize * x));
-			ray.direction = normalize_v(subtract_tuple(create_tuple(world_x, world_y, 10, 1), ray.origin));
-			// set_transform_sphere(rt->sphere, scaling(1, 1, 1));
-			intersect_sphere(ray, rt->sphere, intersec_list);
-			hit = intersec_hit(intersec_list);
-			// printf("\nX: %d, Y: %d\n", x, y);
-			if (hit)
-			{
-				// printf("\nHIT! T1: %f, T2: %f\n", hit->t1, hit->t2);
-				if (y <= rt->reso.height && x <= rt->reso.width && x >= 0 && y >= 0)
-					ft_pixelput(mlx, x, y, create_trgb(0, hit->poly.sphere->color.r, hit->poly.sphere->color.g, hit->poly.sphere->color.b));
-			}
-			free_intersecs(intersec_list);
-			x++;
-		}
-		y++;
+		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
+		&& rc->x >= 0 && rc->y >= 0)
+			ft_pixelput(mlx, rc->x, rc->y,
+			create_trgb(0, rc->hit->poly.sphere->color.r,
+			rc->hit->poly.sphere->color.g, rc->hit->poly.sphere->color.b));
 	}
 }
 
-void			canvas(t_rt *rt)
+t_raycaster			init_raycaster(t_rt *rt)
+{
+	t_raycaster		*new;
+
+	new = (t_raycaster *)ec_malloc(sizeof(t_raycaster));
+	new->wall_size = rt->reso.width;
+	new->pixel_size = (double)new->wall_size / (double)rt->reso.width;
+	new->ray.origin = create_tuple(rt->cam->view.x,
+		rt->cam->view.y, rt->cam->view.z, 1);
+	new->y = 0;
+	new->x = 0;
+	new->world_x = 0;
+	new->world_y = 0;
+	return (*new);
+}
+
+void				raycaster(t_rt *rt, t_mlx *mlx)
+{
+	t_raycaster	rc;
+
+	rc = init_raycaster(rt);
+	while (rc.y < rt->reso.height)
+	{
+		rc.world_y = ((rc.wall_size / 2) - (rc.pixel_size * rc.y));
+		rc.x = 0;
+		while (rc.x < rt->reso.width)
+		{
+			rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
+			rc.intersec_list = init_intersec_list(rc.intersec_list);
+			rc.world_x = (((rc.wall_size / 2) * -1) + (rc.pixel_size * rc.x));
+			rc.ray.direction = normalize_v(subtract_tuple(create_tuple(
+				rc.world_x, rc.world_y, 10, 1), rc.ray.origin));
+			intersect_sphere(rc.ray, rt->sphere, rc.intersec_list);
+			rc.hit = intersec_hit(rc.intersec_list);
+			cast_pixel(&rc, rt, mlx);
+			free_intersecs(rc.intersec_list);
+			rc.x = rc.x + 1;
+		}
+		rc.y = rc.y + 1;
+	}
+}
+
+void				canvas(t_rt *rt)
 {
 	t_mlx	mlx;
 	int		max_x;
 	int		max_y;
-	
+
 	mlx.mlx = mlx_init();
 	mlx_get_screen_size(mlx.mlx, &max_x, &max_y);
 	if (rt->reso.width > max_x)
@@ -73,10 +83,9 @@ void			canvas(t_rt *rt)
 	mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
 	rt->reso.height, "MiniRT");
 	mlx.img = mlx_new_image(mlx.mlx, rt->reso.width, rt->reso.height);
-	mlx.address = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.line_leng, &mlx.endian);
-	
+	mlx.address = mlx_get_data_addr(mlx.img, &mlx.bpp,
+	&mlx.line_leng, &mlx.endian);
 	raycaster(rt, &mlx);
-	
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	free_lists(rt);
 	mlx_key_hook(mlx.win, close_wndw, &mlx);
