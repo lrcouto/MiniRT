@@ -65,6 +65,8 @@ October 27th 2020 - Further developed the linked list containing intersection da
 
 October 31st 2020 - Added MiniLibX - Linux as a submodule to ensure we always run the program with the most recent version of the library directly from the 42 repository. Implemented ray and sphere transformation functions and started our first tests with actual raytracing. Managed to render a constant-shaded sphere. Yay!
 
+November 1st 2020 - Cleaned up our raycasting functions and fixed a pesky little bug caused by the computer not calculating floating point values correctly after a certain point. Fixed it by using the round() function since the difference was so minimal.
+
 ___
 
 </details>

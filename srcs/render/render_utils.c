@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 19:29:45 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/01 16:15:48 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int		create_trgb(int t, int r, int g, int b)
+int			create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int		close_wndw(int keycode, t_mlx *mlx)
+int			close_wndw(int keycode, t_mlx *mlx)
 {
 	if (keycode == 0xFF1B)
 	{
