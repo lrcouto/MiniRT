@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rt_window.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:23:52 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/10/31 19:35:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-static void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-static int		create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static int		close_wndw(int keycode, t_mlx *mlx)
-{
-	if (keycode == 0xFF1B)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
-	}
-	return (0);
-}
 
 void			rt_window(t_rt *rt)
 {

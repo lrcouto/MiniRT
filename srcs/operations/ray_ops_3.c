@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 16:36:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/27 19:01:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 18:25:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,19 @@ t_intersec	*intersec_hit(t_intersec *head)
 	if (hit && hit->count == 0)
 		hit = NULL;
 	return (hit);
+}
+
+t_ray	transform_ray(t_ray ray, t_matrix transform)
+{
+	t_ray	new;
+
+	new.origin = mult_matrix_tuple(transform, ray.origin);
+	new.direction = mult_matrix_tuple(transform, ray.direction);
+	return	(new);
+}
+
+void	set_transform_sphere(t_sphere *sphere, t_matrix transform)
+{
+	free_matrix(sphere->transform);
+	sphere->transform = transform;
 }

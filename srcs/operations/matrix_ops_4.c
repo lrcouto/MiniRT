@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 18:58:06 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 20:33:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 20:01:35 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,16 @@ t_matrix	shearing(t_shear shear)
 	transform.matrix[2][0] = shear.zx;
 	transform.matrix[2][1] = shear.zy;
 	return (transform);
+}
+
+t_matrix	create_id_matrix(void)
+{
+	t_matrix	idmatrix;
+
+	idmatrix = create_matrix(4, 4);
+	idmatrix.matrix[0][0] = 1;
+	idmatrix.matrix[1][1] = 1;
+	idmatrix.matrix[2][2] = 1;
+	idmatrix.matrix[3][3] = 1;
+	return (idmatrix);
 }

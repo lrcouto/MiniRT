@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:50:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 18:35:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 20:02:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void		init_sphere(t_rt *rt)
 	basesphere->color.r = 0;
 	basesphere->color.g = 0;
 	basesphere->color.b = 0;
+	basesphere->transform = create_id_matrix();
 	basesphere->next = NULL;
 	rt->sphere = basesphere;
 }

@@ -22,29 +22,6 @@ static t_projectile	tick(t_env env, t_projectile proj)
 		return (new);
 }
 
-static void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-	
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-static int		create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static int		close_wndw(int keycode, t_mlx *mlx)
-{
-	if (keycode == 0xFF1B)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
-	}
-	return (0);
-}
-
 void  projectile_test(char *times)
 {
 	t_mlx	mlx;

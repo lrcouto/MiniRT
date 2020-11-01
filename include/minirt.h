@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/27 19:03:44 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/10/31 19:54:00 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,5 +234,23 @@ void				test_chain_transform(void);
 void				test_clock(t_rt *rt);
 void				test_ray_position(void);
 void				test_intersection(t_rt *rt);
+void				test_transform_ray(void);
+void				test_sphere_ray_transform(t_rt *rt);
+void				test_canvas(t_rt *rt);
+
+/*
+** Render utilities.
+*/
+
+void				ft_pixelput(t_mlx *mlx, int x, int y, int color);
+int					create_trgb(int t, int r, int g, int b);
+int					close_wndw(int keycode, t_mlx *mlx);
+
+/*
+** Core render functions.
+*/
+
+void				canvas(t_rt *rt);
+void				raycaster(t_rt *rt, t_mlx *mlx);
 
 #endif
