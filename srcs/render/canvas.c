@@ -6,11 +6,19 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 18:08:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/11 20:46:59 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+void				render_sphere_scale(t_rt *rt)
+{
+	double	factor;
+	
+	factor = rt->sphere->radius;
+	set_transform_sphere(rt->sphere, scaling(factor, factor, factor));
+}
 
 void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 {
@@ -56,6 +64,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 			rc.world_x = (((rc.wall_size / 2) * -1) + (rc.pixel_size * rc.x));
 			rc.ray.direction = normalize_v(subtract_tuple(create_tuple(
 				rc.world_x, rc.world_y, 10, 1), rc.ray.origin));
+			render_sphere_scale(rt);
 			intersect_sphere(rc.ray, rt->sphere, rc.intersec_list);
 			rc.hit = intersec_hit(rc.intersec_list);
 			cast_pixel(&rc, rt, mlx);
@@ -88,6 +97,7 @@ void				canvas(t_rt *rt)
 	raycaster(rt, &mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	free_lists(rt);
+	mlx_hook(mlx.win, 17, 1L << 17, close_program, 0);
 	mlx_key_hook(mlx.win, close_wndw, &mlx);
 	mlx_loop(mlx.mlx);
 }

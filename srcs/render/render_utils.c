@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 16:15:48 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/11 20:04:24 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ int			close_wndw(int keycode, t_mlx *mlx)
 		exit(0);
 	}
 	return (0);
+}
+
+int			close_program(void *ptr)
+{
+	ptr = (void *)ptr;
+	exit(0);
+	return (1);
 }
