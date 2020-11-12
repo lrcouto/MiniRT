@@ -67,6 +67,10 @@ October 31st 2020 - Added MiniLibX - Linux as a submodule to ensure we always ru
 
 November 1st 2020 - Cleaned up our raycasting functions and fixed a pesky little bug caused by the computer not calculating floating point values correctly after a certain point. Fixed it by using the round() function since the difference was so minimal.
 
+November 11st 2020 - Small fixes. Connected sphere scaling to the input on the .rt file so we don't have to hardcode it, and made so the program closes correctly when you click the close window button.
+
+November 12st 2020 - Starting work on a Phong reflection model. Created the underlying structures to handle light and color, and functions to handle surface normals and reflections.
+
 ___
 
 </details>

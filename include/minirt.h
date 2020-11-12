@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/11 20:56:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:20:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,8 @@ int					close_program(void *ptr);
 
 void				canvas(t_rt *rt);
 void				raycaster(t_rt *rt, t_mlx *mlx);
-void				render_sphere_scale(t_rt *rt);
+void				render_sphere_transform(t_rt *rt);
+t_tuple				sphere_normal(t_sphere *sphere, t_tuple point);
+t_tuple				reflect(t_tuple in, t_tuple normal);
 
 #endif
