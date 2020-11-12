@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 19:54:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/11 20:56:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ void				test_canvas(t_rt *rt);
 void				ft_pixelput(t_mlx *mlx, int x, int y, int color);
 int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
+int					close_program(void *ptr);
 
 /*
 ** Core render functions.
@@ -252,5 +253,6 @@ int					close_wndw(int keycode, t_mlx *mlx);
 
 void				canvas(t_rt *rt);
 void				raycaster(t_rt *rt, t_mlx *mlx);
+void				render_sphere_scale(t_rt *rt);
 
 #endif
