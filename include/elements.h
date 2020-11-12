@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 17:14:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/12 16:15:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ typedef struct			s_light
 }						t_light;
 
 /*
+** Holds values for a Phong material.
+*/
+
+typedef struct 			s_phong
+{
+	t_rgba				color;
+	double				diffuse;
+	double				ambient;
+	double				specular;
+	double				shininess;
+}						t_phong;
+
+/*
 ** Holds values for spheres.
 */
 
@@ -70,6 +83,7 @@ typedef struct			s_sphere
 	double				radius;
 	t_color				color;
 	t_matrix			transform;
+	t_phong				phong;
 	struct s_sphere		*next;
 }						t_sphere;
 
@@ -124,5 +138,7 @@ typedef struct			s_triangle
 	t_color				color;
 	struct s_triangle	*next;
 }						t_triangle;
+
+t_phong					default_phong(void);
 
 #endif

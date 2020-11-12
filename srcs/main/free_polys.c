@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 18:18:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:39:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	free_sphere(t_rt *rt)
 	{
 		tmp_sphere = current;
 		current = current->next;
+		free_matrix(tmp_sphere->transform);
 		free(tmp_sphere);
 	}
 }

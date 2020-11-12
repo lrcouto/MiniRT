@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 19:48:46 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 17:36:50 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/12 16:39:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_polys		insert_sphere(t_sphere *sphere)
 	poly.sphere->diameter = sphere->diameter;
 	poly.sphere->radius = sphere->radius;
 	poly.sphere->transform = sphere->transform;
+	poly.sphere->phong = sphere->phong;
 	poly.sphere->next = sphere->next;
 	return (poly);
 }
