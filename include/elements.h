@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 16:15:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:58:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct			s_light
 	t_tuple				pos;
 	double				light;
 	t_color				color;
+	t_rgba				intensity;
 	struct s_light		*next;
 }						t_light;
 

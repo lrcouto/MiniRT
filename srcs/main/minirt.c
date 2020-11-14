@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 17:49:30 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:27:19 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			main(int argc, char **argv)
 		free(line);
 	}
 	free(line);
+	lighting_test();
 	canvas(&rt);
 	return (0);
 }

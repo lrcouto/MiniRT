@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 18:38:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:58:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void		init_light(t_rt *rt)
 	baselight->color.r = 0;
 	baselight->color.g = 0;
 	baselight->color.b = 0;
+	baselight->intensity = create_rgba(1, 1, 1, 1);
 	baselight->next = NULL;
 	rt->light = baselight;
 }
