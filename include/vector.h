@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 21:04:41 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 14:08:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 15:04:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_rgba					normalize_color(int r, int g, int b);
 t_color					denorm_color(t_rgba norm);
 t_rgba					tuple_to_rgba(t_tuple tuple);
 t_rgba					create_rgba(double r, double g, double b, double a);
+t_tuple					rgba_to_tuple(t_rgba rgba);
 
 /*
 ** Matrix operations.

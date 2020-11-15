@@ -71,6 +71,8 @@ November 11st 2020 - Small fixes. Connected sphere scaling to the input on the .
 
 November 12st 2020 - Starting work on a Phong reflection model. Created the underlying structures to handle light and color, and functions to handle surface normals and reflections.
 
+November 14st 2020 - Lighting function works! We now have a render of a shaded sphere, using a Phong material model! Still need to do some cleanup, but it surely feels like hitting a milestone.
+
 ___
 
 </details>

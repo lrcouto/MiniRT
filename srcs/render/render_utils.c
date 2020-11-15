@@ -6,41 +6,11 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 14:58:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 21:05:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-int			create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int			close_wndw(int keycode, t_mlx *mlx)
-{
-	if (keycode == 0xFF1B)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
-	}
-	return (0);
-}
-
-int			close_program(void *ptr)
-{
-	ptr = (void *)ptr;
-	exit(0);
-	return (1);
-}
 
 t_tuple		sphere_normal(t_sphere *sphere, t_tuple w_point)
 {
@@ -66,51 +36,51 @@ t_tuple		reflect(t_tuple in, t_tuple normal)
 t_phong		default_phong(void)
 {
 	t_phong	new;
-	
+
 	new.color.r = 1;
-	new.color.g = 1;
+	new.color.g = 0.2;
 	new.color.b = 1;
 	new.color.a = 1;
 	new.diffuse = 0.9;
-	new.ambient = 0.1;
+	new.ambient = 0.05;
 	new.specular = 0.9;
 	new.shininess = 200.0;
 	return (new);
 }
 
-t_rgba	lighting(t_phong phong, t_light light, t_tuple eye_vector, t_tuple normal_vector)
+static void	set_light_params(t_ltargs *args, t_ltparams *params)
 {
-	double	light_dot_normal;
-	double	reflect_dot_eye;
-	t_tuple	phong_color;
-	t_tuple	effective_color;
-	t_tuple	light_vector;
-	t_tuple	ambient;
-	t_tuple diffuse;
-	t_tuple specular;
-	t_tuple	reflect_vector;
+	params->effective_color = rgba_to_tuple(mult_color(args->phong.color,
+	args->light.intensity));
+	params->light_v = normalize_v(subtract_tuple(args->light.pos, args->pos));
+	params->ambient = scalar_x_tuple(params->effective_color,
+		args->phong.ambient);
+	params->light_dot_normal = dot_product(params->light_v, args->normal_v);
+}
 
-	phong_color = create_tuple(phong.color.r, phong.color.g, phong.color.b, 1);
-	effective_color = scalar_x_tuple(phong_color, light.light);
-	light_vector = normalize_v(subtract_tuple(light.pos, create_tuple(0, 0, 0, 1)));
-	ambient = scalar_x_tuple(effective_color, phong.ambient);
-	light_dot_normal = dot_product(light_vector, normal_vector);
-	if (light_dot_normal < 0)
+t_rgba		lighting(t_ltargs args)
+{
+	t_ltparams params;
+
+	set_light_params(&args, &params);
+	if (params.light_dot_normal < 0)
 	{
-		diffuse = create_tuple(0, 0, 0, 1);
-		specular = create_tuple(0, 0, 0, 1);
+		params.diffuse = create_tuple(0, 0, 0, 0);
+		params.specular = create_tuple(0, 0, 0, 0);
 	}
 	else
 	{
-		diffuse = scalar_x_tuple(effective_color, (phong.diffuse * light_dot_normal));
-		reflect_vector = reflect(light_vector, normal_vector);
-		reflect_dot_eye = dot_product(reflect_vector, eye_vector);
-		if (reflect_dot_eye < 0)
-			specular = create_tuple(0, 0, 0, 1);
+		params.diffuse = scalar_x_tuple(params.effective_color,
+		(args.phong.diffuse * params.light_dot_normal));
+		params.reflect_v = reflect(negate_tuple(params.light_v), args.normal_v);
+		params.reflect_dot_eye = dot_product(params.reflect_v, args.eye_v);
+		if (params.reflect_dot_eye <= 0)
+			params.specular = create_tuple(0, 0, 0, 0);
 		else
-			specular = create_tuple((light.light * phong.specular * pow(reflect_dot_eye, phong.shininess)), 
-			(light.light * phong.specular * pow(reflect_dot_eye, phong.shininess)), 
-			(light.light * phong.specular * pow(reflect_dot_eye, phong.shininess)), 1);
+			params.specular = scalar_x_tuple(rgba_to_tuple(
+			args.light.intensity), args.phong.specular *
+			(pow(params.reflect_dot_eye, args.phong.shininess)));
 	}
-	return (tuple_to_rgba(add_tuple(ambient, add_tuple(diffuse, specular))));
+	return (tuple_to_rgba(add_tuple(params.ambient,
+	add_tuple(params.diffuse, params.specular))));
 }
