@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 16:41:35 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 21:02:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,59 @@
 
 void				render_sphere_transform(t_rt *rt)
 {
-	double		factor;
-	
+	double	factor;
+
 	factor = rt->sphere->radius;
 	set_transform_sphere(rt->sphere, scaling(factor, factor, factor));
 }
 
+static void			init_ltargs(t_ltargs *args, t_rt *rt, t_raycaster *rc)
+{
+	t_light *lt;
+
+	args->pos = ray_position(rc->ray, rc->hit->t1);
+	lt = rt->light;
+	args->light = *lt;
+	args->phong = rc->hit->poly.sphere->phong;
+	args->eye_v = negate_tuple(rc->ray.direction);
+	args->normal_v = sphere_normal(rc->hit->poly.sphere, args->pos);
+}
+
 void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 {
-	t_color	color;
+	t_color		color;
+	t_rgba		lt_output;
+	t_ltargs	args;
 
 	if (rc->hit)
 	{
-		color = denorm_color(rc->hit->poly.sphere->phong.color);
+		init_ltargs(&args, rt, rc);
+		lt_output = lighting(args);
+		if (lt_output.r > 1.0)
+			lt_output.r = 1.0;
+		if (lt_output.g > 1.0)
+			lt_output.g = 1.0;
+		if (lt_output.b > 1.0)
+			lt_output.b = 1.0;
+		if (lt_output.r < 0)
+			lt_output.r = 0;
+		if (lt_output.g < 0)
+			lt_output.g = 0;
+		if (lt_output.b < 0)
+			lt_output.b = 0;
+		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
 		&& rc->x >= 0 && rc->y >= 0)
 			ft_pixelput(mlx, rc->x, rc->y,
 			create_trgb(0, color.r, color.g, color.b));
 	}
+	else
+		ft_pixelput(mlx, rc->x, rc->y,create_trgb(0, 0, 0, 0));
 }
 
 static void			init_raycaster(t_raycaster *rc, t_rt *rt)
 {
-	rc->wall_size = rt->reso.width;
+	rc->wall_size = 20;
 	rc->pixel_size = (double)rc->wall_size / (double)rt->reso.width;
 	rc->ray.origin = create_tuple(rt->cam->view.x,
 		rt->cam->view.y, rt->cam->view.z, 1);

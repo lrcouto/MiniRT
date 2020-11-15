@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 19:05:29 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 15:55:55 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 15:38:50 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@ t_tuple		normalize_v(t_tuple t1)
 	double magnitude;
 
 	magnitude = vector_magnitude(t1);
-	t1.x = t1.x / magnitude;
-	t1.y = t1.y / magnitude;
-	t1.z = t1.z / magnitude;
-	t1.w = t1.w / magnitude;
+	if (magnitude == 0)
+	{
+		t1.x = 0;
+		t1.y = 0;
+		t1.z = 0;
+		t1.w = 0;
+	}
+	else
+	{
+		t1.x = t1.x / magnitude;
+		t1.y = t1.y / magnitude;
+		t1.z = t1.z / magnitude;
+		t1.w = t1.w / magnitude;
+	}
 	return (t1);
 }
 

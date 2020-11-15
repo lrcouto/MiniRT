@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 16:15:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 16:33:3330 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct			s_light
 	t_tuple				pos;
 	double				light;
 	t_color				color;
+	t_rgba				intensity;
 	struct s_light		*next;
 }						t_light;
 
@@ -71,6 +72,36 @@ typedef struct 			s_phong
 	double				specular;
 	double				shininess;
 }						t_phong;
+
+/*
+** Arguments to be used in the lighting() function.
+*/
+
+typedef struct			s_ltargs
+{
+	t_phong				phong;
+	t_light				light;
+	t_tuple				pos;
+	t_tuple				eye_v;
+	t_tuple				normal_v;
+}						t_ltargs;
+
+/*
+** Variables to be used in the lighting() function.
+*/
+
+typedef struct			s_ltparams
+{
+	double				light_dot_normal;
+	double				reflect_dot_eye;
+	t_tuple				effective_color;
+	t_tuple				light_v;
+	t_tuple				ambient;
+	t_tuple 			diffuse;
+	t_tuple 			specular;
+	t_tuple				reflect_v;
+}						t_ltparams;;
+
 
 /*
 ** Holds values for spheres.

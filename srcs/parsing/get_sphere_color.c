@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:47:22 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/11/12 16:30:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 17:41:599 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				get_sphere_color(char *line, int check, int i, t_sphere *sphere)
 	if (check != 7)
 		errormsg(17);
 	sphere->color = fill_color(rgb[0], rgb[1], rgb[2]);
+	sphere->phong = default_phong();
 	sphere->phong.color = normalize_color(rgb[0], rgb[1], rgb[2]);
 	free(rgb);
 	return (check);

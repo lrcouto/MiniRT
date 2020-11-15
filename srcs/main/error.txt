@@ -34,3 +34,4 @@ ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector.
 ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You cannot add two points.
 ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You cannot subtract a point from a vector.
 ERROR: W parameter negate_tuple output can only be 0, 1 or -1;
+ERROR: Normalized color parameters must be between 0 and 1;

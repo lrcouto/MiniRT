@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 18:42:35 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/27 19:30:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 15:24:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_rgba	mult_color(t_rgba c1, t_rgba c2)
 	new.r = c1.r * c2.r;
 	new.g = c1.g * c2.g;
 	new.b = c1.b * c2.b;
+	new.a = 1;
 	return (new);
 }

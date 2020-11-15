@@ -6,41 +6,11 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 16:07:43 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 21:05:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-int			create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int			close_wndw(int keycode, t_mlx *mlx)
-{
-	if (keycode == 0xFF1B)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
-	}
-	return (0);
-}
-
-int			close_program(void *ptr)
-{
-	ptr = (void *)ptr;
-	exit(0);
-	return (1);
-}
 
 t_tuple		sphere_normal(t_sphere *sphere, t_tuple w_point)
 {
@@ -66,14 +36,51 @@ t_tuple		reflect(t_tuple in, t_tuple normal)
 t_phong		default_phong(void)
 {
 	t_phong	new;
-	
+
 	new.color.r = 1;
-	new.color.g = 1;
+	new.color.g = 0.2;
 	new.color.b = 1;
 	new.color.a = 1;
 	new.diffuse = 0.9;
-	new.ambient = 0.1;
+	new.ambient = 0.05;
 	new.specular = 0.9;
 	new.shininess = 200.0;
 	return (new);
+}
+
+static void	set_light_params(t_ltargs *args, t_ltparams *params)
+{
+	params->effective_color = rgba_to_tuple(mult_color(args->phong.color,
+	args->light.intensity));
+	params->light_v = normalize_v(subtract_tuple(args->light.pos, args->pos));
+	params->ambient = scalar_x_tuple(params->effective_color,
+		args->phong.ambient);
+	params->light_dot_normal = dot_product(params->light_v, args->normal_v);
+}
+
+t_rgba		lighting(t_ltargs args)
+{
+	t_ltparams params;
+
+	set_light_params(&args, &params);
+	if (params.light_dot_normal < 0)
+	{
+		params.diffuse = create_tuple(0, 0, 0, 0);
+		params.specular = create_tuple(0, 0, 0, 0);
+	}
+	else
+	{
+		params.diffuse = scalar_x_tuple(params.effective_color,
+		(args.phong.diffuse * params.light_dot_normal));
+		params.reflect_v = reflect(negate_tuple(params.light_v), args.normal_v);
+		params.reflect_dot_eye = dot_product(params.reflect_v, args.eye_v);
+		if (params.reflect_dot_eye <= 0)
+			params.specular = create_tuple(0, 0, 0, 0);
+		else
+			params.specular = scalar_x_tuple(rgba_to_tuple(
+			args.light.intensity), args.phong.specular *
+			(pow(params.reflect_dot_eye, args.phong.shininess)));
+	}
+	return (tuple_to_rgba(add_tuple(params.ambient,
+	add_tuple(params.diffuse, params.specular))));
 }

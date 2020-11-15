@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:06:37 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/11/14 20:19:59 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void		push_light(t_light *head, t_light *new_light, t_rt *rt)
 		head->pos = new_light->pos;
 		head->light = new_light->light;
 		head->color = new_light->color;
+		head->intensity = new_light->intensity;
 		head->next = new_light->next;
 		rt->qts.lt = rt->qts.lt + 1;
 		return ;
@@ -33,6 +34,7 @@ static void		push_light(t_light *head, t_light *new_light, t_rt *rt)
 	current->next->pos = new_light->pos;
 	current->next->light = new_light->light;
 	current->next->color = new_light->color;
+	current->next->intensity = new_light->intensity;
 	current->next->next = new_light->next;
 	rt->qts.lt = rt->qts.lt + 1;
 }
@@ -96,6 +98,8 @@ void			get_light(char *line, t_rt *rt)
 	check = 0;
 	i = 1;
 	light_loop(line, i, check, light);
+	light->intensity = scalar_color(normalize_color(light->color.r,
+					light->color.g, light->color.b), light->light);
 	push_light(rt->light, light, rt);
 	free(light);
 }

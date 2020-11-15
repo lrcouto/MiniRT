@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 15:20:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/11/14 16:36:322 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ void				test_intersection(t_rt *rt);
 void				test_transform_ray(void);
 void				test_sphere_ray_transform(t_rt *rt);
 void				test_canvas(t_rt *rt);
+void				lighting_test(void);
 
 /*
 ** Render utilities.
@@ -256,5 +257,6 @@ void				raycaster(t_rt *rt, t_mlx *mlx);
 void				render_sphere_transform(t_rt *rt);
 t_tuple				sphere_normal(t_sphere *sphere, t_tuple point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
+t_rgba				lighting(t_ltargs args);
 
 #endif
