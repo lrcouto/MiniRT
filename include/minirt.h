@@ -238,6 +238,7 @@ void				test_transform_ray(void);
 void				test_sphere_ray_transform(t_rt *rt);
 void				test_canvas(t_rt *rt);
 void				lighting_test(void);
+void				intersect_world_test(t_rt *rt);
 
 /*
 ** Render utilities.
@@ -247,6 +248,7 @@ void				ft_pixelput(t_mlx *mlx, int x, int y, int color);
 int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
+void				normalize_pixel_color(t_rgba *lt_output);
 
 /*
 ** Core render functions.
@@ -254,7 +256,7 @@ int					close_program(void *ptr);
 
 void				canvas(t_rt *rt);
 void				raycaster(t_rt *rt, t_mlx *mlx);
-void				render_sphere_transform(t_rt *rt);
+void				render_sphere_transform(t_sphere *head);
 t_tuple				sphere_normal(t_sphere *sphere, t_tuple point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
 t_rgba				lighting(t_ltargs args);

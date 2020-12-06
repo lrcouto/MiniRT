@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 21:05:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 19:28:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ t_tuple		sphere_normal(t_sphere *sphere, t_tuple w_point)
 	t_tuple		o_point;
 	t_tuple		o_normal;
 	t_tuple		w_normal;
+	t_matrix	inv_trans;
+	t_matrix	transp_trans;
 
-	o_point = mult_matrix_tuple(invert_matrix(sphere->transform), w_point);
+	inv_trans = invert_matrix(sphere->transform);
+	transp_trans = transpose_matrix(inv_trans);
+	o_point = mult_matrix_tuple(inv_trans, w_point);
 	o_normal = subtract_tuple(o_point, create_tuple(0, 0, 0, 1));
-	w_normal = mult_matrix_tuple
-(transpose_matrix(invert_matrix(sphere->transform)), o_normal);
+	w_normal = mult_matrix_tuple(transp_trans, o_normal);
 	w_normal.w = 0;
+	free_matrix(inv_trans);
+	free_matrix(transp_trans);
 	return (normalize_v(w_normal));
 }
 

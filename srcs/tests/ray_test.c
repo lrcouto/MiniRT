@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:52:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/31 19:53:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:27:43 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	test_intersection(t_rt *rt)
 	if (!hit)
 		printf("NO HIT!\n");
 	else 
-		printf("HIT! T1: %f, T2: %f\n", hit->t1, hit->t2);
+		printf("HIT! T1: %f, T2: %f\n", hit->t, hit->t);
 
 	free_intersecs(intersec_list);
 }

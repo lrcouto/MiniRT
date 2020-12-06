@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:45:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 17:08:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:41:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,42 @@ t_tuple				ray_position(t_ray ray, double t)
 	return (add_tuple(ray.origin, scalar_x_tuple(ray.direction, t)));
 }
 
-static t_intersec	create_intersec(double a, double b, double discriminant)
+static void	create_intersec(double *vals, t_intersec *head,
+t_sphere *sphere)
 {
-	t_intersec	intersec;
+	t_intersec	intersec1;
+	t_intersec	intersec2;
 
-	if (discriminant < 0)
-		intersec.count = 0;
-	else
+	if (vals[2] >= 0) 
 	{
-		intersec.count = 2;
-		intersec.t1 = (((-1 * b) - sqrt(discriminant)) / (2 * a));
-		intersec.t2 = (((-1 * b) + sqrt(discriminant)) / (2 * a));
+		intersec1.count = 2;
+		intersec2.count = 2;
+		intersec1.t = (((-1 * vals[1]) - sqrt(vals[2])) / (2 * vals[0]));
+		intersec2.t = (((-1 * vals[1]) + sqrt(vals[2])) / (2 * vals[0]));
+		intersec1.poly = insert_sphere(sphere);
+		intersec2.poly = insert_sphere(sphere);
+		push_intersec(head, &intersec1);
+		push_intersec(head, &intersec2);
 	}
-	return (intersec);
 }
 
-static t_intersec	get_intersec(t_ray ray, t_tuple sphere_to_ray)
+static void	get_intersec(t_ray ray, t_tuple sphere_to_ray,
+t_intersec *head, t_sphere *sphere)
 {
-	double		a;
-	double		b;
-	double		c;
-	double		discriminant;
+	double		dot;
+	double		vals[3];
 
-	a = dot_product(ray.direction, ray.direction);
-	b = 2 * dot_product(ray.direction, sphere_to_ray);
-	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	discriminant = ((b * b) - (4 * a * c));
-	return (create_intersec(a, b, discriminant));
+	vals[0] = dot_product(ray.direction, ray.direction);
+	vals[1] = 2 * dot_product(ray.direction, sphere_to_ray);
+	dot = dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	vals[2] = ((vals[1] * vals[1]) - (4 * vals[0] * dot));
+	create_intersec(vals, head, sphere);
 }
 
 void				intersect_sphere(t_ray ray, t_sphere *sphere,
 t_intersec *head)
 {
 	t_tuple			sphere_to_ray;
-	t_intersec		new;
 	t_ray			tformed;
 	t_matrix		invert;
 
@@ -67,7 +69,5 @@ t_intersec *head)
 	tformed = transform_ray(ray, invert);
 	free_matrix(invert);
 	sphere_to_ray = subtract_tuple(tformed.origin, sphere->center);
-	new = get_intersec(tformed, sphere_to_ray);
-	new.poly = insert_sphere(sphere);
-	push_intersec(head, &new);
+	get_intersec(tformed, sphere_to_ray, head, sphere);
 }

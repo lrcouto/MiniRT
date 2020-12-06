@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 18:10:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ typedef struct			s_polys {
 typedef struct			s_intersec
 {
 	int					count;
-	double				t1;
-	double				t2;
+	double				t;
 	t_polys				poly;
 	unsigned long long	qty;
 	struct s_intersec	*next;

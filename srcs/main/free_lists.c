@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 18:09:44 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 22:04:12 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,24 @@ void	free_intersecs(t_intersec *intersec)
 	t_intersec	*current;
 
 	current = intersec;
-	while (current != NULL)
+	while (current)
 	{
 		tmp_intersec = current;
+
+		if (tmp_intersec->count != 0)
+		{
+			tmp_intersec->poly.obj_type == SPHERE ?
+				free(tmp_intersec->poly.sphere) : NULL;
+			tmp_intersec->poly.obj_type == PLANE ?
+				free(tmp_intersec->poly.plane) : NULL;
+			tmp_intersec->poly.obj_type == SQUARE ?
+				free(tmp_intersec->poly.square) : NULL;
+			tmp_intersec->poly.obj_type == CYLINDER ?
+				free(tmp_intersec->poly.cylinder) : NULL;
+			tmp_intersec->poly.obj_type == TRIANGLE ?
+				free(tmp_intersec->poly.triangle) : NULL;
+		}
 		current = current->next;
-		tmp_intersec->poly.obj_type == SPHERE ?
-			free(tmp_intersec->poly.sphere) : NULL;
-		tmp_intersec->poly.obj_type == PLANE ?
-			free(tmp_intersec->poly.plane) : NULL;
-		tmp_intersec->poly.obj_type == SQUARE ?
-			free(tmp_intersec->poly.square) : NULL;
-		tmp_intersec->poly.obj_type == CYLINDER ?
-			free(tmp_intersec->poly.cylinder) : NULL;
-		tmp_intersec->poly.obj_type == TRIANGLE ?
-			free(tmp_intersec->poly.triangle) : NULL;
 		free(tmp_intersec);
 	}
 }

@@ -6,25 +6,17 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 21:02:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void				render_sphere_transform(t_rt *rt)
-{
-	double	factor;
-
-	factor = rt->sphere->radius;
-	set_transform_sphere(rt->sphere, scaling(factor, factor, factor));
-}
-
 static void			init_ltargs(t_ltargs *args, t_rt *rt, t_raycaster *rc)
 {
 	t_light *lt;
 
-	args->pos = ray_position(rc->ray, rc->hit->t1);
+	args->pos = ray_position(rc->ray, rc->hit->t);
 	lt = rt->light;
 	args->light = *lt;
 	args->phong = rc->hit->poly.sphere->phong;
@@ -42,18 +34,7 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 	{
 		init_ltargs(&args, rt, rc);
 		lt_output = lighting(args);
-		if (lt_output.r > 1.0)
-			lt_output.r = 1.0;
-		if (lt_output.g > 1.0)
-			lt_output.g = 1.0;
-		if (lt_output.b > 1.0)
-			lt_output.b = 1.0;
-		if (lt_output.r < 0)
-			lt_output.r = 0;
-		if (lt_output.g < 0)
-			lt_output.g = 0;
-		if (lt_output.b < 0)
-			lt_output.b = 0;
+		normalize_pixel_color(&lt_output);
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
 		&& rc->x >= 0 && rc->y >= 0)
@@ -61,7 +42,7 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 			create_trgb(0, color.r, color.g, color.b));
 	}
 	else
-		ft_pixelput(mlx, rc->x, rc->y,create_trgb(0, 0, 0, 0));
+		ft_pixelput(mlx, rc->x, rc->y, create_trgb(0, 0, 0, 0));
 }
 
 static void			init_raycaster(t_raycaster *rc, t_rt *rt)
@@ -81,7 +62,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 	t_raycaster	rc;
 
 	init_raycaster(&rc, rt);
-	render_sphere_transform(rt);
+	render_sphere_transform(rt->sphere);
 	while (rc.y < rt->reso.height)
 	{
 		rc.world_y = ((rc.wall_size / 2) - (rc.pixel_size * rc.y));
