@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/01 18:09:44 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 20:08:42 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	free_intersecs(t_intersec *intersec)
 	{
 		tmp_intersec = current;
 		current = current->next;
+
 		tmp_intersec->poly.obj_type == SPHERE ?
 			free(tmp_intersec->poly.sphere) : NULL;
 		tmp_intersec->poly.obj_type == PLANE ?
