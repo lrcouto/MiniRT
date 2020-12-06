@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 16:36:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 20:14:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 t_intersec	*init_intersec_list(t_intersec *list)
 {
 	list->count = 0;
-	list->t1 = 0;
-	list->t2 = 0;
+	list->t = 0;
 	list->qty = 0;
 	list->next = NULL;
 	return (list);
@@ -31,8 +30,7 @@ void		push_intersec(t_intersec *head, t_intersec *new)
 	if (current->qty == 0)
 	{
 		current->count = new->count;
-		current->t1 = new->t1;
-		current->t2 = new->t2;
+		current->t = new->t;
 		current->poly = new->poly;
 		current->next = NULL;
 		current->qty = current->qty + 1;
@@ -42,8 +40,7 @@ void		push_intersec(t_intersec *head, t_intersec *new)
 		current = current->next;
 	current->next = (t_intersec *)ec_malloc(sizeof(t_intersec));
 	current->next->count = new->count;
-	current->next->t1 = new->t1;
-	current->next->t2 = new->t2;
+	current->next->t = new->t;
 	current->next->poly = new->poly;
 	current->next->next = new->next;
 	current->next->qty = current->qty + 1;
@@ -60,13 +57,9 @@ t_intersec	*intersec_hit(t_intersec *head)
 	while (current != NULL)
 	{
 		tmp_intersec = current;
-		if (!hit && (tmp_intersec->t1 >= 0 || tmp_intersec->t2 >= 0))
+		if (!hit && tmp_intersec->t >= 0)
 			hit = tmp_intersec;
-		else if (tmp_intersec->t1 >= 0 && tmp_intersec->t1 < hit->t1 &&
-		tmp_intersec->t1 < hit->t2)
-			hit = tmp_intersec;
-		else if (tmp_intersec->t2 >= 0 && tmp_intersec->t2 < hit->t1 &&
-		tmp_intersec->t2 < hit->t2)
+		else if (tmp_intersec->t >= 0 && tmp_intersec->t < hit->t)
 			hit = tmp_intersec;
 		current = current->next;
 	}

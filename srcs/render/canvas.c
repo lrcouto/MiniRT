@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 19:44:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			init_ltargs(t_ltargs *args, t_rt *rt, t_raycaster *rc)
 {
 	t_light *lt;
 
-	args->pos = ray_position(rc->ray, rc->hit->t1);
+	args->pos = ray_position(rc->ray, rc->hit->t);
 	lt = rt->light;
 	args->light = *lt;
 	args->phong = rc->hit->poly.sphere->phong;

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:52:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 20:30:34 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/05 21:28:27 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void print_intersec(t_intersec *intersec_list)
 	{
 		tmp_intersec = current;
 		current = current->next;
-		printf("T1: %f, T2: %f", tmp_intersec->t1, tmp_intersec->t2);
+		printf("T: %f\n", tmp_intersec->t);
 	}
 }
 

@@ -73,6 +73,8 @@ November 12st 2020 - Starting work on a Phong reflection model. Created the unde
 
 November 14st 2020 - Lighting function works! We now have a render of a shaded sphere, using a Phong material model! Still need to do some cleanup, but it surely feels like hitting a milestone.
 
+December 5th 2020 - Preparing the ground to build a full rendered scene. Refactored the way our intersections work so we can sort them more easily. 
+
 ___
 
 </details>
