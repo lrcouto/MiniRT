@@ -21,6 +21,10 @@ t_intersec	*init_intersec_list(t_intersec *list)
 	return (list);
 }
 
+/*
+** TO DO: Write in the code to handle cases where intersections overlap.
+*/
+
 void		push_intersec(t_intersec *head, t_intersec *new)
 {
 	t_intersec *current;
@@ -47,7 +51,7 @@ void		push_intersec(t_intersec *head, t_intersec *new)
 		current->next = new->next;
 		return ;
 	}
-	else if (new->t > current->t)
+	else
 	{
 		while (current->next && new->t > current->next->t)
 			current = current->next;

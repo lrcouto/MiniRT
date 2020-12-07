@@ -6,34 +6,22 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/06 21:00:49 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void			init_ltargs(t_ltargs *args, t_rt *rt, t_raycaster *rc)
-{
-	t_light *lt;
-
-	args->pos = ray_position(rc->ray, rc->hit->t);
-	lt = rt->light;
-	args->light = *lt;
-	args->phong = rc->hit->poly.sphere->phong;
-	args->eye_v = negate_tuple(rc->ray.direction);
-	args->normal_v = sphere_normal(rc->hit->poly.sphere, args->pos);
-}
-
 void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 {
 	t_color		color;
 	t_rgba		lt_output;
-	t_ltargs	args;
+	t_comps		comps;
 
 	if (rc->hit)
 	{
-		init_ltargs(&args, rt, rc);
-		lt_output = lighting(args);
+		prepare_computations(&comps, rt, rc);
+		lt_output = lighting(comps);
 		normalize_pixel_color(&lt_output);
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width

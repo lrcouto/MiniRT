@@ -75,6 +75,8 @@ November 14st 2020 - Lighting function works! We now have a render of a shaded s
 
 December 5th 2020 - Preparing the ground to build a full rendered scene. Refactored the way our intersections work so we can sort them more easily. 
 
+December 6th 2020 - Huge struggle to sort a linked list, thanks to the confusing syntax that C has. A couple dozen segfaults later, we figured it out. Also streamlined our shader functions a little bit. A lot of the code feels bloated and needs refactoring, but we are getting some steady progress.
+
 ___
 
 </details>
