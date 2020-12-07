@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2020/11/14 17:19:06 by lcouto           ###   ########.fr        #
+#    Updated: 2020/12/06 21:00:49 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,9 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			ray_ops_1.c ray_ops_2.c ray_ops_3.c
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
-#			ray_test.c lighting_test.c
+#			ray_test.c scene_test.c
 #
-# render:	canvas.c render_utils.c mlx_utils.c
+# render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 16:36:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/06 17:221:33 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_intersec	*init_intersec_list(t_intersec *list)
 	list->next = NULL;
 	return (list);
 }
+
+/*
+** TO DO: Write in the code to handle cases where intersections overlap.
+*/
 
 void		push_intersec(t_intersec *head, t_intersec *new)
 {
@@ -36,14 +40,39 @@ void		push_intersec(t_intersec *head, t_intersec *new)
 		current->qty = current->qty + 1;
 		return ;
 	}
-	while (current->next != NULL)
-		current = current->next;
-	current->next = (t_intersec *)ec_malloc(sizeof(t_intersec));
-	current->next->count = new->count;
-	current->next->t = new->t;
-	current->next->poly = new->poly;
-	current->next->next = new->next;
-	current->next->qty = current->qty + 1;
+	if (new->t < current->t)
+	{
+		new->next = (t_intersec *)ec_malloc(sizeof(t_intersec));
+		new->next = current;	
+		current->count = new->count;
+		current->t = new->t;
+		current->poly = new->poly;
+		current->qty = current->qty;
+		current->next = new->next;
+		return ;
+	}
+	else
+	{
+		while (current->next && new->t > current->next->t)
+			current = current->next;
+		if (current->next)
+		{
+			new->next = (t_intersec *)ec_malloc(sizeof(t_intersec));
+			new->next->poly = current->next->poly;
+			new->next->t = current->next->t;
+			new->next->count = current->next->count;
+			new->next->qty = current->next->qty;
+			new->next->next = current->next->next;
+		}
+		if (current->next == NULL)
+			current->next = (t_intersec *)ec_malloc(sizeof(t_intersec));
+		current->next->next = new->next;
+		current->next->count = new->count;
+		current->next->t = new->t;
+		current->next->poly = new->poly;
+		current->next->qty = current->qty + 1;
+		return ;
+	}
 }
 
 t_intersec	*intersec_hit(t_intersec *head)
