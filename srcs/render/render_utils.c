@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:40:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/06 20:443:36 by lcouto           ###   ########.fr       */
+/*   Created: 2020/12/12 16:52:34 by lcouto            #+#    #+#             */
+/*   Updated: 2020/12/12 17:45:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,22 @@ t_phong		default_phong(void)
 	return (new);
 }
 
-static void	set_light_params(t_comps *args, t_ltparams *params)
+static void	set_light_params(t_comps *args, t_ltparams *params, t_light *lt)
 {
 	params->effective_color = rgba_to_tuple(mult_color(args->phong.color,
-	args->light.intensity));
-	params->light_v = normalize_v(subtract_tuple(args->light.pos, args->position));
+	lt->intensity));
+	params->light_v = normalize_v(subtract_tuple(lt->pos,
+		args->position));
 	params->ambient = scalar_x_tuple(params->effective_color,
 		args->phong.ambient);
 	params->light_dot_normal = dot_product(params->light_v, args->normal_vec);
 }
 
-t_rgba		lighting(t_comps args)
+t_rgba		lighting(t_comps args, t_light *current_light)
 {
 	t_ltparams params;
 
-	set_light_params(&args, &params);
+	set_light_params(&args, &params, current_light);
 	if (params.light_dot_normal < 0)
 	{
 		params.diffuse = create_tuple(0, 0, 0, 0);
@@ -77,13 +78,14 @@ t_rgba		lighting(t_comps args)
 	{
 		params.diffuse = scalar_x_tuple(params.effective_color,
 		(args.phong.diffuse * params.light_dot_normal));
-		params.reflect_v = reflect(negate_tuple(params.light_v), args.normal_vec);
+		params.reflect_v = reflect(negate_tuple(params.light_v),
+			args.normal_vec);
 		params.reflect_dot_eye = dot_product(params.reflect_v, args.eye_vec);
 		if (params.reflect_dot_eye <= 0)
 			params.specular = create_tuple(0, 0, 0, 0);
 		else
 			params.specular = scalar_x_tuple(rgba_to_tuple(
-			args.light.intensity), args.phong.specular *
+			current_light->intensity), args.phong.specular *
 			(pow(params.reflect_dot_eye, args.phong.shininess)));
 	}
 	return (tuple_to_rgba(add_tuple(params.ambient,

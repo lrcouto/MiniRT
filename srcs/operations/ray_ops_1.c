@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:45:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 21:41:45 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/12 19:40:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ t_tuple				ray_position(t_ray ray, double t)
 	return (add_tuple(ray.origin, scalar_x_tuple(ray.direction, t)));
 }
 
-static void	create_intersec(double *vals, t_intersec *head,
+static void			create_intersec(double *vals, t_intersec *head,
 t_sphere *sphere)
 {
 	t_intersec	intersec1;
 	t_intersec	intersec2;
 
-	if (vals[2] >= 0) 
+	if (vals[2] >= 0)
 	{
 		intersec1.count = 2;
 		intersec2.count = 2;
@@ -45,7 +45,7 @@ t_sphere *sphere)
 	}
 }
 
-static void	get_intersec(t_ray ray, t_tuple sphere_to_ray,
+static void			get_intersec(t_ray ray, t_tuple sphere_to_ray,
 t_intersec *head, t_sphere *sphere)
 {
 	double		dot;

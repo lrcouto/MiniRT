@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/06 21:00:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/12 19:46:55 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 	if (rc->hit)
 	{
 		prepare_computations(&comps, rt, rc);
-		lt_output = lighting(comps);
+		lt_output = shade_hit(comps);
 		normalize_pixel_color(&lt_output);
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
@@ -45,6 +45,18 @@ static void			init_raycaster(t_raycaster *rc, t_rt *rt)
 	rc->world_y = 0;
 }
 
+static void			intersect_all_spheres(t_rt *rt, t_raycaster *rc)
+{
+	t_sphere	*current_sphere;
+
+	current_sphere = rt->sphere;
+	while (current_sphere)
+	{
+		intersect_sphere(rc->ray, current_sphere, rc->intersec_list);
+		current_sphere = current_sphere->next;
+	}
+}
+
 void				raycaster(t_rt *rt, t_mlx *mlx)
 {
 	t_raycaster	rc;
@@ -62,7 +74,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 			rc.world_x = (((rc.wall_size / 2) * -1) + (rc.pixel_size * rc.x));
 			rc.ray.direction = normalize_v(subtract_tuple(create_tuple(
 				rc.world_x, rc.world_y, 10, 1), rc.ray.origin));
-			intersect_sphere(rc.ray, rt->sphere, rc.intersec_list);
+			intersect_all_spheres(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
 			cast_pixel(&rc, rt, mlx);
 			free_intersecs(rc.intersec_list);

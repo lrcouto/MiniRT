@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 20:36:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/12 16:51:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void				render_sphere_transform(t_sphere *head)
 {
-	double	factor;
-	t_sphere *current;
+	double		factor;
+	t_sphere	*current;
 
 	current = head;
-	while(1)
+	while (1)
 	{
 		factor = current->radius;
 		set_transform_sphere(current, scaling(factor, factor, factor));
 		if (current->next == NULL)
-			break;
+			break ;
 		current = current->next;
 	}
 }
