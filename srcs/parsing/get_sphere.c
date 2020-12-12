@@ -6,11 +6,23 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 19:40:38 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/12 19:44:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+static void		push_new_sphere(t_sphere *current, t_sphere *new_sphere)
+{
+	current->next = (t_sphere *)ec_malloc(sizeof(t_sphere));
+	current->next->center = new_sphere->center;
+	current->next->diameter = new_sphere->diameter;
+	current->next->radius = new_sphere->radius;
+	current->next->color = new_sphere->color;
+	current->next->transform = create_matrix(4, 4);
+	current->next->phong = new_sphere->phong;
+	current->next->next = new_sphere->next;
+}
 
 static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 {
@@ -31,14 +43,7 @@ static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_sphere *)ec_malloc(sizeof(t_sphere));
-	current->next->center = new_sphere->center;
-	current->next->diameter = new_sphere->diameter;
-	current->next->radius = new_sphere->radius;
-	current->next->color = new_sphere->color;
-	current->next->transform = create_matrix(4, 4);
-	current->next->phong = new_sphere->phong;
-	current->next->next = new_sphere->next;
+	push_new_sphere(current, new_sphere);
 	rt->qts.sp = rt->qts.sp + 1;
 }
 

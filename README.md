@@ -77,6 +77,8 @@ December 5th 2020 - Preparing the ground to build a full rendered scene. Refacto
 
 December 6th 2020 - Huge struggle to sort a linked list, thanks to the confusing syntax that C has. A couple dozen segfaults later, we figured it out. Also streamlined our shader functions a little bit. A lot of the code feels bloated and needs refactoring, but we are getting some steady progress.
 
+December 12th 2020 - Our raytracer now supports rendering multiple spheres, with multiple point light sources! We made it store data from all objects in the scene, even if they're not visible, as setup for a possible reflection/refraction feature, and it's currently renders inverted normals, but we want to make this toggleable. We also made sure everything was Norme-compliant and that we had no memory leaks. 
+
 ___
 
 </details>

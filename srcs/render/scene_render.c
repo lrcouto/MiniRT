@@ -5,19 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/05 18:49:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/06 20:20:13:31 by lcouto           ###   ########.fr       */
+/*   Created: 2020/12/12 16:51:08 by lcouto            #+#    #+#             */
+/*   Updated: 2020/12/12 19:46:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void	prepare_computations(t_comps *comps, t_rt *rt, t_raycaster*rc)
+void	prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 {
-	t_light *lt;
-
-	lt = rt->light;
-	comps->light = *lt;
+	comps->light = rt->light;
 	comps->phong = rc->hit->poly.sphere->phong;
 	comps->t = rc->hit->t;
 	comps->poly = rc->hit->poly;
@@ -35,5 +32,16 @@ void	prepare_computations(t_comps *comps, t_rt *rt, t_raycaster*rc)
 
 t_rgba	shade_hit(t_comps comps)
 {
-	return (lighting(comps));
+	t_light	*lt;
+	t_rgba	lt_color;
+
+	lt = comps.light;
+	lt_color = lighting(comps, lt);
+	lt = lt->next;
+	while (lt)
+	{
+		lt_color = add_color(lt_color, lighting(comps, lt));
+		lt = lt->next;
+	}
+	return (lt_color);
 }

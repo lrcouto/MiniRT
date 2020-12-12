@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/06 21:00:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/12 17:42:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct		s_comps
 	double			t;
 	t_polys			poly;
 	t_tuple			position;
-	t_light			light;
+	t_light			*light;
 	t_phong			phong;
 	t_tuple			eye_vec;
 	t_tuple			normal_vec;
@@ -273,7 +273,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx);
 void				render_sphere_transform(t_sphere *head);
 t_tuple				sphere_normal(t_sphere *sphere, t_tuple point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
-t_rgba				lighting(t_comps comps);
+t_rgba				lighting(t_comps comps, t_light *current_light);
 void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
 t_rgba				shade_hit(t_comps comps);
 
