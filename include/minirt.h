@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 17:42:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/13 18:26:58 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ void				test_transform_ray(void);
 void				test_sphere_ray_transform(t_rt *rt);
 void				test_canvas(t_rt *rt);
 void				intersect_world_test(t_rt *rt);
+void				test_multiple_transforms(void);
 
 /*
 ** Render utilities.

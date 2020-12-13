@@ -44,6 +44,7 @@ typedef struct			s_cam
 	t_tuple				view;
 	t_tuple				pos;
 	int					fov;
+	t_matrix			transform;
 	struct s_cam		*next;
 }						t_cam;
 
