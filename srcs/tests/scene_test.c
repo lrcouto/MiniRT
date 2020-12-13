@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:52:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/13 18:24:40 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/13 18:57:022 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,27 @@ void	test_multiple_transforms(void)
 	free_matrix(sphere->transform);
 	free_matrix(scale);
 	free_matrix(rotate);
+}
+
+void	test_view_transformation(void)
+{
+	size_t	i;
+	size_t	j;
+	t_matrix trans;
+	
+	trans = view_transform(create_tuple(1, 3, 2, 1), create_tuple(4, -2, 8, 1), create_tuple(1, 1, 0, 0));
+	i = 0;
+	while (i < trans.row)
+	{
+		j = 0;
+		while (j < trans.col)
+		{
+			printf(" %f ", trans.matrix[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n");
+	free_matrix(trans);
 }

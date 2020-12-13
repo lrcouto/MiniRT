@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/13 18:26:58 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/13 19:47:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,8 @@ void				test_sphere_ray_transform(t_rt *rt);
 void				test_canvas(t_rt *rt);
 void				intersect_world_test(t_rt *rt);
 void				test_multiple_transforms(void);
+void				test_view_transformation(void);
+
 
 /*
 ** Render utilities.
@@ -277,5 +279,6 @@ t_tuple				reflect(t_tuple in, t_tuple normal);
 t_rgba				lighting(t_comps comps, t_light *current_light);
 void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
 t_rgba				shade_hit(t_comps comps);
+t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 #endif

@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:00 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2020/12/13 19:47:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+static void		push_new_camera(t_cam *current, t_cam *new_cam)
+{
+	current->next = (t_cam *)ec_malloc(sizeof(t_cam));
+	current->next->view = new_cam->view;
+	current->next->pos = new_cam->pos;
+	current->next->fov = new_cam->fov;
+	current->next->transform = new_cam->transform;
+	current->next->next = new_cam->next;
+}
 
 static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 {
@@ -23,17 +33,14 @@ static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 		head->view = new_cam->view;
 		head->pos = new_cam->pos;
 		head->fov = new_cam->fov;
+		head->transform = new_cam->transform;
 		head->next = new_cam->next;
 		rt->qts.cam = rt->qts.cam + 1;
 		return ;
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_cam *)ec_malloc(sizeof(t_cam));
-	current->next->view = new_cam->view;
-	current->next->pos = new_cam->pos;
-	current->next->fov = new_cam->fov;
-	current->next->next = new_cam->next;
+	push_new_camera(current, new_cam);
 	rt->qts.cam = rt->qts.cam + 1;
 }
 

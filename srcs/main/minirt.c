@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/13 18:26:58 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/13 19:47:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			main(int argc, char **argv)
 		free(line);
 	}
 	free(line);
+	test_view_transformation();
 	canvas(&rt);
 	return (0);
 }
