@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 16:51:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/13 18:02:46 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 void				render_sphere_transform(t_sphere *head)
 {
-	double		factor;
 	t_sphere	*current;
+	t_matrix	translate;
+	t_matrix	scale;
+	t_matrix	transform;
 
 	current = head;
 	while (1)
 	{
-		factor = current->radius;
-		set_transform_sphere(current, scaling(factor, factor, factor));
+		translate = translation(current->center.x,
+			current->center.y, current->center.z);
+		scale = scaling(current->radius, current->radius, current->radius);
+		transform = mult_matrix(scale, translate);
+		set_transform_sphere(current, transform);
+		free_matrix(translate);
+		free_matrix(scale);
 		if (current->next == NULL)
 			break ;
 		current = current->next;
