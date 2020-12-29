@@ -81,6 +81,8 @@ December 12th 2020 - Our raytracer now supports rendering multiple spheres, with
 
 December 13th 2020 - Started to implement functions to have an actual camera that can be moved and adjusted properly. Still untested, not Norme-compliant, and not functional.
 
+December 29th 2020 - Preparing terrain to change our simple raycaster to an actual render function that will account for both camera positioning, camera FoV and pixel color. This will need a considerable amount of re-structuring. We also need to consider how to make MiniLibX work with multiple cameras and switch between them i.e. have multiple images stored. 2020 is almost over and this project is taking way longer than we expected.
+
 ___
 
 </details>

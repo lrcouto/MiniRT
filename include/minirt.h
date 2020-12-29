@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/15 16:22:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/29 19:06:04 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ void				test_canvas(t_rt *rt);
 void				intersect_world_test(t_rt *rt);
 void				test_multiple_transforms(void);
 void				test_view_transformation(void);
+void				ray_for_pixel_cam_test(t_rt *rt);
 
 
 /*
@@ -280,5 +281,8 @@ t_rgba				lighting(t_comps comps, t_light *current_light);
 void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
 t_rgba				shade_hit(t_comps comps);
 t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
+void				camera_pixel_size(t_rt *rt, t_cam *cam);
+t_ray				ray_for_pixel(t_rt *rt, t_cam *cam, int x, int y);
+
 
 #endif

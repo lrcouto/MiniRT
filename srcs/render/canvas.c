@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 19:46:55 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/29 20:13:59 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,25 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 		rc.y = rc.y + 1;
 	}
 }
+
+/*
+** void				render(t_rt *rt, t_mlx *mlx)
+** {
+** 	int x;
+** 	int y;
+** 
+** 	x = 0;
+** 	y = 0;
+** 	while (y < rt->reso.height)
+** 	{
+** 		x = 0;
+** 		while (x < rt->reso.width)
+** 		{
+** 
+** 		}
+** 	}
+** }
+*/
 
 void				canvas(t_rt *rt)
 {
