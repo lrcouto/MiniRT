@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 19:27:50 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/15 17:24:55 by lcouto           ###   ########.fr       */
+/*   Updated: 2020/12/29 20:20:54 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	camera_pixel_size(t_rt *rt, t_cam *cam)
 	double	aspect;
 
 	half_view = tan(cam->fov / 2);
-	aspect = rt->reso.width / rt->reso.height;
+	aspect = (double)rt->reso.width / (double)rt->reso.height;
 	if (aspect >= 1)
 	{
 		cam->half_width = half_view;
@@ -29,27 +29,25 @@ void	camera_pixel_size(t_rt *rt, t_cam *cam)
 		cam->half_width = half_view * aspect;
 		cam->half_height = half_view;
 	}
-
 	cam->pixel_size = (cam->half_width * 2) / rt->reso.width;
 }
 
-t_ray	ray_for_pixel(t_rt *rt, t_raycaster *rc, int x, int y)
+t_ray	ray_for_pixel(t_rt *rt, t_cam *cam, int x, int y)
 {
 	double		x_offset;
 	double		y_offset;
 	t_matrix	transform;
-	t_tuple		pixel;
 	t_tuple		origin;
 	t_tuple		direction;
 
-	camera_pixel_size(rt, rt->cam);
-	x_offset = (x + 0.5) * rt->cam->pixel_size;
-	y_offset = (y + 0.5) * rt->cam->pixel_size;
-	rc->world_x = rt->cam->half_width - x_offset;
-	rc->world_y = rt->cam->half_height - y_offset;
-	transform = invert_matrix(rt->cam->transform);
-	pixel = mult_matrix_tuple(transform, create_tuple(rc->world_x, rc->world_y, -1, 1));
+	camera_pixel_size(rt, cam);
+	x_offset = (x + 0.5) * cam->pixel_size;
+	y_offset = (y + 0.5) * cam->pixel_size;
+	transform = invert_matrix(cam->transform);
 	origin = mult_matrix_tuple(transform, create_tuple(0, 0, 0, 1));
-	direction = normalize_v(subtract_tuple(pixel, origin));
+	direction = normalize_v(subtract_tuple(mult_matrix_tuple(transform,
+		create_tuple(cam->half_width - x_offset,
+		cam->half_height - y_offset, -1, 1)), origin));
+	free_matrix(transform);
 	return (create_ray(origin, direction));
 }
