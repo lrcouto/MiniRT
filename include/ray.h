@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/05 21:24:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/01 18:34:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ typedef struct			s_raycaster
 {
 	int					x;
 	int					y;
-	double				world_x;
-	double				world_y;
-	double				pixel_size;
-	double				wall_size;
 	t_ray				ray;
 	t_intersec			*intersec_list;
 	t_intersec			*hit;

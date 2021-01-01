@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/29 19:06:20 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/01 18:41:20 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+/*
+** TO DO:
+** - Salvar arquivo em .bmp
+** - Guardar imagens de múltiplas câmeras
+** - Formas adicionais
+** - Sombras
+** 
+** WISHLIST:
+** - Associar o material ao arquivo .rt
+** - Cubos
+** - Reflexão/Refração
+** - Barrinha de loading do render
+*/
 
 static void	valid_rtfile(char *filename)
 {
@@ -58,7 +72,6 @@ int			main(int argc, char **argv)
 		free(line);
 	}
 	free(line);
-	ray_for_pixel_cam_test(&rt);
 	canvas(&rt);
 	return (0);
 }

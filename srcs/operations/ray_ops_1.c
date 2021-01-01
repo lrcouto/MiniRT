@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_ops_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 17:45:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 19:40:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/01 17:59:32 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ t_intersec *head)
 	t_ray			tformed;
 	t_matrix		invert;
 
-	invert = invert_matrix(sphere->transform);
+	invert = invert_matrix(sphere->transform); // maybe invert when sphere its created
 	tformed = transform_ray(ray, invert);
 	free_matrix(invert);
-	sphere_to_ray = subtract_tuple(tformed.origin, sphere->center);
+	sphere_to_ray = subtract_tuple(tformed.origin, create_tuple(0, 0, 0, 1));
 	get_intersec(tformed, sphere_to_ray, head, sphere);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:12:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 19:29:53 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/01 18:20:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	free_camera(t_rt *rt)
 	{
 		tmp_cam = current;
 		current = current->next;
+		free_matrix(tmp_cam->transform);
 		free(tmp_cam);
 	}
 }

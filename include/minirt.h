@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/29 19:06:04 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/01 16:38:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
 t_rgba				shade_hit(t_comps comps);
 t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
 void				camera_pixel_size(t_rt *rt, t_cam *cam);
-t_ray				ray_for_pixel(t_rt *rt, t_cam *cam, int x, int y);
+t_ray				ray_for_pixel(t_cam *cam, int x, int y);
 
 
 #endif

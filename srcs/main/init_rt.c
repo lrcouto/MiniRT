@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/15 16:22:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/01 18:19:19 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		init_camera(t_rt *rt)
 	basecam->pos.z = 0;
 	basecam->pos.w = 0;
 	basecam->fov = 0;
-	basecam->transform = create_id_matrix();
+	basecam->origin = create_tuple(0, 0, 0, 1);
 	basecam->next = NULL;
 	rt->cam = basecam;
 }
