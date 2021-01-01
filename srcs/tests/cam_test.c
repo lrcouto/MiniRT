@@ -24,11 +24,11 @@ void	ray_for_pixel_cam_test(t_rt *rt)
 	cam->transform = create_id_matrix();
 	camera_pixel_size(rt, cam);
 
-	ray = ray_for_pixel(rt, cam, 100, 50);
+	ray = ray_for_pixel(cam, 100, 50);
 	printf("\nRAY 1 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
 	printf("\nRAY 1 -> direction(%f, %f, %f, %d)\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
 
-	ray = ray_for_pixel(rt, cam, 0, 0);
+	ray = ray_for_pixel(cam, 0, 0);
 	printf("\nRAY 2 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
 	printf("\nRAY 2 -> direction(%f, %f, %f, %d)\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
 
@@ -36,7 +36,7 @@ void	ray_for_pixel_cam_test(t_rt *rt)
 	rot = rotate_y(M_PI / 4);
 	trans = translation(0, -2, 5);
 	cam->transform = mult_matrix(rot, trans);
-	ray = ray_for_pixel(rt, cam, 100, 50);
+	ray = ray_for_pixel(cam, 100, 50);
 	printf("\nRAY 3 -> origin(%f, %f, %f, %d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
 	printf("\nRAY 3 -> direction(%f, %f, %f, %d)\n", ray.direction.x, ray.direction.y, ray.direction.z, ray.direction.w);
 

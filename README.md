@@ -83,6 +83,8 @@ December 13th 2020 - Started to implement functions to have an actual camera tha
 
 December 29th 2020 - Preparing terrain to change our simple raycaster to an actual render function that will account for both camera positioning, camera FoV and pixel color. This will need a considerable amount of re-structuring. We also need to consider how to make MiniLibX work with multiple cameras and switch between them i.e. have multiple images stored. 2020 is almost over and this project is taking way longer than we expected.
 
+January 1st 2021 - Fixed an error on sphere translation where our program wasn't calculating the center of the world correctly, and now we can render multiple spheres with different center points. Finished implementing a functional camera. Next step is casting shadows. Happy New Year!
+
 ___
 
 </details>

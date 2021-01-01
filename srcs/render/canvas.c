@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/29 20:13:59 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/01 18:33:05 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 		ft_pixelput(mlx, rc->x, rc->y, create_trgb(0, 0, 0, 0));
 }
 
-static void			init_raycaster(t_raycaster *rc, t_rt *rt)
-{
-	rc->wall_size = 20;
-	rc->pixel_size = (double)rc->wall_size / (double)rt->reso.width;
-	rc->ray.origin = create_tuple(rt->cam->view.x,
-		rt->cam->view.y, rt->cam->view.z, 1);
-	rc->y = 0;
-	rc->x = 0;
-	rc->world_x = 0;
-	rc->world_y = 0;
-}
-
 static void			intersect_all_spheres(t_rt *rt, t_raycaster *rc)
 {
 	t_sphere	*current_sphere;
@@ -61,19 +49,16 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 {
 	t_raycaster	rc;
 
-	init_raycaster(&rc, rt);
 	render_sphere_transform(rt->sphere);
+	rc.y = 0;
 	while (rc.y < rt->reso.height)
 	{
-		rc.world_y = ((rc.wall_size / 2) - (rc.pixel_size * rc.y));
 		rc.x = 0;
 		while (rc.x < rt->reso.width)
 		{
 			rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
 			rc.intersec_list = init_intersec_list(rc.intersec_list);
-			rc.world_x = (((rc.wall_size / 2) * -1) + (rc.pixel_size * rc.x));
-			rc.ray.direction = normalize_v(subtract_tuple(create_tuple(
-				rc.world_x, rc.world_y, 10, 1), rc.ray.origin));
+			rc.ray = ray_for_pixel(rt->cam, rc.x, rc.y);
 			intersect_all_spheres(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
 			cast_pixel(&rc, rt, mlx);
@@ -83,25 +68,6 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 		rc.y = rc.y + 1;
 	}
 }
-
-/*
-** void				render(t_rt *rt, t_mlx *mlx)
-** {
-** 	int x;
-** 	int y;
-** 
-** 	x = 0;
-** 	y = 0;
-** 	while (y < rt->reso.height)
-** 	{
-** 		x = 0;
-** 		while (x < rt->reso.width)
-** 		{
-** 
-** 		}
-** 	}
-** }
-*/
 
 void				canvas(t_rt *rt)
 {

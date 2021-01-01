@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:00 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/15 16:22:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/01 18:27:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ static void		push_new_camera(t_cam *current, t_cam *new_cam)
 	current->next->view = new_cam->view;
 	current->next->pos = new_cam->pos;
 	current->next->fov = new_cam->fov;
+	current->next->half_height = new_cam->half_height;
+	current->next->half_width = new_cam->half_width;
+	current->next->origin = new_cam->origin;
 	current->next->transform = new_cam->transform;
 	current->next->next = new_cam->next;
 }
@@ -33,7 +36,11 @@ static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 		head->view = new_cam->view;
 		head->pos = new_cam->pos;
 		head->fov = new_cam->fov;
-		head->transform = new_cam->transform;
+		head->origin = new_cam->origin;
+		head->half_height = new_cam->half_height;
+		head->half_width = new_cam->half_width;
+		head->pixel_size = new_cam->pixel_size;
+		head->transform = new_cam->transform; // free first id matrix
 		head->next = new_cam->next;
 		rt->qts.cam = rt->qts.cam + 1;
 		return ;
@@ -78,11 +85,17 @@ void			get_camera(char *line, t_rt *rt)
 	int		i;
 	int		check;
 	t_cam	*cam;
+	t_matrix	transform;
 
 	cam = (t_cam *)ec_malloc(sizeof(t_cam));
 	check = 0;
 	i = 1;
 	camera_loop(line, i, check, cam);
+	transform = view_transform(cam->view, cam->pos, create_tuple(0, 1, 0, 0)); // maybe denormalize pos and check where is up
+	cam->transform = invert_matrix(transform);
+	camera_pixel_size(rt, cam);
+	cam->origin = mult_matrix_tuple(cam->transform, create_tuple(0, 0, 0, 1));
 	push_camera(rt->cam, cam, rt);
+	free_matrix(transform);
 	free(cam);
 }
