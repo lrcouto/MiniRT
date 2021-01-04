@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 19:27:50 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 17:11:42 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/03 21:12:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	camera_pixel_size(t_rt *rt, t_cam *cam)
 {
 	double	half_view;
 	double	aspect;
-	double rad;
+	double	rad;
 
 	rad = degrees_to_radians(cam->fov);
 	half_view = tan(rad / 2);

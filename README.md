@@ -85,6 +85,8 @@ December 29th 2020 - Preparing terrain to change our simple raycaster to an actu
 
 January 1st 2021 - Fixed an error on sphere translation where our program wasn't calculating the center of the world correctly, and now we can render multiple spheres with different center points. Finished implementing a functional camera. Next step is casting shadows. Happy New Year!
 
+January 3rd 2021 - We made a little loading bar for our program that prints the render progress on stdout. Now we can see if the program has crashed or if the render is just taking long.
+
 ___
 
 </details>

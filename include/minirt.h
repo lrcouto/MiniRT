@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 16:38:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/03 20:47:03 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,7 @@ int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
 void				normalize_pixel_color(t_rgba *lt_output);
+void				loading_bar(double percent, int total);
 
 /*
 ** Core render functions.
