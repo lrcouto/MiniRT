@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 17:48:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/03 21:11:18 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,22 @@ void				normalize_pixel_color(t_rgba *lt_output)
 		lt_output->g = 0;
 	if (lt_output->b < 0)
 		lt_output->b = 0;
+}
+
+void				loading_bar(double percent, int total)
+{
+	int			ten;
+	static int	counter;
+
+	ten = total / 10;
+	if (counter == 0)
+		ft_putstr_fd("Rendering... [", 1);
+	if (counter == ten)
+	{
+		ft_putstr_fd("#", 1);
+		counter = 0;
+	}
+	counter++;
+	if (percent == 1)
+		ft_putstr_fd("]\nDone!\n", 1);
 }

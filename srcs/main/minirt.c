@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 18:41:20 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/03 21:10:02 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 ** - Associar o material ao arquivo .rt
 ** - Cubos
 ** - Reflexão/Refração
-** - Barrinha de loading do render
 */
 
 static void	valid_rtfile(char *filename)

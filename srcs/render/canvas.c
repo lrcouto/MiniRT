@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 18:37:55 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 18:33:05 by lcouto           ###   ########.fr       */
+/*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
+/*   Updated: 2021/01/03 21:12:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 			rc.x = rc.x + 1;
 		}
 		rc.y = rc.y + 1;
+		loading_bar(rc.y / rt->reso.height, rt->reso.height);
 	}
 }
 
