@@ -87,6 +87,8 @@ January 1st 2021 - Fixed an error on sphere translation where our program wasn't
 
 January 3rd 2021 - We made a little loading bar for our program that prints the render progress on stdout. Now we can see if the program has crashed or if the render is just taking long.
 
+January 10th 2021 - Our raytracer now casts shadows, though it only handles hard shadows from a point light and the visual effect is not as pretty as we'd like it to be. Might try to implement soft shadows later. We are starting to work on implementing planes.
+
 ___
 
 </details>

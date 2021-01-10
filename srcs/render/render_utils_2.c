@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/03 21:11:18 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 17:25:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,27 @@ void				loading_bar(double percent, int total)
 	}
 	counter++;
 	if (percent == 1)
-		ft_putstr_fd("]\nDone!\n", 1);
+		ft_putstr_fd("] 100%\nDone!\n", 1);
+}
+
+int					is_shadowed(t_comps comps, t_rt *rt, t_light *light)
+{
+	t_tuple	path;
+	double	distance;
+	t_raycaster	rc;
+	int		result;
+
+	path = subtract_tuple(light->pos, comps.over_point);
+	distance = vector_magnitude(path);
+	rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
+	rc.intersec_list = init_intersec_list(rc.intersec_list);
+	rc.ray = create_ray(comps.over_point, normalize_v(path));
+	intersect_all_spheres(rt, &rc);
+	rc.hit = intersec_hit(rc.intersec_list);
+	if (rc.hit && rc.hit->t < distance)
+		result = 1;
+	else
+		result = 0;
+	free_intersecs(rc.intersec_list);
+	return (result);
 }

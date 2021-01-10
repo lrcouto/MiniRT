@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/03 21:10:02 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:39:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 ** 
 ** WISHLIST:
 ** - Associar o material ao arquivo .rt
+** - Soft shadows
 ** - Cubos
 ** - Reflexão/Refração
 */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 16:51:08 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/13 18:50:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 17:225:05 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,21 @@ void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 	}
 	else
 		comps->inside = 0;
+	comps->over_point = add_tuple(comps->position,
+		scalar_x_tuple(comps->normal_vec, EPSILON));
 }
 
-t_rgba			shade_hit(t_comps comps)
+t_rgba			shade_hit(t_comps comps, t_rt *rt)
 {
 	t_light	*lt;
 	t_rgba	lt_color;
 
 	lt = comps.light;
-	lt_color = lighting(comps, lt);
+	lt_color = lighting(comps, lt, is_shadowed(comps, rt, lt));
 	lt = lt->next;
 	while (lt)
 	{
-		lt_color = add_color(lt_color, lighting(comps, lt));
+		lt_color = add_color(lt_color, lighting(comps, lt, is_shadowed(comps, rt, lt)));
 		lt = lt->next;
 	}
 	return (lt_color);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+         #
+#    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2020/12/12 19:37:56 by lcouto           ###   ########.fr        #
+#    Updated: 2021/01/10 19:06:41 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,14 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c /
-#			ray_ops_1.c ray_ops_2.c ray_ops_3.c ray_ops_4.c
+#			ray_ops_1.c ray_ops_2.c ray_ops_3.c ray_ops_4.c intersect_sphere.c /
+#			intersect_plane.c
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
 #			ray_test.c scene_test.c
 #
-# render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c
+# render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c /
+#			intersect_polys.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 

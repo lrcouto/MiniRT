@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/03 21:12:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:39:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 	if (rc->hit)
 	{
 		prepare_computations(&comps, rt, rc);
-		lt_output = shade_hit(comps);
+		lt_output = shade_hit(comps, rt);
 		normalize_pixel_color(&lt_output);
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
@@ -31,18 +31,6 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 	}
 	else
 		ft_pixelput(mlx, rc->x, rc->y, create_trgb(0, 0, 0, 0));
-}
-
-static void			intersect_all_spheres(t_rt *rt, t_raycaster *rc)
-{
-	t_sphere	*current_sphere;
-
-	current_sphere = rt->sphere;
-	while (current_sphere)
-	{
-		intersect_sphere(rc->ray, current_sphere, rc->intersec_list);
-		current_sphere = current_sphere->next;
-	}
 }
 
 void				raycaster(t_rt *rt, t_mlx *mlx)
@@ -59,7 +47,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 			rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
 			rc.intersec_list = init_intersec_list(rc.intersec_list);
 			rc.ray = ray_for_pixel(rt->cam, rc.x, rc.y);
-			intersect_all_spheres(rt, &rc);
+			intersect_all_polys(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
 			cast_pixel(&rc, rt, mlx);
 			free_intersecs(rc.intersec_list);

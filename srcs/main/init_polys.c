@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_polys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.f>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:50:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/06 16:07:01 by lcouto           ###   ########.fr       */
+/*   Updated: 20211/0110 19:08:36 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void		init_plane(t_rt *rt)
 	baseplane->color.r = 0;
 	baseplane->color.g = 0;
 	baseplane->color.b = 0;
+	baseplane->transform = create_id_matrix();
+	baseplane->phong = default_phong();
 	baseplane->next = NULL;
 	rt->plane = baseplane;
 }

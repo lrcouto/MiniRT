@@ -132,6 +132,8 @@ typedef struct			s_plane
 	t_tuple				pos;
 	double				norm;
 	t_color				color;
+	t_phong				phong;
+	t_matrix			transform;
 	struct s_plane		*next;
 }						t_plane;
 
