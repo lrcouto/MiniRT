@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 16:52:34 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 19:16:19 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 18:002:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_phong		default_phong(void)
 	new.color.b = 1;
 	new.color.a = 1;
 	new.diffuse = 0.9;
-	new.ambient = 0.05;
+	new.ambient = 0.1;
 	new.specular = 0.9;
 	new.shininess = 200.0;
 	return (new);
@@ -58,18 +58,18 @@ static void	set_light_params(t_comps *args, t_ltparams *params, t_light *lt)
 	params->effective_color = rgba_to_tuple(mult_color(args->phong.color,
 	lt->intensity));
 	params->light_v = normalize_v(subtract_tuple(lt->pos,
-		args->position));
+		args->over_point));
 	params->ambient = scalar_x_tuple(params->effective_color,
 		args->phong.ambient);
 	params->light_dot_normal = dot_product(params->light_v, args->normal_vec);
 }
 
-t_rgba		lighting(t_comps args, t_light *current_light)
+t_rgba		lighting(t_comps args, t_light *current_light, int in_shadow)
 {
-	t_ltparams params;
+	t_ltparams	params;
 
 	set_light_params(&args, &params, current_light);
-	if (params.light_dot_normal < 0)
+	if (params.light_dot_normal < 0 || in_shadow == 1)
 	{
 		params.diffuse = create_tuple(0, 0, 0, 0);
 		params.specular = create_tuple(0, 0, 0, 0);

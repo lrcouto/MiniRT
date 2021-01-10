@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/03 20:47:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 16:55:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct		s_comps
 	t_phong			phong;
 	t_tuple			eye_vec;
 	t_tuple			normal_vec;
+	t_tuple			over_point;
 	int				inside;
 }					t_comps;
 
@@ -278,12 +279,18 @@ void				raycaster(t_rt *rt, t_mlx *mlx);
 void				render_sphere_transform(t_sphere *head);
 t_tuple				sphere_normal(t_sphere *sphere, t_tuple point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
-t_rgba				lighting(t_comps comps, t_light *current_light);
+t_rgba				lighting(t_comps comps, t_light *current_light, int in_shadow);
 void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
-t_rgba				shade_hit(t_comps comps);
+t_rgba				shade_hit(t_comps comps, t_rt *rt);
 t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
 void				camera_pixel_size(t_rt *rt, t_cam *cam);
 t_ray				ray_for_pixel(t_cam *cam, int x, int y);
+int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
 
+/*
+** Polygon rendering functions.
+*/
+
+void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 
 #endif
