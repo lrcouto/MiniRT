@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 18:34:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:39:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ typedef struct			s_raycaster
 
 t_ray					create_ray(t_tuple origin, t_tuple direction);
 t_tuple					ray_position(t_ray ray, double t);
-void					intersect_sphere(t_ray ray, t_sphere *sphere,
-						t_intersec *head);
+t_ray					transform_ray(t_ray ray, t_matrix transform);
+void					set_transform_sphere(t_sphere *sphere,
+						t_matrix transform);
+
+/*
+** Intersection operations.
+*/
+
 t_polys					insert_sphere(t_sphere *sphere);
 t_polys					insert_plane(t_plane *plane);
 t_polys					insert_square(t_square *square);
@@ -75,8 +81,9 @@ t_polys					insert_triangle(t_triangle *triangle);
 t_intersec				*init_intersec_list(t_intersec *list);
 void					push_intersec(t_intersec *head, t_intersec *new);
 t_intersec				*intersec_hit(t_intersec *head);
-t_ray					transform_ray(t_ray ray, t_matrix transform);
-void					set_transform_sphere(t_sphere *sphere,
-						t_matrix transform);
+void					intersect_sphere(t_ray ray, t_sphere *sphere,
+						t_intersec *head);
+void					intersect_plane(t_ray ray, t_plane *plane,
+t_intersec *head);
 
 #endif

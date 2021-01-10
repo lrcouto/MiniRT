@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 17:12:35 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:39:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 			rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
 			rc.intersec_list = init_intersec_list(rc.intersec_list);
 			rc.ray = ray_for_pixel(rt->cam, rc.x, rc.y);
-			intersect_all_spheres(rt, &rc);
+			intersect_all_polys(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
 			cast_pixel(&rc, rt, mlx);
 			free_intersecs(rc.intersec_list);

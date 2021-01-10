@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 16:55:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:46:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,5 +292,6 @@ int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
 */
 
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
+void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
 
 #endif
