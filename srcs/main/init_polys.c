@@ -82,7 +82,10 @@ void		init_plane(t_rt *rt)
 	baseplane->pos.y = 0;
 	baseplane->pos.z = 0;
 	baseplane->pos.w = 0;
-	baseplane->norm = 0;
+	baseplane->norm.x = 0;
+	baseplane->norm.y = 0;
+	baseplane->norm.z = 0;
+	baseplane->norm.w = 0;
 	baseplane->color.r = 0;
 	baseplane->color.g = 0;
 	baseplane->color.b = 0;

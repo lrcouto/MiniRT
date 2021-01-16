@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_polys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 15:39:52 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/16 20:05:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	free_plane(t_rt *rt)
 	{
 		tmp_plane = current;
 		current = current->next;
+		free_matrix(tmp_plane->transform);
 		free(tmp_plane);
 	}
 }

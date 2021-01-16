@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2021/01/10 19:06:41 by lcouto           ###   ########.fr        #
+#    Updated: 2021/01/16 16:30:14 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			get_square_center.c get_square_color.c get_square_side.c /
 #			get_square.c get_triangle_color.c get_triangle_p1.c /
 #			get_triangle_p2.c get_triangle_p3.c get_triangle.c /
-#			rt_identify.c
+#			rt_identify.c get_plane_norm.c
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c /

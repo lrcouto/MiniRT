@@ -89,6 +89,7 @@ January 3rd 2021 - We made a little loading bar for our program that prints the 
 
 January 10th 2021 - Our raytracer now casts shadows, though it only handles hard shadows from a point light and the visual effect is not as pretty as we'd like it to be. Might try to implement soft shadows later. We are starting to work on implementing planes.
 
+January 16th 2021 - We found out that our parser has a couple mistakes in it and we have to rewrite some segments. Found out that we have a problem on our view transformation that causes an error when a specific camera orientation is input. We don't know why this happens yet. Frustrating.
 ___
 
 </details>

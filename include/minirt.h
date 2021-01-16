@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 19:46:01 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/16 16:36:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int					get_sphere_color(char *line, int check, int i,
 
 void				get_plane(char *line, t_rt *rt);
 int					get_plane_pos(char *line, int check, int i, t_plane *light);
+int					get_plane_norm(char *line, int check, int i, t_plane *plane);
 int					get_plane_color(char *line, int check, int i,
 					t_plane *light);
 

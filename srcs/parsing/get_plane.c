@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:37:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/16 16:33:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,6 @@ static void		push_plane(t_plane *head, t_plane *new_plane, t_rt *rt)
 	rt->qts.pl = rt->qts.pl + 1;
 }
 
-static int		get_plane_norm(char *line, int check, int i,
-t_plane *plane)
-{
-	double	norm;
-
-	while (line[i] != ' ' && line[i] != '\0')
-	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 3)
-		{
-			norm = get_coord(line, i);
-			i = get_index(line, i);
-			check++;
-		}
-		i++;
-	}
-	if (norm > 1 || norm < -1)
-		errormsg(21);
-	plane->norm = norm;
-	return (check);
-}
-
 static void		plane_loop(char *line, int i, int check, t_plane *plane)
 {
 	while (line[i] != '\0')
@@ -76,7 +55,7 @@ static void		plane_loop(char *line, int i, int check, t_plane *plane)
 				check = get_plane_norm(line, check, i, plane);
 				i = get_index(line, i);
 			}
-			else if (check == 4)
+			else if (check == 6)
 			{
 				check = get_plane_color(line, check, i, plane);
 				i = get_index(line, i);

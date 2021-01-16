@@ -130,7 +130,7 @@ typedef struct			s_sphere
 typedef struct			s_plane
 {
 	t_tuple				pos;
-	double				norm;
+	t_tuple				norm;
 	t_color				color;
 	t_phong				phong;
 	t_matrix			transform;
