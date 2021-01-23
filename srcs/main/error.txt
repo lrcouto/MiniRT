@@ -11,21 +11,21 @@ ERROR: You cannot have more than one window resolution parameter.
 ERROR: You cannot have more than one ambient light parameter.
 ERROR: Camera FoV value must be an integer between 0 and 180.
 ERROR: Camera view point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
-ERROR: Camera orientation vector parameters must be passed as X,Y,Z coordinates between 0.0 and 1.0.
+ERROR: Camera orientation vector parameters must be passed as X,Y,Z coordinates between -1.0 and 1.0.
 ERROR: Coordinates must be entered as a decimal number (e.g. 10.5).
 ERROR: Scene light parameter should receive one set of X,Y,Z coordinates, one intensity value, and one set of RGB values.
 ERROR: Scene light intensity value must be between 0.0 and 1.0.
 ERROR: Sphere parameter should receive one set of X,Y,Z coordinates, one diameter value, and one set of RGB values.
 ERROR: Sphere center point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Plane position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
-ERROR: Plane parameter should receive one set of X,Y,Z coordinates, one 3D normalized orientation vector value, and one set of RGB values.
-ERROR: Plane 3D normalized orientation vector value must be between 0.0 and 1.0.
+ERROR: Plane parameter should receive one set of X,Y,Z coordinates, one set of 3D normalized orientation vector values, and one set of RGB values.
+ERROR: Plane 3D normalized orientation vector values must be between -1.0 and 1.0.
 ERROR: Square parameter should receive the following values: X,Y,Z coordinates, 3D normalized orientation vector, side size, RGB colors.
 ERROR: Square center point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
-ERROR: Square 3D normalized orientation vector value must be between 0.0 and 1.0.
+ERROR: Square 3D normalized orientation vector values must be between -1.0 and 1.0.
 ERROR: Cylinder position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Cylinder parameter should receive the following values: X,Y,Z coordinates, 3D normalized orientation vector, diameter, height, RGB colors.
-ERROR: Cylinder 3D normalized orientation vector value must be between 0.0 and 1.0.
+ERROR: Cylinder 3D normalized orientation vector values must be between -1.0 and 1.0.
 ERROR: Triangle position parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Triangle parameter should receive three sets of X,Y,Z coordinates, and one set of RGB colors.
 ERROR: Scene file must have a .rt extension.
@@ -35,3 +35,4 @@ ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You c
 ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You cannot subtract a point from a vector.
 ERROR: W parameter negate_tuple output can only be 0, 1 or -1;
 ERROR: Normalized color parameters must be between 0 and 1;
+ERROR: Determinant value is zero, resulting in a singular matrix i.e. a matrix that cannot be inverted. Please retry with a different input value.

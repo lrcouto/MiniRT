@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 19:39:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/16 15:56:23 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 ** TO DO:
 ** - Salvar arquivo em .bmp
 ** - Guardar imagens de múltiplas câmeras
-** - Formas adicionais
-** - Sombras
+** - Planos
+** - Quadrados
+** - Cilindros
+** - Triângulos
 ** 
 ** WISHLIST:
 ** - Associar o material ao arquivo .rt

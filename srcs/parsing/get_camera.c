@@ -91,7 +91,8 @@ void			get_camera(char *line, t_rt *rt)
 	check = 0;
 	i = 1;
 	camera_loop(line, i, check, cam);
-	transform = view_transform(cam->view, cam->pos, create_tuple(0, 1, 0, 0)); // maybe denormalize pos and check where is up
+	transform = view_transform(cam->view, add_tuple(cam->view,
+		cam->pos), create_tuple(0, 1, 0, 0));
 	cam->transform = invert_matrix(transform);
 	camera_pixel_size(rt, cam);
 	cam->origin = mult_matrix_tuple(cam->transform, create_tuple(0, 0, 0, 1));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_ops_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 22:27:42 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/07 22:02:55 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/16 19:25:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ t_matrix	invert_matrix(t_matrix mat)
 	size_t			i;
 	size_t			j;
 
-	new = create_matrix(mat.row, mat.col);
 	det = det_4x4(mat);
+	if (det == 0)
+		errormsg(37);
+	new = create_matrix(mat.row, mat.col);
 	i = 0;
 	while (i < mat.row)
 	{

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 17:25:36 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/16 16:34:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int					is_shadowed(t_comps comps, t_rt *rt, t_light *light)
 	rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
 	rc.intersec_list = init_intersec_list(rc.intersec_list);
 	rc.ray = create_ray(comps.over_point, normalize_v(path));
-	intersect_all_spheres(rt, &rc);
+	intersect_all_polys(rt, &rc);
 	rc.hit = intersec_hit(rc.intersec_list);
 	if (rc.hit && rc.hit->t < distance)
 		result = 1;
