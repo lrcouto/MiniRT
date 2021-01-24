@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 16:22:38 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 16:35:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/24 18:04:47 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				get_plane_norm(char *line, int check, int i, t_plane *plane)
 	if ((xyz[0] > 1 || xyz[0] < -1) || (xyz[1] > 1 || xyz[1] < -1) ||
 		(xyz[2] > 1 || xyz[2] < -1) || (check != 6))
 		errormsg(21);
-	plane->norm = create_tuple(xyz[0], xyz[1], xyz[2], 1);
+	plane->norm = create_tuple(xyz[0], xyz[1], xyz[2], 0);
 	free(xyz);
 	return (check);
 }
