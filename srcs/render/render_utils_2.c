@@ -6,33 +6,25 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 16:34:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 18:52:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void				render_sphere_transform(t_sphere *head)
+void				render_sphere_transform(t_sphere *sphere)
 {
-	t_sphere	*current;
 	t_matrix	translate;
 	t_matrix	scale;
 	t_matrix	transform;
 
-	current = head;
-	while (1)
-	{
-		translate = translation(current->center.x,
-			current->center.y, current->center.z);
-		scale = scaling(current->radius, current->radius, current->radius);
-		transform = mult_matrix(scale, translate);
-		set_transform_sphere(current, transform);
-		free_matrix(translate);
-		free_matrix(scale);
-		if (current->next == NULL)
-			break ;
-		current = current->next;
-	}
+	translate = translation(sphere->center.x,
+		sphere->center.y, sphere->center.z);
+	scale = scaling(sphere->radius, sphere->radius, sphere->radius);
+	transform = mult_matrix(scale, translate);
+	sphere->transform = transform;
+	free_matrix(translate);
+	free_matrix(scale);
 }
 
 void				normalize_pixel_color(t_rgba *lt_output)

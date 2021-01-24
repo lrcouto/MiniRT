@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2020/12/12 19:44:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 20:33:44 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,27 @@ static void		push_new_sphere(t_sphere *current, t_sphere *new_sphere)
 	current->next->diameter = new_sphere->diameter;
 	current->next->radius = new_sphere->radius;
 	current->next->color = new_sphere->color;
-	current->next->transform = create_matrix(4, 4);
+	current->next->transform = new_sphere->transform;
 	current->next->phong = new_sphere->phong;
 	current->next->next = new_sphere->next;
 }
 
-static void		push_sphere(t_sphere *head, t_sphere *new_sphere, t_rt *rt)
+static void		push_sphere(t_rt *rt, t_sphere *new_sphere)
 {
 	t_sphere *current;
 
-	current = head;
+	current = rt->sphere;
 	new_sphere->next = NULL;
 	if (rt->qts.sp == 0)
 	{
-		head->center = new_sphere->center;
-		head->diameter = new_sphere->diameter;
-		head->radius = new_sphere->radius;
-		head->color = new_sphere->color;
-		head->phong = new_sphere->phong;
-		head->next = new_sphere->next;
+		rt->sphere = (t_sphere *)ec_malloc(sizeof(t_sphere));
+		rt->sphere->center = new_sphere->center;
+		rt->sphere->diameter = new_sphere->diameter;
+		rt->sphere->radius = new_sphere->radius;
+		rt->sphere->color = new_sphere->color;
+		rt->sphere->phong = new_sphere->phong;
+		rt->sphere->transform = new_sphere->transform;
+		rt->sphere->next = new_sphere->next;
 		rt->qts.sp = rt->qts.sp + 1;
 		return ;
 	}
@@ -106,6 +108,7 @@ void			get_sphere(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	sphere_loop(line, i, check, sphere);
-	push_sphere(rt->sphere, sphere, rt);
+	render_sphere_transform(sphere);
+	push_sphere(rt, sphere);
 	free(sphere);
 }

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 20:06:40 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 20:42:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 static void		init_polys(t_rt *rt)
 {
-	init_sphere(rt);
-	init_plane(rt);
-	init_square(rt);
-	init_cylinder(rt);
-	init_triangle(rt);
+	rt->sphere = NULL;
+	rt->square = NULL;
+	rt->plane = NULL;
+	rt->cylinder = NULL;
+	rt->triangle = NULL;
+	// init_sphere(rt);
+	// init_plane(rt);
+	// // init_square(rt);
+	// init_cylinder(rt);
+	// init_triangle(rt);
 }
 
 static void		init_light(t_rt *rt)

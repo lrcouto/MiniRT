@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 16:36:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/01 17:22:01 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 18:48:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,4 @@ t_ray		transform_ray(t_ray ray, t_matrix transform)
 	new.origin = mult_matrix_tuple(transform, ray.origin);
 	new.direction = mult_matrix_tuple(transform, ray.direction);
 	return (new);
-}
-
-void		set_transform_sphere(t_sphere *sphere, t_matrix transform)
-{
-	free_matrix(sphere->transform);
-	sphere->transform = transform;
 }

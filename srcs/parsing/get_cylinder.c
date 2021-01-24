@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   get_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:06:06 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/23 20:36:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void		push_cylinder(t_cylinder *head, t_cylinder *new_cylinder,
-t_rt *rt)
+static void		push_cylinder(t_rt *rt, t_cylinder *new_cylinder)
 {
 	t_cylinder *current;
 
-	current = head;
+	current = rt->cylinder;
 	new_cylinder->next = NULL;
 	if (rt->qts.cy == 0)
 	{
-		head->pos = new_cylinder->pos;
-		head->norm = new_cylinder->norm;
-		head->diameter = new_cylinder->diameter;
-		head->height = new_cylinder->height;
-		head->color = new_cylinder->color;
-		head->next = new_cylinder->next;
+		rt->cylinder = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
+		rt->cylinder->pos = new_cylinder->pos;
+		rt->cylinder->norm = new_cylinder->norm;
+		rt->cylinder->diameter = new_cylinder->diameter;
+		rt->cylinder->height = new_cylinder->height;
+		rt->cylinder->color = new_cylinder->color;
+		rt->cylinder->next = new_cylinder->next;
 		rt->qts.cy = rt->qts.cy + 1;
 		return ;
 	}
@@ -103,6 +103,6 @@ void			get_cylinder(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	cylinder_loop(line, i, check, cylinder);
-	push_cylinder(rt->cylinder, cylinder, rt);
+	push_cylinder(rt, cylinder);
 	free(cylinder);
 }

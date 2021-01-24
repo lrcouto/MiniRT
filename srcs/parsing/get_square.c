@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_square.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 13:58:57 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/23 20:29:12 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void		push_square(t_square *head, t_square *new_square, t_rt *rt)
+static void		push_square(t_rt *rt, t_square *new_square)
 {
 	t_square *current;
 
-	current = head;
+	current = rt->square;
 	new_square->next = NULL;
 	if (rt->qts.sq == 0)
 	{
-		head->center = new_square->center;
-		head->norm = new_square->norm;
-		head->side = new_square->side;
-		head->color = new_square->color;
-		head->next = new_square->next;
+		rt->square = (t_square *)ec_malloc(sizeof(t_square));
+		rt->square->center = new_square->center;
+		rt->square->norm = new_square->norm;
+		rt->square->side = new_square->side;
+		rt->square->color = new_square->color;
+		rt->square->next = new_square->next;
 		rt->qts.sq = rt->qts.sq + 1;
 		return ;
 	}
@@ -112,6 +113,6 @@ void			get_square(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	square_loop(line, i, check, square);
-	push_square(rt->square, square, rt);
+	push_square(rt, square);
 	free(square);
 }

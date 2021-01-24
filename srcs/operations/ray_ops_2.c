@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_ops_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 19:48:46 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/12 16:39:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 19:49:53 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ t_polys		insert_plane(t_plane *plane)
 	t_polys poly;
 
 	poly.obj_type = PLANE;
-	poly.plane = plane;
+	poly.plane = (t_plane *)ec_malloc(sizeof(t_plane));
+	poly.plane->color = plane->color;
+	poly.plane->norm = plane->norm;
+	poly.plane->phong = plane->phong;
+	poly.plane->pos = plane->pos;
+	poly.plane->transform = plane->transform;
+	poly.plane->next = plane->next;
 	return (poly);
 }
 

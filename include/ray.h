@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 19:39:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 18:48:53 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ typedef struct			s_raycaster
 t_ray					create_ray(t_tuple origin, t_tuple direction);
 t_tuple					ray_position(t_ray ray, double t);
 t_ray					transform_ray(t_ray ray, t_matrix transform);
-void					set_transform_sphere(t_sphere *sphere,
-						t_matrix transform);
 
 /*
 ** Intersection operations.

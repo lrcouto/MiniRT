@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 19:39:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/23 18:54:10 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 {
 	t_raycaster	rc;
 
-	render_sphere_transform(rt->sphere);
 	rc.y = 0;
 	while (rc.y < rt->reso.height)
 	{
