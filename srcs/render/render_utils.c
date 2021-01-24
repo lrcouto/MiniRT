@@ -12,7 +12,7 @@
 
 #include "../../include/minirt.h"
 
-t_tuple		sphere_normal(t_sphere *sphere, t_tuple w_point)
+t_tuple		normal_at(t_matrix transform, t_tuple w_point)
 {
 	t_tuple		o_point;
 	t_tuple		o_normal;
@@ -20,7 +20,7 @@ t_tuple		sphere_normal(t_sphere *sphere, t_tuple w_point)
 	t_matrix	inv_trans;
 	t_matrix	transp_trans;
 
-	inv_trans = invert_matrix(sphere->transform);
+	inv_trans = invert_matrix(transform);
 	transp_trans = transpose_matrix(inv_trans);
 	o_point = mult_matrix_tuple(inv_trans, w_point);
 	o_normal = subtract_tuple(o_point, create_tuple(0, 0, 0, 1));

@@ -12,15 +12,35 @@
 
 #include "../../include/minirt.h"
 
+static void	get_poly_props(t_polys poly, t_comps *comps)
+{
+	if (poly.obj_type == SPHERE)
+	{
+		comps->normal_vec = normal_at(poly.sphere->transform, comps->position);
+		comps->phong = poly.sphere->phong;
+	}
+	if (poly.obj_type == PLANE)
+	{
+		comps->normal_vec = create_tuple(0, 1, 0, 0);
+		comps->phong = poly.plane->phong;
+	}
+	// if (poly.obj_type == SQUARE)
+	// 	return normal_at(poly.square->transform, position);
+	// if (poly.obj_type == CYLINDER)
+	// 	return normal_at(poly.cylinder->transform, position);
+	// if (poly.obj_type == TRIANGLE)
+	// 	return normal_at(poly.triangle->transform, position);
+}
+
 void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 {
 	comps->light = rt->light;
-	comps->phong = rc->hit->poly.sphere->phong;
 	comps->t = rc->hit->t;
 	comps->poly = rc->hit->poly;
 	comps->position = ray_position(rc->ray, comps->t);
 	comps->eye_vec = negate_tuple(rc->ray.direction);
-	comps->normal_vec = sphere_normal(comps->poly.sphere, comps->position);
+	// checar type do poly para pegar a normal correta
+	get_poly_props(comps->poly, comps);
 	if (dot_product(comps->normal_vec, comps->eye_vec) < 0)
 	{
 		comps->inside = 1;

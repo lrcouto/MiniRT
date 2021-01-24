@@ -67,7 +67,7 @@ void	test_multiple_transforms(void)
 	sphere->radius = 0.5;
 	sphere->diameter = 1;
 	
-	s_normal = sphere_normal(sphere, create_tuple(0, sqrt(2) / 2, (sqrt(2) / 2) * -1, 1));
+	s_normal = normal_at(sphere->transform, create_tuple(0, sqrt(2) / 2, (sqrt(2) / 2) * -1, 1));
 	printf("point(%f, %f, %f, %d)", s_normal.x, s_normal.y, s_normal.z, s_normal.w);
 	free_matrix(sphere->transform);
 	free_matrix(scale);

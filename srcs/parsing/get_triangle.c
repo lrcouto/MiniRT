@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_triangle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:11:17 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/23 20:32:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void		push_triangle(t_triangle *head, t_triangle *new_triangle,
-t_rt *rt)
+static void		push_triangle(t_rt *rt, t_triangle *new_triangle)
 {
 	t_triangle *current;
 
-	current = head;
+	current = rt->triangle;
 	new_triangle->next = NULL;
 	if (rt->qts.tr == 0)
 	{
-		head->p1 = new_triangle->p1;
-		head->p2 = new_triangle->p2;
-		head->p3 = new_triangle->p3;
-		head->color = new_triangle->color;
-		head->next = new_triangle->next;
+		rt->triangle = (t_triangle *)ec_malloc(sizeof(t_triangle));
+		rt->triangle->p1 = new_triangle->p1;
+		rt->triangle->p2 = new_triangle->p2;
+		rt->triangle->p3 = new_triangle->p3;
+		rt->triangle->color = new_triangle->color;
+		rt->triangle->next = new_triangle->next;
 		rt->qts.tr = rt->qts.tr + 1;
 		return ;
 	}
@@ -93,6 +93,6 @@ void			get_triangle(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	triangle_loop(line, i, check, triangle);
-	push_triangle(rt->triangle, triangle, rt);
+	push_triangle(rt, triangle);
 	free(triangle);
 }
