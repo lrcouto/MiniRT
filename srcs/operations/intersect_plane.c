@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 19:05:02 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 21:08:33 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/24 17:10:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,15 @@ void				intersect_plane(t_ray ray, t_plane *plane,
 t_intersec *head)
 {
 	double			t;
+	t_ray			tformed;
+	t_matrix		invert;
 
 	if (fabs(ray.direction.y) < EPSILON)
 		return;
 
-	t = (-1 * ray.origin.y) / ray.direction.y;
+	invert = invert_matrix(plane->transform); // maybe invert when sphere its created
+	tformed = transform_ray(ray, invert);
+	free_matrix(invert);
+	t = (-1 * tformed.origin.y) / tformed.direction.y;
 	create_intersec(t, head, plane);
 }

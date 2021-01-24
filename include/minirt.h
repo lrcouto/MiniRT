@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 18:55:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/24 19:45:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,8 +277,8 @@ void				loading_bar(double percent, int total);
 
 void				canvas(t_rt *rt);
 void				raycaster(t_rt *rt, t_mlx *mlx);
-void				render_sphere_transform(t_sphere *sphere);
-t_tuple				normal_at(t_matrix transform, t_tuple point);
+t_tuple				normal_at(t_matrix transform, t_tuple point, t_polys poly);
+t_tuple				normal_object_type(t_polys poly, t_tuple o_point);
 t_tuple				plane_normal(t_plane *plane, t_tuple w_point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
 t_rgba				lighting(t_comps comps, t_light *current_light, int in_shadow);
@@ -295,5 +295,8 @@ int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
 
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
+void				render_sphere_transform(t_sphere *sphere);
+void				render_plane_transform(t_plane *plane);
+t_matrix			normal_rotation_matrix(t_tuple normal);
 
 #endif

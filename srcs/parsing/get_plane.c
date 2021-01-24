@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:37:20 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 21:23:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/24 19:43:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void			get_plane(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	plane_loop(line, i, check, plane);
-	plane->transform = create_id_matrix();
+	render_plane_transform(plane);
 	push_plane(rt, plane);
 	free(plane);
 }

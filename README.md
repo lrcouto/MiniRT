@@ -92,6 +92,8 @@ January 10th 2021 - Our raytracer now casts shadows, though it only handles hard
 January 16th 2021 - We found out that our parser has a couple mistakes in it and we have to rewrite some segments. Found out that we have a problem on our view transformation that causes an error when a specific camera orientation is input. We don't know why this happens yet. Frustrating.
 
 January 23th 2021 - After bumping into several parser errors that we hadn't noticed before, we finally managed to implement and render a plane! Next step is to be able to rotate it, so our scenes can have "walls", "floors" and "ceilings".
+
+January 24th 2021 - Plane rotation and translation working correctly, after a day of struggling with hard maths. Next step is refactoring the code a little bit, because the project is getting rather large, and implementing some side features, like the ability to save image files and deal with multiple cameras.
 ___
 
 </details>

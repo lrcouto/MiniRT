@@ -16,12 +16,12 @@ static void	get_poly_props(t_polys poly, t_comps *comps)
 {
 	if (poly.obj_type == SPHERE)
 	{
-		comps->normal_vec = normal_at(poly.sphere->transform, comps->position);
+		comps->normal_vec = normal_at(poly.sphere->transform, comps->position, poly);
 		comps->phong = poly.sphere->phong;
 	}
 	if (poly.obj_type == PLANE)
 	{
-		comps->normal_vec = create_tuple(0, 1, 0, 0);
+		comps->normal_vec = normal_at(poly.plane->transform, comps->position, poly);
 		comps->phong = poly.plane->phong;
 	}
 	// if (poly.obj_type == SQUARE)

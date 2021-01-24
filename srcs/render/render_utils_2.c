@@ -6,26 +6,11 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 18:52:34 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/24 19:43:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
-
-void				render_sphere_transform(t_sphere *sphere)
-{
-	t_matrix	translate;
-	t_matrix	scale;
-	t_matrix	transform;
-
-	translate = translation(sphere->center.x,
-		sphere->center.y, sphere->center.z);
-	scale = scaling(sphere->radius, sphere->radius, sphere->radius);
-	transform = mult_matrix(scale, translate);
-	sphere->transform = transform;
-	free_matrix(translate);
-	free_matrix(scale);
-}
 
 void				normalize_pixel_color(t_rgba *lt_output)
 {
@@ -81,4 +66,15 @@ int					is_shadowed(t_comps comps, t_rt *rt, t_light *light)
 		result = 0;
 	free_intersecs(rc.intersec_list);
 	return (result);
+}
+
+t_tuple			normal_object_type(t_polys poly, t_tuple o_point)
+{
+
+	if (poly.obj_type == SPHERE)
+		return (subtract_tuple(o_point, create_tuple(0, 0, 0, 1)));
+	else if (poly.obj_type == PLANE)
+		return (create_tuple(0, 1, 0, 0));
+	else
+		return (create_tuple(0, 0, 0, 0));
 }

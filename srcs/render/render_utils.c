@@ -12,7 +12,7 @@
 
 #include "../../include/minirt.h"
 
-t_tuple		normal_at(t_matrix transform, t_tuple w_point)
+t_tuple		normal_at(t_matrix transform, t_tuple w_point, t_polys poly)
 {
 	t_tuple		o_point;
 	t_tuple		o_normal;
@@ -23,7 +23,9 @@ t_tuple		normal_at(t_matrix transform, t_tuple w_point)
 	inv_trans = invert_matrix(transform);
 	transp_trans = transpose_matrix(inv_trans);
 	o_point = mult_matrix_tuple(inv_trans, w_point);
-	o_normal = subtract_tuple(o_point, create_tuple(0, 0, 0, 1));
+	o_normal = poly.obj_type == SPHERE
+		? subtract_tuple(o_point, create_tuple(0, 0, 0, 1))
+		: create_tuple(0, 1, 0, 0);
 	w_normal = mult_matrix_tuple(transp_trans, o_normal);
 	w_normal.w = 0;
 	free_matrix(inv_trans);
