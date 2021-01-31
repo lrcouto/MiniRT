@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 19:39:51 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 20:48:50 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/31 17:38:31 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,28 @@ void				render_square_transform(t_square *square)
 	scale = scaling(half_side, half_side, half_side);
 	translate = mult_matrix(scale, transform);
 	square->transform = translate;
+	free_matrix(rotate);
+	free_matrix(transform);
+	free_matrix(scale);
+}
+
+void				render_cylinder_transform(t_cylinder *cylinder)
+{
+	t_matrix	translate;
+	t_matrix	rotate;
+	t_matrix	scale;
+	t_matrix	transform;
+	double		radius;
+
+	radius = cylinder->diameter * 0.5;
+	scale = scaling(radius, cylinder->height * 0.5, radius);
+	translate = translation(cylinder->pos.x,
+		cylinder->pos.y, cylinder->pos.z);
+	transform = mult_matrix(translate, scale);
+	free_matrix(translate);
+	rotate = normal_rotation_matrix(cylinder->norm);
+	translate = mult_matrix(rotate, transform);
+	cylinder->transform = translate;
 	free_matrix(rotate);
 	free_matrix(transform);
 	free_matrix(scale);

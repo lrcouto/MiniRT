@@ -23,9 +23,7 @@ t_tuple		normal_at(t_matrix transform, t_tuple w_point, t_polys poly)
 	inv_trans = invert_matrix(transform);
 	transp_trans = transpose_matrix(inv_trans);
 	o_point = mult_matrix_tuple(inv_trans, w_point);
-	o_normal = poly.obj_type == SPHERE
-		? subtract_tuple(o_point, create_tuple(0, 0, 0, 1))
-		: create_tuple(0, 1, 0, 0);
+	o_normal = normal_object_type(poly, o_point);
 	w_normal = mult_matrix_tuple(transp_trans, o_normal);
 	w_normal.w = 0;
 	free_matrix(inv_trans);
@@ -52,9 +50,11 @@ t_phong		default_phong(void)
 	new.ambient = 0.1;
 	new.specular = 0.9;
 	new.shininess = 200.0;
-	new.reflect = 0.3;
+	new.reflect = 0.2;
 	return (new);
 }
+
+
 
 static void	set_light_params(t_comps *args, t_ltparams *params, t_light *lt)
 {

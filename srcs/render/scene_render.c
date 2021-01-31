@@ -29,8 +29,11 @@ static void	get_poly_props(t_polys poly, t_comps *comps)
 		comps->normal_vec = normal_at(poly.square->transform, comps->position, poly);
 		comps->phong = poly.square->phong;
 	}
-	// if (poly.obj_type == CYLINDER)
-	// 	return normal_at(poly.cylinder->transform, position);
+	if (poly.obj_type == CYLINDER)
+	{
+		comps->normal_vec = normal_at(poly.cylinder->transform, comps->position, poly);
+		comps->phong = poly.cylinder->phong;
+	}
 	// if (poly.obj_type == TRIANGLE)
 	// 	return normal_at(poly.triangle->transform, position);
 }

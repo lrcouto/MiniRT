@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 20:05:51 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/31 14:43:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	free_cylinder(t_rt *rt)
 	{
 		tmp_cylinder = current;
 		current = current->next;
+		free_matrix(tmp_cylinder->transform);
 		free(tmp_cylinder);
 	}
 }
@@ -50,6 +51,7 @@ void	free_square(t_rt *rt)
 	{
 		tmp_square = current;
 		current = current->next;
+		free_matrix(tmp_square->transform);
 		free(tmp_square);
 	}
 }

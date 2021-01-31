@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cylinder_doubles.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:48:44 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/31 16:06:31 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cylinder *cylinder)
 
 	while (line[i] != ' ' && line[i] != '\0')
 	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 5)
+		if ((line[i] >= '0' || line[i] <= '9') && check == 7)
 		{
 			height = get_coord(line, i);
 			i = get_index(line, i);
@@ -38,7 +38,7 @@ t_cylinder *cylinder)
 
 	while (line[i] != ' ' && line[i] != '\0')
 	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 4)
+		if ((line[i] >= '0' || line[i] <= '9') && check == 6)
 		{
 			diameter = get_coord(line, i);
 			i = get_index(line, i);
@@ -47,26 +47,7 @@ t_cylinder *cylinder)
 		i++;
 	}
 	cylinder->diameter = diameter;
+	cylinder->radius = diameter / 2;
 	return (check);
 }
 
-int		get_cylinder_norm(char *line, int check, int i,
-t_cylinder *cylinder)
-{
-	double	norm;
-
-	while (line[i] != ' ' && line[i] != '\0')
-	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 3)
-		{
-			norm = get_coord(line, i);
-			i = get_index(line, i);
-			check++;
-		}
-		i++;
-	}
-	if (norm > 1 || norm < -1)
-		errormsg(27);
-	cylinder->norm = norm;
-	return (check);
-}

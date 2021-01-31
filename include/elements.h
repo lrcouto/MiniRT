@@ -160,10 +160,13 @@ typedef struct			s_square
 typedef struct			s_cylinder
 {
 	t_tuple				pos;
-	double				norm;
+	t_tuple				norm;
 	double				diameter;
+	double				radius;
 	double				height;
 	t_color				color;
+	t_phong				phong;
+	t_matrix			transform;
 	struct s_cylinder	*next;
 }						t_cylinder;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cylinder_color.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:03:05 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/31 14:49:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,20 @@ t_cylinder *cylinder)
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
 		{
-			if (check == 6)
+			if (check == 8)
 				check = get_r_cylinder(line, check, idx, rgb);
-			else if (check == 7)
+			else if (check == 9)
 				check = get_g_cylinder(line, check, idx, rgb);
-			else if (check == 8)
+			else if (check == 10)
 				check = get_b_cylinder(line, check, idx, rgb);
 		}
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
-	if (check != 9)
+	if (check != 11)
 		errormsg(26);
 	cylinder->color = fill_color(rgb[0], rgb[1], rgb[2]);
+	cylinder->phong = default_phong();
+	cylinder->phong.color = normalize_color(rgb[0], rgb[1], rgb[2]);
 	free(rgb);
 	return (check);
 }

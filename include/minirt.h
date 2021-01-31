@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 17:42:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/31 15:55:14 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,7 @@ int					create_file(char *name);
 void				canvas(t_rt *rt);
 void				raycaster(t_rt *rt, t_mlx *mlx);
 t_tuple				normal_at(t_matrix transform, t_tuple point, t_polys poly);
+t_tuple				get_poly_o_normal(t_polys poly, t_tuple o_point);
 t_tuple				normal_object_type(t_polys poly, t_tuple o_point);
 t_tuple				plane_normal(t_plane *plane, t_tuple w_point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
@@ -338,9 +339,11 @@ t_rgba				color_at(t_rt *rt, t_ray ray, int bounce);
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
 void				intersect_all_squares(t_rt *rt, t_raycaster *rc);
+void				intersect_all_cylinder(t_rt *rt, t_raycaster *rc);
 void				render_sphere_transform(t_sphere *sphere);
 void				render_plane_transform(t_plane *plane);
 void				render_square_transform(t_square *square);
+void				render_cylinder_transform(t_cylinder *cylinder);
 t_matrix			normal_rotation_matrix(t_tuple normal);
 
 #endif
