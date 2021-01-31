@@ -96,6 +96,8 @@ January 23th 2021 - After bumping into several parser errors that we hadn't noti
 January 24th 2021 - Plane rotation and translation working correctly, after a day of struggling with hard maths. Next step is refactoring the code a little bit, because the project is getting rather large, and implementing some side features, like the ability to save image files and deal with multiple cameras.
 
 January 30th 2021 - We implemented squares, after struggling a bit to find a way to limit their boundaries for the renderer. We also, as a little treat for ourselves, decided to implement actual raytraced reflections, with rays bouncing from one object to the other. Manually limited the number of bounces to prevent our computers from exploding. Also started working on a way to save our renders as .bmp files. Feels like we're on the final stretch of this project and we can see the light at the end of the tunnel.
+
+January 31st 2021 - Cylinders are now implemented and functional. Now triangles are the only mandatory primitive left to implement. Looking forward to seeing if our little raytracer can handle some more complex models.
 ___
 
 </details>

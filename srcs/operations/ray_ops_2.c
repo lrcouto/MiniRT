@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 19:48:46 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 17:58:35 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/31 14:36:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ t_polys		insert_cylinder(t_cylinder *cylinder)
 	poly.cylinder->pos = cylinder->pos;
 	poly.cylinder->norm = cylinder->norm;
 	poly.cylinder->diameter = cylinder->diameter;
+	poly.cylinder->radius = cylinder->radius;
 	poly.cylinder->height = cylinder->height;
 	poly.cylinder->color = cylinder->color;
-	// poly.cylinder->phong = cylinder->phong;
-	// poly.cylinder->transform = cylinder->transform;
+	poly.cylinder->phong = cylinder->phong;
+	poly.cylinder->transform = cylinder->transform;
 	poly.cylinder->next = cylinder->next;
 	return (poly);
 }
