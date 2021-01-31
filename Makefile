@@ -6,7 +6,7 @@
 #    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2021/01/23 18:37:28 by lcouto           ###   ########.fr        #
+#    Updated: 2021/01/30 17:02:30 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ DIRS = main parsing operations tests render
 
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
-# main:		error.c free_lists.c free_polys.c init_polys.c init_polys.c /
-#			init_rt.c minirt.c
+# main:		error.c free_lists.c free_polys.c init_rt.c minirt.c
 #
 # parsing:	fill_collor.c get_ambi_rgb.c get_ambient.c /
 #			get_cam_fov.c get_cam_pos.c get_cam_view get_camera.c /
@@ -35,18 +34,18 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			get_square_center.c get_square_color.c get_square_side.c /
 #			get_square.c get_triangle_color.c get_triangle_p1.c /
 #			get_triangle_p2.c get_triangle_p3.c get_triangle.c /
-#			rt_identify.c get_plane_norm.c
+#			rt_identify.c get_plane_norm.c get_square_norm.c
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c /
 #			ray_ops_1.c ray_ops_2.c ray_ops_3.c ray_ops_4.c intersect_sphere.c /
-#			intersect_plane.c
+#			intersect_plane.c intersect_square.c
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
 #			ray_test.c scene_test.c
 #
 # render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c /
-#			intersect_polys.c
+#			intersect_polys.c bitmap.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 

@@ -52,6 +52,7 @@ t_phong		default_phong(void)
 	new.ambient = 0.1;
 	new.specular = 0.9;
 	new.shininess = 200.0;
+	new.reflect = 0.3;
 	return (new);
 }
 

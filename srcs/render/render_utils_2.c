@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/24 19:43:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 18:47:46 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,43 @@ t_tuple			normal_object_type(t_polys poly, t_tuple o_point)
 		return (subtract_tuple(o_point, create_tuple(0, 0, 0, 1)));
 	else if (poly.obj_type == PLANE)
 		return (create_tuple(0, 1, 0, 0));
+	else if (poly.obj_type == SQUARE)
+		return (create_tuple(0, 1, 0, 0));
 	else
 		return (create_tuple(0, 0, 0, 0));
+}
+
+t_rgba			color_at(t_rt *rt, t_ray ray, int bounce)
+{
+	t_raycaster	rc;
+	t_rgba		color;
+	t_comps		comps;
+
+	rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
+	rc.intersec_list = init_intersec_list(rc.intersec_list);
+	rc.ray = ray;
+	intersect_all_polys(rt, &rc);
+	rc.hit = intersec_hit(rc.intersec_list);
+	if (rc.hit)
+	{
+		prepare_computations(&comps, rt, &rc);
+		color = shade_hit(comps, rt, bounce);
+		normalize_pixel_color(&color);
+	}
+	else
+		color = create_rgba(0, 0, 0, 0);
+	free_intersecs(rc.intersec_list);
+	return (color);
+}
+
+t_rgba			reflect_color(t_comps comps, t_rt *rt, int bounce)
+{
+	t_ray	reflect_ray;
+	t_rgba	color;
+
+	if (comps.phong.reflect == 0 || bounce <= 0)
+		return create_rgba(0, 0, 0, 0);
+	reflect_ray = create_ray(comps.over_point, comps.reflect_vec);
+	color = color_at(rt, reflect_ray, bounce - 1);
+	return scalar_color(color, comps.phong.reflect);
 }

@@ -6,11 +6,23 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 13:58:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 20:29:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 16:52:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+static void		push_new_square(t_square *current, t_square *new_square)
+{
+	current->next = (t_square *)ec_malloc(sizeof(t_square));
+	current->next->center = new_square->center;
+	current->next->norm = new_square->norm;
+	current->next->side = new_square->side;
+	current->next->color = new_square->color;
+	current->next->phong = new_square->phong;
+	current->next->transform = new_square->transform;
+	current->next->next = new_square->next;
+}
 
 static void		push_square(t_rt *rt, t_square *new_square)
 {
@@ -25,40 +37,16 @@ static void		push_square(t_rt *rt, t_square *new_square)
 		rt->square->norm = new_square->norm;
 		rt->square->side = new_square->side;
 		rt->square->color = new_square->color;
+		rt->square->phong = new_square->phong;
+		rt->square->transform = new_square->transform;
 		rt->square->next = new_square->next;
 		rt->qts.sq = rt->qts.sq + 1;
 		return ;
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_square *)ec_malloc(sizeof(t_square));
-	current->next->center = new_square->center;
-	current->next->norm = new_square->norm;
-	current->next->side = new_square->side;
-	current->next->color = new_square->color;
-	current->next->next = new_square->next;
+	push_new_square(current, new_square);
 	rt->qts.sq = rt->qts.sq + 1;
-}
-
-static int		get_square_norm(char *line, int check, int i,
-t_square *square)
-{
-	double	norm;
-
-	while (line[i] != ' ' && line[i] != '\0')
-	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 3)
-		{
-			norm = get_coord(line, i);
-			i = get_index(line, i);
-			check++;
-		}
-		i++;
-	}
-	if (norm > 1 || norm < -1)
-		errormsg(24);
-	square->norm = norm;
-	return (check);
 }
 
 static int		loop_get_values(char *line, int i, int *chkptr,
@@ -74,12 +62,12 @@ t_square *square)
 		*chkptr = get_square_norm(line, *chkptr, i, square);
 		i = get_index(line, i);
 	}
-	else if (*chkptr == 4)
+	else if (*chkptr == 6)
 	{
 		*chkptr = get_square_side(line, *chkptr, i, square);
 		i = get_index(line, i);
 	}
-	else if (*chkptr == 5)
+	else if (*chkptr == 7)
 	{
 		*chkptr = get_square_color(line, *chkptr, i, square);
 		i = get_index(line, i);
@@ -113,6 +101,7 @@ void			get_square(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	square_loop(line, i, check, square);
+	render_square_transform(square);
 	push_square(rt, square);
 	free(square);
 }

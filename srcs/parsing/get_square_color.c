@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_square_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 13:57:27 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/01/30 16:53:52 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,20 @@ int			get_square_color(char *line, int check, int i, t_square *square)
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
 		{
-			if (check == 5)
+			if (check == 7)
 				check = get_r_square(line, check, idx, rgb);
-			else if (check == 6)
+			else if (check == 8)
 				check = get_g_square(line, check, idx, rgb);
-			else if (check == 7)
+			else if (check == 9)
 				check = get_b_square(line, check, idx, rgb);
 		}
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
-	if (check != 8)
+	if (check != 10)
 		errormsg(22);
 	square->color = fill_color(rgb[0], rgb[1], rgb[2]);
+	square->phong = default_phong();
+	square->phong.color = normalize_color(rgb[0], rgb[1], rgb[2]);
 	free(rgb);
 	return (check);
 }

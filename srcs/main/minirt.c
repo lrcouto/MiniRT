@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 15:56:23 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 21:07:12 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 ** TO DO:
 ** - Salvar arquivo em .bmp
 ** - Guardar imagens de múltiplas câmeras
-** - Planos
-** - Quadrados
 ** - Cilindros
 ** - Triângulos
 ** 
 ** WISHLIST:
 ** - Associar o material ao arquivo .rt
+** - Associais limitador da recursão ao arquivo .rt
+** - Reorganizar código pra fazer sentido.
 ** - Soft shadows
 ** - Cubos
-** - Reflexão/Refração
+** - Refração/Fresnel
 */
 
 static void	valid_rtfile(char *filename)
@@ -61,12 +61,15 @@ int			main(int argc, char **argv)
 	init_rt(&rt);
 	if (argc == 1)
 		errormsg(0);
-	else if (argc == 2)
+	else if (argc == 2 || (argc == 3 && 
+	(ft_strncmp(argv[2], "--save", 7) == 0)))
 	{
+		if (argv[2] && (ft_strncmp(argv[2], "--save", 7) == 0))
+			rt.savefile = 1;
 		valid_rtfile(argv[1]);
 		fd = open(argv[1], O_RDONLY);
 	}
-	else if (argc > 2)
+	else
 		errormsg(1);
 	while (get_next_line(fd, &line) == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 19:48:46 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 19:49:53 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 17:58:35 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,14 @@ t_polys		insert_square(t_square *square)
 	t_polys poly;
 
 	poly.obj_type = SQUARE;
-	poly.square = square;
+	poly.square = (t_square *)ec_malloc(sizeof(t_square));
+	poly.square->color = square->color;
+	poly.square->norm = square->norm;
+	poly.square->phong = square->phong;
+	poly.square->center = square->center;
+	poly.square->side = square->side;
+	poly.square->transform = square->transform;
+	poly.square->next = square->next;
 	return (poly);
 }
 
@@ -57,7 +64,15 @@ t_polys		insert_cylinder(t_cylinder *cylinder)
 	t_polys poly;
 
 	poly.obj_type = CYLINDER;
-	poly.cylinder = cylinder;
+	poly.cylinder = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
+	poly.cylinder->pos = cylinder->pos;
+	poly.cylinder->norm = cylinder->norm;
+	poly.cylinder->diameter = cylinder->diameter;
+	poly.cylinder->height = cylinder->height;
+	poly.cylinder->color = cylinder->color;
+	// poly.cylinder->phong = cylinder->phong;
+	// poly.cylinder->transform = cylinder->transform;
+	poly.cylinder->next = cylinder->next;
 	return (poly);
 }
 
@@ -66,6 +81,13 @@ t_polys		insert_triangle(t_triangle *triangle)
 	t_polys poly;
 
 	poly.obj_type = TRIANGLE;
-	poly.triangle = triangle;
+	poly.triangle = (t_triangle *)ec_malloc(sizeof(t_triangle));
+	poly.triangle->color = triangle->color;
+	poly.triangle->p1 = triangle->p1;
+	poly.triangle->p2 = triangle->p2;
+	poly.triangle->p3 = triangle->p3;
+	// poly.triangle->transform = triangle->transform;
+	// poly.triangle->phong = triangle->phong;
+	poly.triangle->next = triangle->next;
 	return (poly);
 }

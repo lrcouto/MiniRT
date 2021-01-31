@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 19:39:51 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/24 19:41:46 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 20:48:50 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,26 @@ void				render_plane_transform(t_plane *plane)
 	plane->transform = transform;
 	free_matrix(translate);
 	free_matrix(rotate);
+}
+
+void				render_square_transform(t_square *square)
+{
+	t_matrix	translate;
+	t_matrix	rotate;
+	t_matrix	scale;
+	t_matrix	transform;
+	double		half_side;
+
+	half_side = square->side * 0.5;
+	translate = translation(square->center.x,
+		square->center.y, square->center.z);
+	rotate = normal_rotation_matrix(square->norm);
+	transform = mult_matrix(translate, rotate);
+	free_matrix(translate);
+	scale = scaling(half_side, half_side, half_side);
+	translate = mult_matrix(scale, transform);
+	square->transform = translate;
+	free_matrix(rotate);
+	free_matrix(transform);
+	free_matrix(scale);
 }
