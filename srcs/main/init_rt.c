@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 20:42:45 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 18:47:57 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 static void		init_polys(t_rt *rt)
 {
-	rt->sphere = NULL;
+	rt->sphere =  NULL;
 	rt->square = NULL;
 	rt->plane = NULL;
 	rt->cylinder = NULL;
 	rt->triangle = NULL;
-	// init_sphere(rt);
-	// init_plane(rt);
-	// // init_square(rt);
-	// init_cylinder(rt);
-	// init_triangle(rt);
 }
 
 static void		init_light(t_rt *rt)
@@ -81,6 +76,8 @@ void			init_rt(t_rt *rt)
 	ambi.color.g = 0;
 	rt->reso = reso;
 	rt->ambi = ambi;
+	rt->ray_bounce = 5;
+	rt->savefile = 0;
 	init_camera(rt);
 	init_light(rt);
 	init_polys(rt);

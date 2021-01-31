@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 18:54:10 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 16:10:00 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 	t_color		color;
 	t_rgba		lt_output;
 	t_comps		comps;
+	int			bounce_limit;
 
+	bounce_limit = rt->ray_bounce;
 	if (rc->hit)
 	{
 		prepare_computations(&comps, rt, rc);
-		lt_output = shade_hit(comps, rt);
+		lt_output = shade_hit(comps, rt, bounce_limit);
 		normalize_pixel_color(&lt_output);
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
@@ -76,6 +78,8 @@ void				canvas(t_rt *rt)
 	mlx.img = mlx_new_image(mlx.mlx, rt->reso.width, rt->reso.height);
 	mlx.address = mlx_get_data_addr(mlx.img, &mlx.bpp,
 	&mlx.line_leng, &mlx.endian);
+	if (rt->savefile == 1)
+		create_file("savedimage");
 	raycaster(rt, &mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	free_lists(rt);

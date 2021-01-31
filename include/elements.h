@@ -76,6 +76,7 @@ typedef struct 			s_phong
 	double				ambient;
 	double				specular;
 	double				shininess;
+	double				reflect;
 }						t_phong;
 
 /*
@@ -144,9 +145,11 @@ typedef struct			s_plane
 typedef struct			s_square
 {
 	t_tuple				center;
-	double				norm;
+	t_tuple				norm;
 	double				side;
 	t_color				color;
+	t_phong				phong;
+	t_matrix			transform;
 	struct s_square		*next;
 }						t_square;
 

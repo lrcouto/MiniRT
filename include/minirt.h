@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/24 19:45:30 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 17:42:12 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct		s_rt
 	t_square		*square;
 	t_cylinder		*cylinder;
 	t_triangle		*triangle;
+	int				ray_bounce;
+	int				savefile;
 }					t_rt;
 
 /*
@@ -93,9 +95,44 @@ typedef struct		s_comps
 	t_phong			phong;
 	t_tuple			eye_vec;
 	t_tuple			normal_vec;
+	t_tuple			reflect_vec;
 	t_tuple			over_point;
 	int				inside;
 }					t_comps;
+
+/*
+** Stores data for a standard . bmp file header.
+*/
+
+typedef struct		s_bmpheader
+{
+	uint16_t		type;
+	uint32_t		size;
+	uint16_t		reserved1;
+	uint16_t		reserved2;
+	uint32_t		offset;
+	uint32_t		dib_header_size;
+	int32_t			width_px;
+	int32_t			height_px;
+	uint16_t		num_planes;
+	uint16_t		bpp;
+	uint32_t		compression;
+	uint32_t		img_size_bytes;
+	int32_t			x_resolution_ppm;
+	int32_t			y_resolution_ppm;
+	uint32_t		num_colors;
+	uint32_t		important_colors;
+}					t_bmpheader;
+
+/*
+** Stores data for a .bmp file.
+*/
+
+typedef struct		s_bmpfile
+{
+	t_bmpheader		header;
+	unsigned char	*data;
+}					t_bmpfile;
 
 /*
 ** General parsing and error handling functions.
@@ -175,8 +212,10 @@ int					get_plane_color(char *line, int check, int i,
 void				get_square(char *line, t_rt *rt);
 int					get_square_center(char *line, int check, int i,
 					t_square *light);
+int					get_square_norm(char *line, int check, int i,
+					t_square *square);
 int					get_square_color(char *line, int check, int i,
-					t_square *light);
+					t_square *square);
 int					get_square_side(char *line, int check, int i,
 					t_square *square);
 
@@ -270,6 +309,7 @@ int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
 void				normalize_pixel_color(t_rgba *lt_output);
 void				loading_bar(double percent, int total);
+int					create_file(char *name);
 
 /*
 ** Core render functions.
@@ -283,11 +323,13 @@ t_tuple				plane_normal(t_plane *plane, t_tuple w_point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
 t_rgba				lighting(t_comps comps, t_light *current_light, int in_shadow);
 void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
-t_rgba				shade_hit(t_comps comps, t_rt *rt);
+t_rgba				shade_hit(t_comps comps, t_rt *rt, int bounce);
 t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
 void				camera_pixel_size(t_rt *rt, t_cam *cam);
 t_ray				ray_for_pixel(t_cam *cam, int x, int y);
 int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
+t_rgba				reflect_color(t_comps comps, t_rt *rt, int bounce);
+t_rgba				color_at(t_rt *rt, t_ray ray, int bounce);
 
 /*
 ** Polygon rendering functions.
@@ -295,8 +337,10 @@ int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
 
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
+void				intersect_all_squares(t_rt *rt, t_raycaster *rc);
 void				render_sphere_transform(t_sphere *sphere);
 void				render_plane_transform(t_plane *plane);
+void				render_square_transform(t_square *square);
 t_matrix			normal_rotation_matrix(t_tuple normal);
 
 #endif

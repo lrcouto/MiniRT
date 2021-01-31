@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 16:31:04 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 19:24:56 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/01/30 16:40:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,21 @@ void			intersect_all_planes(t_rt *rt, t_raycaster *rc)
 	}
 }
 
+void			intersect_all_squares(t_rt *rt, t_raycaster *rc)
+{
+	t_square	*current_square;
+
+	current_square = rt->square;
+	while (current_square)
+	{
+		intersect_square(rc->ray, current_square, rc->intersec_list);
+		current_square = current_square->next;
+	}
+}
+
 void			intersect_all_polys(t_rt *rt, t_raycaster *rc)
 {
 	intersect_all_spheres(rt, rc);
 	intersect_all_planes(rt, rc);
+	intersect_all_squares(rt, rc);
 }

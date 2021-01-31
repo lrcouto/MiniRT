@@ -24,15 +24,18 @@ static void	get_poly_props(t_polys poly, t_comps *comps)
 		comps->normal_vec = normal_at(poly.plane->transform, comps->position, poly);
 		comps->phong = poly.plane->phong;
 	}
-	// if (poly.obj_type == SQUARE)
-	// 	return normal_at(poly.square->transform, position);
+	if (poly.obj_type == SQUARE)
+	{
+		comps->normal_vec = normal_at(poly.square->transform, comps->position, poly);
+		comps->phong = poly.square->phong;
+	}
 	// if (poly.obj_type == CYLINDER)
 	// 	return normal_at(poly.cylinder->transform, position);
 	// if (poly.obj_type == TRIANGLE)
 	// 	return normal_at(poly.triangle->transform, position);
 }
 
-void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
+void			 prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 {
 	comps->light = rt->light;
 	comps->t = rc->hit->t;
@@ -48,11 +51,12 @@ void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 	}
 	else
 		comps->inside = 0;
+	comps->reflect_vec = reflect(rc->ray.direction, comps->normal_vec);
 	comps->over_point = add_tuple(comps->position,
 		scalar_x_tuple(comps->normal_vec, EPSILON));
 }
 
-t_rgba			shade_hit(t_comps comps, t_rt *rt)
+t_rgba			shade_hit(t_comps comps, t_rt *rt, int bounce)
 {
 	t_light	*lt;
 	t_rgba	lt_color;
@@ -65,6 +69,7 @@ t_rgba			shade_hit(t_comps comps, t_rt *rt)
 		lt_color = add_color(lt_color, lighting(comps, lt, is_shadowed(comps, rt, lt)));
 		lt = lt->next;
 	}
+	lt_color = add_color(lt_color, reflect_color(comps, rt, bounce));
 	return (lt_color);
 }
 
