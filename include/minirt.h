@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 15:55:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/02 23:20:02 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,7 @@ typedef struct		s_bmpheader
 {
 	uint16_t		type;
 	uint32_t		size;
-	uint16_t		reserved1;
-	uint16_t		reserved2;
+	uint16_t		reserved;
 	uint32_t		offset;
 	uint32_t		dib_header_size;
 	int32_t			width_px;
@@ -123,16 +122,6 @@ typedef struct		s_bmpheader
 	uint32_t		num_colors;
 	uint32_t		important_colors;
 }					t_bmpheader;
-
-/*
-** Stores data for a .bmp file.
-*/
-
-typedef struct		s_bmpfile
-{
-	t_bmpheader		header;
-	unsigned char	*data;
-}					t_bmpfile;
 
 /*
 ** General parsing and error handling functions.
@@ -309,7 +298,7 @@ int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
 void				normalize_pixel_color(t_rgba *lt_output);
 void				loading_bar(double percent, int total);
-int					create_file(char *name);
+void				create_bmp(t_rt *rt, t_mlx *mlx);
 
 /*
 ** Core render functions.

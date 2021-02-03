@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 16:10:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/02 21:49:08 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,18 @@ void				canvas(t_rt *rt)
 		rt->reso.height = max_y;
 	if (rt->reso.width < 1 || rt->reso.height < 1)
 		errormsg(3);
-	mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
-	rt->reso.height, "MiniRT");
 	mlx.img = mlx_new_image(mlx.mlx, rt->reso.width, rt->reso.height);
 	mlx.address = mlx_get_data_addr(mlx.img, &mlx.bpp,
 	&mlx.line_leng, &mlx.endian);
-	if (rt->savefile == 1)
-		create_file("savedimage");
 	raycaster(rt, &mlx);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+	if (rt->savefile == 1)
+		create_bmp(rt, &mlx);
+	else
+	{
+		mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
+		rt->reso.height, "MiniRT");
+		mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+	}
 	free_lists(rt);
 	mlx_hook(mlx.win, 17, 1L << 17, close_program, 0);
 	mlx_key_hook(mlx.win, close_wndw, &mlx);
