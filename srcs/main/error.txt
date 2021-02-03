@@ -36,3 +36,4 @@ ERROR: W parameter of a tuple can be only 1 for a point or 0 for a vector. You c
 ERROR: W parameter negate_tuple output can only be 0, 1 or -1;
 ERROR: Normalized color parameters must be between 0 and 1;
 ERROR: Determinant value is zero, resulting in a singular matrix i.e. a matrix that cannot be inverted. Please retry with a different input value.
+ERROR: Failed to create .bmp file.
