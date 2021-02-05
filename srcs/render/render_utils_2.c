@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 17:27:38 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/049:19:10:27 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_tuple			normal_object_type(t_polys poly, t_tuple o_point)
 	else if (poly.obj_type == CYLINDER)
 		return (get_cylinder_normal(poly, o_point));
 	else if (poly.obj_type == TRIANGLE)
-		return (create_tuple(0, 1, 0, 0));
+		return (normalize_v(cross_product(poly.triangle->edgevec_2, poly.triangle->edgevec_1)));
 	else
 		return (create_tuple(0, 0, 0, 0));
 }

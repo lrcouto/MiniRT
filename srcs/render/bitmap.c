@@ -12,15 +12,6 @@
 
 #include "../../include/minirt.h"
 
-static void		write_bitmap(t_rt *rt, t_mlx *mlx, int fd)
-{
-	int		y;
-
-	y = rt->reso.height;
-	while (--y >= 0)
-		write(fd, &mlx->address[y * mlx->line_leng], mlx->line_leng);
-}
-
 static void		write_bmpheader(int fd, t_bmpheader header)
 {
 	write(fd, &header.type, 2);
@@ -65,7 +56,7 @@ static int		create_file(char *name)
 	char	*filename;
 
 	filename = ft_strjoin(name, ".bmp");
-	if (!(fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC | S_IRUSR | S_IWUSR, 0777)))
+	if (!(fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC , 0666)))
 		errormsg(38);
 	free(filename);
 	return (fd);
@@ -77,16 +68,24 @@ void	create_bmp(t_rt *rt, t_mlx *mlx)
 	char		*number;
 	t_bmpheader	header;
 	int			fd;
+	int			y;
 
 	number = ft_itoa(rt->qts.cam);
 	name = ft_strjoin("camera_", number);
 	rt->qts.cam = rt->qts.cam - 1;
+	y = rt->reso.height;
 	fd = create_file(name);
 	create_bmpheader(rt, &header);
 	write_bmpheader(fd, header);
-	write_bitmap(rt, mlx, fd);
+	while (--y >= 0)
+		if (!(write(fd, &mlx->address[y * mlx->line_leng],
+		mlx->line_leng)))
+			errormsg(39);
 	close(fd);
 	free(number);
 	free(name);
 	exit(0);
 }
+
+
+

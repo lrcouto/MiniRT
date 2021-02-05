@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_triangle_color.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:05:37 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/02/04 18:44:26 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_triangle *triangle)
 	if (check != 12)
 		errormsg(29);
 	triangle->color = fill_color(rgb[0], rgb[1], rgb[2]);
+	triangle->phong = default_phong();
+	triangle->phong.color = normalize_color(rgb[0], rgb[1], rgb[2]);
 	free(rgb);
 	return (check);
 }

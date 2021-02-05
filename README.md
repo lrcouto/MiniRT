@@ -99,7 +99,9 @@ January 30th 2021 - We implemented squares, after struggling a bit to find a way
 
 January 31st 2021 - Cylinders are now implemented and functional. Now triangles are the only mandatory primitive left to implement. Looking forward to seeing if our little raytracer can handle some more complex models.
 
-February 2nd 20201 - Wrote the functions to have the option to save our render as a .bmp file. It was more straightforward than I thought it would be, which was a pleasant surprise.
+February 2nd 2021 - Wrote the functions to have the option to save our render as a .bmp file. It was more straightforward than I thought it would be, which was a pleasant surprise.
+
+February 4th 2021 - Triangles are implemented, and I can't wait to try our little raytracer on some more complex models!
 ___
 
 </details>

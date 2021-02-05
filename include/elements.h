@@ -180,8 +180,16 @@ typedef struct			s_triangle
 	t_tuple				p2;
 	t_tuple				p3;
 	t_color				color;
+	t_phong				phong;
+	t_tuple				edgevec_1;
+	t_tuple				edgevec_2;
+	t_matrix			transform;
 	struct s_triangle	*next;
 }						t_triangle;
+
+/*
+** Initializes phong material with default values.
+*/
 
 t_phong					default_phong(void);
 
