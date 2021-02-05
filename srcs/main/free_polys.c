@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:02:17 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 14:43:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:42:209 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_triangle(t_rt *rt)
 	{
 		tmp_triangle = current;
 		current = current->next;
+		free_matrix(tmp_triangle->transform);
 		free(tmp_triangle);
 	}
 }

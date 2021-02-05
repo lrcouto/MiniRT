@@ -6,11 +6,25 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:11:17 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/01/23 20:32:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 18:52:2:14 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+static void		push_new_triangle(t_triangle *current, t_triangle *new_triangle)
+{
+	current->next = (t_triangle *)ec_malloc(sizeof(t_triangle));
+	current->next->p1 = new_triangle->p1;
+	current->next->p2 = new_triangle->p2;
+	current->next->p3 = new_triangle->p3;
+	current->next->color = new_triangle->color;
+	current->next->phong = new_triangle->phong;
+	current->next->transform = new_triangle->transform;
+	current->next->edgevec_1 = new_triangle->edgevec_1;
+	current->next->edgevec_2 = new_triangle->edgevec_2;
+	current->next->next = new_triangle->next;
+}
 
 static void		push_triangle(t_rt *rt, t_triangle *new_triangle)
 {
@@ -26,17 +40,16 @@ static void		push_triangle(t_rt *rt, t_triangle *new_triangle)
 		rt->triangle->p3 = new_triangle->p3;
 		rt->triangle->color = new_triangle->color;
 		rt->triangle->next = new_triangle->next;
+		rt->triangle->transform = new_triangle->transform;
+		rt->triangle->edgevec_1 = new_triangle->edgevec_1;
+		rt->triangle->edgevec_2 = new_triangle->edgevec_2;
+		rt->triangle->phong = new_triangle->phong;
 		rt->qts.tr = rt->qts.tr + 1;
 		return ;
 	}
 	while (current->next != NULL)
 		current = current->next;
-	current->next = (t_triangle *)ec_malloc(sizeof(t_triangle));
-	current->next->p1 = new_triangle->p1;
-	current->next->p2 = new_triangle->p2;
-	current->next->p3 = new_triangle->p3;
-	current->next->color = new_triangle->color;
-	current->next->next = new_triangle->next;
+	push_new_triangle(current, new_triangle);
 	rt->qts.tr = rt->qts.tr + 1;
 }
 
@@ -93,6 +106,9 @@ void			get_triangle(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	triangle_loop(line, i, check, triangle);
+	triangle->edgevec_1 = subtract_tuple(triangle->p2,triangle->p1);
+	triangle->edgevec_2 = subtract_tuple(triangle->p3,triangle->p1);
+	triangle->transform = create_id_matrix();
 	push_triangle(rt, triangle);
 	free(triangle);
 }

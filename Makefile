@@ -6,11 +6,11 @@
 #    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2021/01/31 15:53:16 by lcouto           ###   ########.fr        #
+#    Updated: 2021/02/04 20:52:09 by lcouto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = MiniRT
+NAME = miniRT
 
 HEADERS = include
 
@@ -39,7 +39,8 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c /
 #			ray_ops_1.c ray_ops_2.c ray_ops_3.c ray_ops_4.c intersect_sphere.c /
-#			intersect_plane.c intersect_square.c intersect_cylinder.c
+#			intersect_plane.c intersect_square.c intersect_cylinder.c /
+#			intersect_triangle.c
 #
 # tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
 #			ray_test.c scene_test.c

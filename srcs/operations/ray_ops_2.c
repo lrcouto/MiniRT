@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_ops_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 19:48:46 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 14:36:04 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:003:17 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ t_polys		insert_triangle(t_triangle *triangle)
 	poly.triangle->p1 = triangle->p1;
 	poly.triangle->p2 = triangle->p2;
 	poly.triangle->p3 = triangle->p3;
-	// poly.triangle->transform = triangle->transform;
-	// poly.triangle->phong = triangle->phong;
+	poly.triangle->edgevec_1 = triangle->edgevec_1;
+	poly.triangle->edgevec_2 = triangle->edgevec_2;
+	poly.triangle->transform = triangle->transform;
+	poly.triangle->phong = triangle->phong;
 	poly.triangle->next = triangle->next;
 	return (poly);
 }

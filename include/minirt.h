@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/02 23:20:02 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 20:02:40 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,7 +328,8 @@ t_rgba				color_at(t_rt *rt, t_ray ray, int bounce);
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
 void				intersect_all_squares(t_rt *rt, t_raycaster *rc);
-void				intersect_all_cylinder(t_rt *rt, t_raycaster *rc);
+void				intersect_all_cylinders(t_rt *rt, t_raycaster *rc);
+void				intersect_all_triangle(t_rt *rt, t_raycaster *rc);
 void				render_sphere_transform(t_sphere *sphere);
 void				render_plane_transform(t_plane *plane);
 void				render_square_transform(t_square *square);

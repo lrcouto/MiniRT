@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:06:33 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 14:38:06 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:53:005 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_intersec *head);
 void					intersect_square(t_ray ray, t_square *square,
 t_intersec *head);
 void					intersect_cylinder(t_ray ray, t_cylinder *cylinder,
+t_intersec *head);
+void					intersect_triangle(t_ray ray, t_triangle *triangle,
 t_intersec *head);
 
 #endif

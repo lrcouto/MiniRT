@@ -34,8 +34,11 @@ static void	get_poly_props(t_polys poly, t_comps *comps)
 		comps->normal_vec = normal_at(poly.cylinder->transform, comps->position, poly);
 		comps->phong = poly.cylinder->phong;
 	}
-	// if (poly.obj_type == TRIANGLE)
-	// 	return normal_at(poly.triangle->transform, position);
+	if (poly.obj_type == TRIANGLE)
+	{
+		comps->normal_vec = normal_at(poly.triangle->transform, comps->position, poly);
+		comps->phong = poly.triangle->phong;
+	}
 }
 
 void			 prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)

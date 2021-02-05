@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 21:07:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/04 20:44:35 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 /*
 ** TO DO:
-** - Salvar arquivo em .bmp
 ** - Guardar imagens de múltiplas câmeras
-** - Cilindros
-** - Triângulos
+** - Lembrar de deixar todos os parametros
+**   no modo "básico" para a entrega.
 ** 
 ** WISHLIST:
 ** - Associar o material ao arquivo .rt
@@ -76,6 +75,7 @@ int			main(int argc, char **argv)
 		rt_identify(line, &rt);
 		free(line);
 	}
+	rt_identify(line, &rt);
 	free(line);
 	canvas(&rt);
 	return (0);
