@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:44:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 02:55:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			init_rt(t_rt *rt)
 	ambi.color.g = 0;
 	rt->reso = reso;
 	rt->ambi = ambi;
-	rt->ray_bounce = 5;
+	rt->ray_bounce = 0;
 	rt->savefile = 0;
 	init_camera(rt);
 	init_light(rt);

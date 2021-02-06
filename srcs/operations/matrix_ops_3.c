@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 22:27:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/16 19:25:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 20:53:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,22 @@ t_matrix	invert_matrix(t_matrix mat)
 	t_matrix		new;
 	t_matrix		transp;
 	double			det;
-	size_t			i;
-	size_t			j;
+	size_t			idx[2];
 
 	det = det_4x4(mat);
 	if (det == 0)
 		errormsg(37);
 	new = create_matrix(mat.row, mat.col);
-	i = 0;
-	while (i < mat.row)
+	idx[0] = 0;
+	while (idx[0] < mat.row)
 	{
-		j = 0;
-		while (j < mat.col)
+		idx[1] = 0;
+		while (idx[1] < mat.col)
 		{
-			new.matrix[i][j] = cofactor_4x4(mat, i, j);
-			j++;
+			new.matrix[idx[0]][idx[1]] = cofactor_4x4(mat, idx[0], idx[1]);
+			idx[1]++;
 		}
-		i++;
+		idx[0]++;
 	}
 	transp = transpose_matrix(new);
 	free_matrix(new);
