@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 14:31:06 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 14:32:25 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:00:06 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int		get_z_norm(char *line, int check, int *idx, double *xyz)
 	return (check);
 }
 
-int				get_cylinder_norm(char *line, int check, int i, t_cylinder *cylinder)
+int				get_cylinder_norm(char *line, int check, int i,
+t_cylinder *cylinder)
 {
 	double	*xyz;
 	int		*idx;

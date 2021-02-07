@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:48:44 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 16:06:31 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 20:57:03 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ t_cylinder *cylinder)
 	cylinder->radius = diameter / 2;
 	return (check);
 }
-
