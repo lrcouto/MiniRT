@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 19:05:04 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/100 19:06:19:03 by lcouto           ###   ########.fr       */
+/*   Created: 2021/02/06 20:14:42 by lcouto            #+#    #+#             */
+/*   Updated: 2021/02/06 20:54:30 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_intersec *head)
 	t_ray			tformed;
 	t_matrix		invert;
 
-	invert = invert_matrix(sphere->transform); // maybe invert when sphere its created
+	invert = invert_matrix(sphere->transform);
 	tformed = transform_ray(ray, invert);
 	free_matrix(invert);
 	sphere_to_ray = subtract_tuple(tformed.origin, create_tuple(0, 0, 0, 1));

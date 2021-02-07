@@ -6,13 +6,13 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 19:39:51 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:02:40 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-t_matrix		normal_rotation_matrix(t_tuple normal)
+t_matrix			normal_rotation_matrix(t_tuple normal)
 {
 	double		angle;
 	double		vals[3];

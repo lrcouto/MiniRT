@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 16:52:34 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 18:002:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:02:58 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ t_phong		default_phong(void)
 	new.reflect = 0.2;
 	return (new);
 }
-
-
 
 static void	set_light_params(t_comps *args, t_ltparams *params, t_light *lt)
 {

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 19:05:02 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/30 18:46:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 20:13:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ t_intersec *head)
 	t_matrix		invert;
 
 	if (fabs(ray.direction.y) < EPSILON)
-		return;
-
-	invert = invert_matrix(plane->transform); // maybe invert when sphere its created
+		return ;
+	invert = invert_matrix(plane->transform);
 	tformed = transform_ray(ray, invert);
 	free_matrix(invert);
 	t = (-1 * tformed.origin.y) / tformed.direction.y;

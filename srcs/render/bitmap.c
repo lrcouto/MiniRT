@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:08:34 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/02 21:47:011 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:02:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		write_bmpheader(int fd, t_bmpheader header)
 	write(fd, &header.important_colors, 4);
 }
 
-static void	create_bmpheader(t_rt *rt, t_bmpheader *header)
+static void		create_bmpheader(t_rt *rt, t_bmpheader *header)
 {
 	header->type = 0x4D42;
 	header->size = ((rt->reso.width + rt->reso.height) * 4) + 54;
@@ -56,15 +56,15 @@ static int		create_file(char *name)
 	char	*filename;
 
 	filename = ft_strjoin(name, ".bmp");
-	if (!(fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC , 0666)))
+	if (!(fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0666)))
 		errormsg(38);
 	free(filename);
 	return (fd);
 }
 
-void	create_bmp(t_rt *rt, t_mlx *mlx)
+void			create_bmp(t_rt *rt, t_mlx *mlx)
 {
-	char 		*name;
+	char		*name;
 	char		*number;
 	t_bmpheader	header;
 	int			fd;
@@ -86,6 +86,3 @@ void	create_bmp(t_rt *rt, t_mlx *mlx)
 	free(name);
 	exit(0);
 }
-
-
-

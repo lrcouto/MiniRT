@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:11:17 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/04 18:52:2:14 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:00:22 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void			get_triangle(char *line, t_rt *rt)
 	check = 0;
 	i = 2;
 	triangle_loop(line, i, check, triangle);
-	triangle->edgevec_1 = subtract_tuple(triangle->p2,triangle->p1);
-	triangle->edgevec_2 = subtract_tuple(triangle->p3,triangle->p1);
+	triangle->edgevec_1 = subtract_tuple(triangle->p2, triangle->p1);
+	triangle->edgevec_2 = subtract_tuple(triangle->p3, triangle->p1);
 	triangle->transform = create_id_matrix();
 	push_triangle(rt, triangle);
 	free(triangle);

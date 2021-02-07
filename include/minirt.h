@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:02:40 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,5 +335,7 @@ void				render_plane_transform(t_plane *plane);
 void				render_square_transform(t_square *square);
 void				render_cylinder_transform(t_cylinder *cylinder);
 t_matrix			normal_rotation_matrix(t_tuple normal);
+void				intersect_caps(t_cylinder *cylinder, t_ray ray,
+					t_intersec *head);
 
 #endif

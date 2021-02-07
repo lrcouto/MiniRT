@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:44:35 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** - Guardar imagens de múltiplas câmeras
 ** - Lembrar de deixar todos os parametros
 **   no modo "básico" para a entrega.
-** 
+**
 ** WISHLIST:
 ** - Associar o material ao arquivo .rt
 ** - Associais limitador da recursão ao arquivo .rt
@@ -47,6 +47,12 @@ static void	valid_rtfile(char *filename)
 	errormsg(30);
 }
 
+static void	check_savefile(t_rt *rt, char *arg)
+{
+	if (arg && (ft_strncmp(arg, "--save", 7) == 0))
+		rt->savefile = 1;
+}
+
 /*
 ** Test functions need to be removed before final push.
 */
@@ -60,11 +66,10 @@ int			main(int argc, char **argv)
 	init_rt(&rt);
 	if (argc == 1)
 		errormsg(0);
-	else if (argc == 2 || (argc == 3 && 
+	else if (argc == 2 || (argc == 3 &&
 	(ft_strncmp(argv[2], "--save", 7) == 0)))
 	{
-		if (argv[2] && (ft_strncmp(argv[2], "--save", 7) == 0))
-			rt.savefile = 1;
+		check_savefile(&rt, argv[2]);
 		valid_rtfile(argv[1]);
 		fd = open(argv[1], O_RDONLY);
 	}
