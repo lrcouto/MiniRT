@@ -3,52 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   scene_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 16:51:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/10 17:225:05 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/02/06 21:34:47 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void	get_poly_props(t_polys poly, t_comps *comps)
+static void		get_poly_props(t_polys poly, t_comps *comps)
 {
 	if (poly.obj_type == SPHERE)
 	{
-		comps->normal_vec = normal_at(poly.sphere->transform, comps->position, poly);
+		comps->normal_vec = normal_at(poly.sphere->transform,
+			comps->position, poly);
 		comps->phong = poly.sphere->phong;
 	}
 	if (poly.obj_type == PLANE)
 	{
-		comps->normal_vec = normal_at(poly.plane->transform, comps->position, poly);
+		comps->normal_vec = normal_at(poly.plane->transform,
+			comps->position, poly);
 		comps->phong = poly.plane->phong;
 	}
 	if (poly.obj_type == SQUARE)
 	{
-		comps->normal_vec = normal_at(poly.square->transform, comps->position, poly);
+		comps->normal_vec = normal_at(poly.square->transform,
+			comps->position, poly);
 		comps->phong = poly.square->phong;
 	}
 	if (poly.obj_type == CYLINDER)
 	{
-		comps->normal_vec = normal_at(poly.cylinder->transform, comps->position, poly);
+		comps->normal_vec = normal_at(poly.cylinder->transform,
+			comps->position, poly);
 		comps->phong = poly.cylinder->phong;
 	}
 	if (poly.obj_type == TRIANGLE)
 	{
-		comps->normal_vec = normal_at(poly.triangle->transform, comps->position, poly);
+		comps->normal_vec = normal_at(poly.triangle->transform,
+			comps->position, poly);
 		comps->phong = poly.triangle->phong;
 	}
 }
 
-void			 prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
+void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 {
 	comps->light = rt->light;
 	comps->t = rc->hit->t;
 	comps->poly = rc->hit->poly;
 	comps->position = ray_position(rc->ray, comps->t);
 	comps->eye_vec = negate_tuple(rc->ray.direction);
-	// checar type do poly para pegar a normal correta
 	get_poly_props(comps->poly, comps);
 	if (dot_product(comps->normal_vec, comps->eye_vec) < 0)
 	{
@@ -72,7 +76,8 @@ t_rgba			shade_hit(t_comps comps, t_rt *rt, int bounce)
 	lt = lt->next;
 	while (lt)
 	{
-		lt_color = add_color(lt_color, lighting(comps, lt, is_shadowed(comps, rt, lt)));
+		lt_color = add_color(lt_color, lighting(comps, lt,
+		is_shadowed(comps, rt, lt)));
 		lt = lt->next;
 	}
 	lt_color = add_color(lt_color, reflect_color(comps, rt, bounce));

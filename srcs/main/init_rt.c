@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 02:55:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/06 21:07:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		init_polys(t_rt *rt)
 {
-	rt->sphere =  NULL;
+	rt->sphere = NULL;
 	rt->square = NULL;
 	rt->plane = NULL;
 	rt->cylinder = NULL;
