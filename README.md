@@ -102,6 +102,8 @@ January 31st 2021 - Cylinders are now implemented and functional. Now triangles 
 February 2nd 2021 - Wrote the functions to have the option to save our render as a .bmp file. It was more straightforward than I thought it would be, which was a pleasant surprise.
 
 February 4th 2021 - Triangles are implemented, and I can't wait to try our little raytracer on some more complex models!
+
+February 6th 2021 - Took some time to fix the Norme, which is almost done except for some rendering functions that we are still going to tweak anyway. Tested our render on a classic Utah Teapot model and it worked decently, though it was painfully slow.
 ___
 
 </details>
