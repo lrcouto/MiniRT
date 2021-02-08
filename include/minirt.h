@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/07 16:444:54 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,9 @@ typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
-	char			*address;
-	int				bpp;
-	int				line_leng;
-	int				endian;
+	t_cam			*cam;
+	t_cam			*begin;
+	t_rt			*rt;
 }					t_mlx;
 
 /*
@@ -190,7 +188,8 @@ int					get_sphere_color(char *line, int check, int i,
 
 void				get_plane(char *line, t_rt *rt);
 int					get_plane_pos(char *line, int check, int i, t_plane *light);
-int					get_plane_norm(char *line, int check, int i, t_plane *plane);
+int					get_plane_norm(char *line, int check, int i,
+					t_plane *plane);
 int					get_plane_color(char *line, int check, int i,
 					t_plane *light);
 
@@ -287,32 +286,37 @@ void				test_multiple_transforms(void);
 void				test_view_transformation(void);
 void				ray_for_pixel_cam_test(t_rt *rt);
 
-
 /*
 ** Render utilities.
 */
 
-void				ft_pixelput(t_mlx *mlx, int x, int y, int color);
+void				ft_pixelput(t_cam *cam,
+					int *coords, int color);
 int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
+int					next_cam(int keycode, t_mlx *mlx);
 void				normalize_pixel_color(t_rgba *lt_output);
 void				loading_bar(double percent, int total);
-void				create_bmp(t_rt *rt, t_mlx *mlx);
+void				create_bmp(t_rt *rt, t_cam *cam);
 
 /*
 ** Core render functions.
 */
 
 void				canvas(t_rt *rt);
-void				raycaster(t_rt *rt, t_mlx *mlx);
+void				raycaster(t_rt *rt, t_cam *cam);
+void				cast_pixel(t_raycaster *rc, t_rt *rt,
+					t_cam *cam);
 t_tuple				normal_at(t_matrix transform, t_tuple point, t_polys poly);
 t_tuple				get_poly_o_normal(t_polys poly, t_tuple o_point);
 t_tuple				normal_object_type(t_polys poly, t_tuple o_point);
 t_tuple				plane_normal(t_plane *plane, t_tuple w_point);
 t_tuple				reflect(t_tuple in, t_tuple normal);
-t_rgba				lighting(t_comps comps, t_light *current_light, int in_shadow);
-void				prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc);
+t_rgba				lighting(t_comps comps, t_light *current_light,
+					int in_shadow);
+void				prepare_computations(t_comps *comps, t_rt *rt,
+					t_raycaster *rc);
 t_rgba				shade_hit(t_comps comps, t_rt *rt, int bounce);
 t_matrix			view_transform(t_tuple from, t_tuple to, t_tuple up);
 void				camera_pixel_size(t_rt *rt, t_cam *cam);
@@ -320,6 +324,7 @@ t_ray				ray_for_pixel(t_cam *cam, int x, int y);
 int					is_shadowed(t_comps comps, t_rt *rt, t_light *light);
 t_rgba				reflect_color(t_comps comps, t_rt *rt, int bounce);
 t_rgba				color_at(t_rt *rt, t_ray ray, int bounce);
+void				create_images(t_rt *rt, t_mlx *mlx);
 
 /*
 ** Polygon rendering functions.

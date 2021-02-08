@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:08:34 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:02:41 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/07 19:222:45 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int		create_file(char *name)
 	return (fd);
 }
 
-void			create_bmp(t_rt *rt, t_mlx *mlx)
+void			create_bmp(t_rt *rt, t_cam *cam)
 {
 	char		*name;
 	char		*number;
@@ -78,11 +78,10 @@ void			create_bmp(t_rt *rt, t_mlx *mlx)
 	create_bmpheader(rt, &header);
 	write_bmpheader(fd, header);
 	while (--y >= 0)
-		if (!(write(fd, &mlx->address[y * mlx->line_leng],
-		mlx->line_leng)))
+		if (!(write(fd, &cam->address[y * cam->line_leng],
+		cam->line_leng)))
 			errormsg(39);
 	close(fd);
 	free(number);
 	free(name);
-	exit(0);
 }
