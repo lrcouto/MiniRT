@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:44:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/07 18:53:23:2 by gsenra-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
+void				cast_pixel(t_raycaster *rc, t_rt *rt,
+t_cam *cam)
 {
 	t_color		color;
 	t_rgba		lt_output;
 	t_comps		comps;
 	int			bounce_limit;
+	int			coord[2];
 
 	bounce_limit = rt->ray_bounce;
+	coord[0] = rc->x;
+	coord[1] = rc->y;
 	if (rc->hit)
 	{
 		prepare_computations(&comps, rt, rc);
@@ -28,14 +32,14 @@ void				cast_pixel(t_raycaster *rc, t_rt *rt, t_mlx *mlx)
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
 		&& rc->x >= 0 && rc->y >= 0)
-			ft_pixelput(mlx, rc->x, rc->y,
+			ft_pixelput(cam, coord,
 			create_trgb(0, color.r, color.g, color.b));
 	}
 	else
-		ft_pixelput(mlx, rc->x, rc->y, create_trgb(0, 0, 0, 0));
+		ft_pixelput(cam, coord, create_trgb(0, 0, 0, 0));
 }
 
-void				raycaster(t_rt *rt, t_mlx *mlx)
+void				raycaster(t_rt *rt, t_cam *cam)
 {
 	t_raycaster	rc;
 
@@ -47,10 +51,10 @@ void				raycaster(t_rt *rt, t_mlx *mlx)
 		{
 			rc.intersec_list = (t_intersec *)ec_malloc(sizeof(t_intersec));
 			rc.intersec_list = init_intersec_list(rc.intersec_list);
-			rc.ray = ray_for_pixel(rt->cam, rc.x, rc.y);
+			rc.ray = ray_for_pixel(cam, rc.x, rc.y);
 			intersect_all_polys(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
-			cast_pixel(&rc, rt, mlx);
+			cast_pixel(&rc, rt, cam);
 			free_intersecs(rc.intersec_list);
 			rc.x = rc.x + 1;
 		}
@@ -73,20 +77,18 @@ void				canvas(t_rt *rt)
 		rt->reso.height = max_y;
 	if (rt->reso.width < 1 || rt->reso.height < 1)
 		errormsg(3);
-	mlx.img = mlx_new_image(mlx.mlx, rt->reso.width, rt->reso.height);
-	mlx.address = mlx_get_data_addr(mlx.img, &mlx.bpp,
-	&mlx.line_leng, &mlx.endian);
-	raycaster(rt, &mlx);
+	create_images(rt, &mlx);
+	mlx.cam = rt->cam;
+	mlx.begin = mlx.cam;
 	if (rt->savefile == 1)
-		create_bmp(rt, &mlx);
+		exit(0);
 	else
 	{
 		mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
 		rt->reso.height, "MiniRT");
-		mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+		mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.cam->img, 0, 0);
 	}
-	free_lists(rt);
 	mlx_hook(mlx.win, 17, 1L << 17, close_program, 0);
-	mlx_key_hook(mlx.win, close_wndw, &mlx);
+	mlx_hook(mlx.win, 2, 1, next_cam, &mlx);
 	mlx_loop(mlx.mlx);
 }

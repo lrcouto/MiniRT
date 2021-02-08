@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:00 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 20:58:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/07 22:22:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ static void		push_new_camera(t_cam *current, t_cam *new_cam)
 	current->next->fov = new_cam->fov;
 	current->next->half_height = new_cam->half_height;
 	current->next->half_width = new_cam->half_width;
+	current->next->pixel_size = new_cam->pixel_size;
 	current->next->origin = new_cam->origin;
 	current->next->transform = new_cam->transform;
+	current->next->img = new_cam->img;
+	current->next->address = new_cam->address;
+	current->next->bpp = new_cam->bpp;
+	current->next->line_leng = new_cam->line_leng;
+	current->next->endian = new_cam->endian;
 	current->next->next = new_cam->next;
 }
 
@@ -41,6 +47,11 @@ static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 		head->half_width = new_cam->half_width;
 		head->pixel_size = new_cam->pixel_size;
 		head->transform = new_cam->transform;
+		head->img = new_cam->img;
+		head->address = new_cam->address;
+		head->bpp = new_cam->bpp;
+		head->line_leng = new_cam->line_leng;
+		head->endian = new_cam->endian;
 		head->next = new_cam->next;
 		rt->qts.cam = rt->qts.cam + 1;
 		return ;

@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:55:21 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 17:19:06 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/07 22:07:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void		ft_pixelput(t_mlx *mlx, int x, int y, int color)
+void		ft_pixelput(t_cam *cam,
+int *coords, int color)
 {
 	char	*dst;
 
-	dst = mlx->address + (y * mlx->line_leng + x * (mlx->bpp / 8));
+	dst = cam->address + (coords[1] * cam->line_leng + coords[0] * (cam->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 

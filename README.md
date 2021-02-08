@@ -104,6 +104,8 @@ February 2nd 2021 - Wrote the functions to have the option to save our render as
 February 4th 2021 - Triangles are implemented, and I can't wait to try our little raytracer on some more complex models!
 
 February 6th 2021 - Took some time to fix the Norme, which is almost done except for some rendering functions that we are still going to tweak anyway. Tested our render on a classic Utah Teapot model and it worked decently, though it was painfully slow.
+
+February 7th 2021 - Our raytracer now renders multiple cameras and is officially done! We still want to do some improvements to the parser so we can individually control material parameters in separate objects, and make it 100% norme-compliant, but this absolute gauntlet of a project is done now.
 ___
 
 </details>

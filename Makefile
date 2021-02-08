@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
+#    By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 14:59:28 by lcouto            #+#    #+#              #
-#    Updated: 2021/02/04 20:52:09 by lcouto           ###   ########.fr        #
+#    Updated: 2021/02/07 21:14:333 by gsenra-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SRCS = srcs
 
 DIR_OBJS = objs
 
-DIRS = main parsing operations tests render
+DIRS = main parsing operations render
 
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
@@ -102,7 +102,6 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 		@mkdir -p objs/parsing
 		@mkdir -p objs/main
 		@mkdir -p objs/operations
-		@mkdir -p objs/tests
 		@mkdir -p objs/render
 		@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
