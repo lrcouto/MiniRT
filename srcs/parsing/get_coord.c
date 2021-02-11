@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_coord.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/02/10 21:11:37 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		verification_loop(char *line, int j)
 {
-	while (line[j] != '.')
+	while (line[j] != '.' && line[j] != '\0')
 	{
 		if (!(line[j] >= '0' && line[j] <= '9'))
 		{
@@ -30,7 +30,7 @@ static int		verification_loop(char *line, int j)
 		while (line[j] >= '0' && line[j] <= '9')
 			j++;
 	}
-	else if (!(line[j] >= '0' && line[j] <= '9'))
+	else if ((!(line[j] >= '0' && line[j] <= '9')) && line[j] != '\0')
 		errormsg(14);
 	return (j);
 }

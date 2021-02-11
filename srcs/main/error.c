@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/05 17:49:52 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/09 22:20:23 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		errormsg(int errornum)
 	else
 		ft_putstr_fd("ERROR: Error file not found", 1);
 	write(1, "\n", 1);
-	close(fd);
+	close(fd); 
 	exit(0);
 }
 

@@ -13,7 +13,7 @@
 #include "../../include/minirt.h"
 
 void				cast_pixel(t_raycaster *rc, t_rt *rt,
-t_cam *cam)
+t_mlx *mlx, t_cam *cam)
 {
 	t_color		color;
 	t_rgba		lt_output;
@@ -32,14 +32,14 @@ t_cam *cam)
 		color = denorm_color(lt_output);
 		if (rc->y <= rt->reso.height && rc->x <= rt->reso.width
 		&& rc->x >= 0 && rc->y >= 0)
-			ft_pixelput(cam, coord,
+			ft_pixelput(cam, coord, mlx,
 			create_trgb(0, color.r, color.g, color.b));
 	}
 	else
-		ft_pixelput(cam, coord, create_trgb(0, 0, 0, 0));
+		ft_pixelput(cam, coord, mlx, create_trgb(0, 0, 0, 0));
 }
 
-void				raycaster(t_rt *rt, t_cam *cam)
+void				raycaster(t_rt *rt, t_mlx *mlx, t_cam *cam)
 {
 	t_raycaster	rc;
 
@@ -54,7 +54,7 @@ void				raycaster(t_rt *rt, t_cam *cam)
 			rc.ray = ray_for_pixel(cam, rc.x, rc.y);
 			intersect_all_polys(rt, &rc);
 			rc.hit = intersec_hit(rc.intersec_list);
-			cast_pixel(&rc, rt, cam);
+			cast_pixel(&rc, rt, mlx, cam);
 			free_intersecs(rc.intersec_list);
 			rc.x = rc.x + 1;
 		}

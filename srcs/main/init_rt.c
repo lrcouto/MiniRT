@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/07 22:07:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 20:19:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,6 @@ static void		init_camera(t_rt *rt)
 	basecam->pos.w = 0;
 	basecam->fov = 0;
 	basecam->origin = create_tuple(0, 0, 0, 1);
-	basecam->endian = 0;
-	basecam->line_leng = 0;
-	basecam->bpp = 0;
 	basecam->next = NULL;
 	rt->cam = basecam;
 }
@@ -79,7 +76,7 @@ void			init_rt(t_rt *rt)
 	ambi.color.g = 0;
 	rt->reso = reso;
 	rt->ambi = ambi;
-	rt->ray_bounce = 0;
+	rt->ray_bounce = 5;
 	rt->savefile = 0;
 	init_camera(rt);
 	init_light(rt);

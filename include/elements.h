@@ -51,9 +51,6 @@ typedef struct			s_cam
 	t_matrix			transform;
 	void				*img;
 	char				*address;
-	int					bpp;
-	int					line_leng;
-	int					endian;
 	struct s_cam		*next;
 }						t_cam;
 
