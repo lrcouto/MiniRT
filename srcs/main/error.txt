@@ -38,3 +38,6 @@ ERROR: Normalized color parameters must be between 0 and 1;
 ERROR: Determinant value is zero, resulting in a singular matrix i.e. a matrix that cannot be inverted. Please retry with a different input value.
 ERROR: Failed to create .bmp file.
 ERROR: Failed to write .bmp file.
+ERROR: Specular value must be between 0.0 and 1.0;
+ERROR: Shininess value must be between 0.0 and 500.0;
+ERROR: Reflection value must be between 0.0. and 1.0;

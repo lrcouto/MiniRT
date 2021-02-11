@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:11:17 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/06 21:00:22 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:22:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ t_triangle *triangle)
 	return (i);
 }
 
-static void		triangle_loop(char *line, int i, int check,
+static int		triangle_loop(char *line, int i, int check,
 t_triangle *triangle)
 {
 	int *chkptr;
 
 	chkptr = &check;
-	while (line[i] != '\0')
+	while (line[i] != '\0' && check < 12)
 	{
 		if (line[i] == ' ')
 			i++;
@@ -94,6 +94,7 @@ t_triangle *triangle)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
+	return (i);
 }
 
 void			get_triangle(char *line, t_rt *rt)
@@ -101,11 +102,17 @@ void			get_triangle(char *line, t_rt *rt)
 	int			i;
 	int			check;
 	t_triangle	*triangle;
+	t_phong		newphong;
 
 	triangle = (t_triangle *)ec_malloc(sizeof(t_triangle));
+	newphong = default_phong();
 	check = 0;
 	i = 2;
-	triangle_loop(line, i, check, triangle);
+	i = triangle_loop(line, i, check, triangle);
+	get_material(&newphong, line, i);
+	triangle->phong.specular = newphong.specular;
+	triangle->phong.shininess = newphong.shininess;
+	triangle->phong.reflect = newphong.reflect;
 	triangle->edgevec_1 = subtract_tuple(triangle->p2, triangle->p1);
 	triangle->edgevec_2 = subtract_tuple(triangle->p3, triangle->p1);
 	triangle->transform = create_id_matrix();

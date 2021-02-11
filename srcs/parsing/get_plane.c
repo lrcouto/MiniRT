@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:37:20 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/24 19:43:26 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:14:44 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		push_plane(t_rt *rt, t_plane *new_plane)
 	rt->qts.pl = rt->qts.pl + 1;
 }
 
-static void		plane_loop(char *line, int i, int check, t_plane *plane)
+static int		plane_loop(char *line, int i, int check, t_plane *plane)
 {
 	while (line[i] != '\0')
 	{
@@ -70,10 +70,13 @@ static void		plane_loop(char *line, int i, int check, t_plane *plane)
 				check = get_plane_color(line, check, i, plane);
 				i = get_index(line, i);
 			}
+			else if (check == 9)
+				break ;
 		}
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
+	return (i);
 }
 
 void			get_plane(char *line, t_rt *rt)
@@ -81,11 +84,17 @@ void			get_plane(char *line, t_rt *rt)
 	int			i;
 	int			check;
 	t_plane		*plane;
+	t_phong		newphong;
 
 	plane = (t_plane *)ec_malloc(sizeof(t_plane));
+	newphong = default_phong();
 	check = 0;
 	i = 2;
-	plane_loop(line, i, check, plane);
+	i = plane_loop(line, i, check, plane);
+	get_material(&newphong, line, i);
+	plane->phong.specular = newphong.specular;
+	plane->phong.shininess = newphong.shininess;
+	plane->phong.reflect = newphong.reflect;
 	render_plane_transform(plane);
 	push_plane(rt, plane);
 	free(plane);

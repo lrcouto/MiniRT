@@ -20,18 +20,17 @@ void	create_images(t_rt *rt, t_mlx *mlx)
 	while (current_cam)
 	{
 		current_cam->img = mlx_new_image(mlx->mlx, rt->reso.width, rt->reso.height);
-		current_cam->address = mlx_get_data_addr(current_cam->img, &current_cam->bpp,
-			&current_cam->line_leng, &current_cam->endian);
-		raycaster(rt, current_cam);
+		current_cam->address = mlx_get_data_addr(current_cam->img, &mlx->bpp,
+			&mlx->line_leng, &mlx->endian);
+		raycaster(rt, mlx, current_cam);
 		if (rt->savefile == 1)
-			create_bmp(rt, current_cam);
+			create_bmp(rt, mlx, current_cam);
 		current_cam = current_cam->next;
 	}
 }
 
 int			next_cam(int keycode, t_mlx *mlx)
 {
-	printf("BEGIN: %p\n", mlx->begin);
 	if (keycode == 0xFF1B)
 		exit(0);
 	if (keycode != 0x20)
@@ -41,7 +40,6 @@ int			next_cam(int keycode, t_mlx *mlx)
 	if (mlx->cam->next)
 	{
 		mlx->cam = mlx->cam->next;
-		printf("SWITCHED CAMERA: %p\n", mlx->cam->img);
 		mlx_put_image_to_window(
 				mlx->mlx, mlx->win, mlx->cam->img, 0, 0);
 	}

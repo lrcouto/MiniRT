@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 13:58:57 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/04 20:02:40 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:19:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ t_square *square)
 	return (i);
 }
 
-static void		square_loop(char *line, int i, int check, t_square *square)
+static int		square_loop(char *line, int i, int check, t_square *square)
 {
 	int *chkptr;
 
 	chkptr = &check;
-	while (line[i] != '\0')
+	while (line[i] != '\0' && check < 10)
 	{
 		if (line[i] == ' ')
 			i++;
@@ -89,6 +89,7 @@ static void		square_loop(char *line, int i, int check, t_square *square)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
+	return (i);
 }
 
 void			get_square(char *line, t_rt *rt)
@@ -96,11 +97,17 @@ void			get_square(char *line, t_rt *rt)
 	int			i;
 	int			check;
 	t_square	*square;
+	t_phong		newphong;
 
 	square = (t_square *)ec_malloc(sizeof(t_square));
+	newphong = default_phong();
 	check = 0;
 	i = 2;
-	square_loop(line, i, check, square);
+	i = square_loop(line, i, check, square);
+	get_material(&newphong, line, i);
+	square->phong.specular = newphong.specular;
+	square->phong.shininess = newphong.shininess;
+	square->phong.reflect = newphong.reflect;
 	render_square_transform(square);
 	push_square(rt, square);
 	free(square);

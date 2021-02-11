@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/23 20:33:44 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:23:03 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ t_sphere *sphere)
 	return (check);
 }
 
-static void		sphere_loop(char *line, int i, int check, t_sphere *sphere)
+static int		sphere_loop(char *line, int i, int check, t_sphere *sphere)
 {
-	while (line[i] != '\0')
+	while (line[i] != '\0' && check < 7)
 	{
 		if (line[i] == ' ')
 			i++;
@@ -96,6 +96,7 @@ static void		sphere_loop(char *line, int i, int check, t_sphere *sphere)
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}
+	return (i);
 }
 
 void			get_sphere(char *line, t_rt *rt)
@@ -103,11 +104,17 @@ void			get_sphere(char *line, t_rt *rt)
 	int			i;
 	int			check;
 	t_sphere	*sphere;
+	t_phong		newphong;
 
 	sphere = (t_sphere *)ec_malloc(sizeof(t_sphere));
+	newphong = default_phong();
 	check = 0;
 	i = 2;
-	sphere_loop(line, i, check, sphere);
+	i = sphere_loop(line, i, check, sphere);
+	get_material(&newphong, line, i);
+	sphere->phong.specular = newphong.specular;
+	sphere->phong.shininess = newphong.shininess;
+	sphere->phong.reflect = newphong.reflect;
 	render_sphere_transform(sphere);
 	push_sphere(rt, sphere);
 	free(sphere);

@@ -34,7 +34,8 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			get_square_center.c get_square_color.c get_square_side.c /
 #			get_square.c get_triangle_color.c get_triangle_p1.c /
 #			get_triangle_p2.c get_triangle_p3.c get_triangle.c /
-#			rt_identify.c get_plane_norm.c get_square_norm.c get_cylinder_norm.c
+#			rt_identify.c get_plane_norm.c get_square_norm.c get_cylinder_norm.c /
+#			get_material.c
 #						
 # operations: utils.c vector_ops_1.c vector_ops_2.c color_ops_1.c color_ops_2.c /
 #			matrix_ops_1.c matrix_ops_2.c matrix_ops_3.c matrix_ops_4.c /

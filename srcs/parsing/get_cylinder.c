@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:06:06 by lcouto            #+#    #+#             */
-/*   Updated: 2021/01/31 16:06:38 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:13:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_cylinder *cylinder)
 	}
 }
 
-static void		cylinder_loop(char *line, int i, int check,
+static int		cylinder_loop(char *line, int i, int check,
 t_cylinder *cylinder)
 {
 	int	*iptr;
@@ -91,7 +91,7 @@ t_cylinder *cylinder)
 
 	chkptr = &check;
 	iptr = &i;
-	while (line[*iptr] != '\0')
+	while (line[*iptr] != '\0' && check < 11)
 	{
 		if (line[*iptr] == ' ')
 			*iptr = *iptr + 1;
@@ -102,6 +102,7 @@ t_cylinder *cylinder)
 		(!(line[*iptr] == ' ')))
 			errormsg(5);
 	}
+	return (i);
 }
 
 void			get_cylinder(char *line, t_rt *rt)
@@ -109,11 +110,17 @@ void			get_cylinder(char *line, t_rt *rt)
 	int			i;
 	int			check;
 	t_cylinder	*cylinder;
+	t_phong		newphong;
 
 	cylinder = (t_cylinder *)ec_malloc(sizeof(t_cylinder));
+	newphong = default_phong();
 	check = 0;
 	i = 2;
-	cylinder_loop(line, i, check, cylinder);
+	i = cylinder_loop(line, i, check, cylinder);
+	get_material(&newphong, line, i);
+	cylinder->phong.specular = newphong.specular;
+	cylinder->phong.shininess = newphong.shininess;
+	cylinder->phong.reflect = newphong.reflect;
 	render_cylinder_transform(cylinder);
 	push_cylinder(rt, cylinder);
 	free(cylinder);

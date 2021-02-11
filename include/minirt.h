@@ -78,6 +78,9 @@ typedef struct		s_mlx
 	void			*win;
 	t_cam			*cam;
 	t_cam			*begin;
+	int				bpp;
+	int				line_leng;
+	int				endian;
 	t_rt			*rt;
 }					t_mlx;
 
@@ -139,6 +142,7 @@ int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);
 double				get_coord(char *line, int i);
 int					get_color(char *line, int i);
+void				get_material(t_phong *phong, char *line, int i);
 t_color				fill_color(int r, int g, int b);
 
 /*
@@ -290,24 +294,24 @@ void				ray_for_pixel_cam_test(t_rt *rt);
 ** Render utilities.
 */
 
-void				ft_pixelput(t_cam *cam,
-					int *coords, int color);
+void				ft_pixelput(t_cam *cam, int *coords, 
+					t_mlx *mlx, int color);
 int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
 int					next_cam(int keycode, t_mlx *mlx);
 void				normalize_pixel_color(t_rgba *lt_output);
 void				loading_bar(double percent, int total);
-void				create_bmp(t_rt *rt, t_cam *cam);
+void				create_bmp(t_rt *rt, t_mlx *mlx, t_cam *cam);
 
 /*
 ** Core render functions.
 */
 
 void				canvas(t_rt *rt);
-void				raycaster(t_rt *rt, t_cam *cam);
+void				raycaster(t_rt *rt, t_mlx *mlx, t_cam *cam);
 void				cast_pixel(t_raycaster *rc, t_rt *rt,
-					t_cam *cam);
+					t_mlx *mlx, t_cam *cam);
 t_tuple				normal_at(t_matrix transform, t_tuple point, t_polys poly);
 t_tuple				get_poly_o_normal(t_polys poly, t_tuple o_point);
 t_tuple				normal_object_type(t_polys poly, t_tuple o_point);

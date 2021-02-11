@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/10 18:43:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 ** TO DO:
-** - Guardar imagens de múltiplas câmeras
 ** - Lembrar de deixar todos os parametros
 **   no modo "básico" para a entrega.
 **
@@ -22,9 +21,6 @@
 ** - Associar o material ao arquivo .rt
 ** - Associais limitador da recursão ao arquivo .rt
 ** - Reorganizar código pra fazer sentido.
-** - Soft shadows
-** - Cubos
-** - Refração/Fresnel
 */
 
 static void	valid_rtfile(char *filename)

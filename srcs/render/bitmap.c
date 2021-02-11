@@ -62,7 +62,7 @@ static int		create_file(char *name)
 	return (fd);
 }
 
-void			create_bmp(t_rt *rt, t_cam *cam)
+void			create_bmp(t_rt *rt, t_mlx *mlx, t_cam *cam)
 {
 	char		*name;
 	char		*number;
@@ -78,8 +78,8 @@ void			create_bmp(t_rt *rt, t_cam *cam)
 	create_bmpheader(rt, &header);
 	write_bmpheader(fd, header);
 	while (--y >= 0)
-		if (!(write(fd, &cam->address[y * cam->line_leng],
-		cam->line_leng)))
+		if (!(write(fd, &cam->address[y * mlx->line_leng],
+		mlx->line_leng)))
 			errormsg(39);
 	close(fd);
 	free(number);

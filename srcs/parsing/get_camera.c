@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:00 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/07 22:22:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/09 22:19:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ static void		push_new_camera(t_cam *current, t_cam *new_cam)
 	current->next->transform = new_cam->transform;
 	current->next->img = new_cam->img;
 	current->next->address = new_cam->address;
-	current->next->bpp = new_cam->bpp;
-	current->next->line_leng = new_cam->line_leng;
-	current->next->endian = new_cam->endian;
 	current->next->next = new_cam->next;
 }
 
@@ -49,9 +46,6 @@ static void		push_camera(t_cam *head, t_cam *new_cam, t_rt *rt)
 		head->transform = new_cam->transform;
 		head->img = new_cam->img;
 		head->address = new_cam->address;
-		head->bpp = new_cam->bpp;
-		head->line_leng = new_cam->line_leng;
-		head->endian = new_cam->endian;
 		head->next = new_cam->next;
 		rt->qts.cam = rt->qts.cam + 1;
 		return ;
