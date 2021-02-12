@@ -72,7 +72,6 @@ void			create_bmp(t_rt *rt, t_mlx *mlx, t_cam *cam)
 
 	number = ft_itoa(rt->qts.cam);
 	name = ft_strjoin("camera_", number);
-	rt->qts.cam = rt->qts.cam - 1;
 	y = rt->reso.height;
 	fd = create_file(name);
 	create_bmpheader(rt, &header);

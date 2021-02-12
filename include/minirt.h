@@ -301,7 +301,7 @@ int					close_wndw(int keycode, t_mlx *mlx);
 int					close_program(void *ptr);
 int					next_cam(int keycode, t_mlx *mlx);
 void				normalize_pixel_color(t_rgba *lt_output);
-void				loading_bar(double percent, int total);
+void				loading_bar(double percent, int total, t_rt *rt);
 void				create_bmp(t_rt *rt, t_mlx *mlx, t_cam *cam);
 
 /*

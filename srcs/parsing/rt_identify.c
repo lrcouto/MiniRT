@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   rt_identify.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 18:38:32 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/11 23:41:39 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
+
+static void	get_bounce(char *line, t_rt *rt)
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 2;
+	j = 0;
+	while (line[i++] != '\0')
+	{
+		if (line[i] == ' ')
+			continue ;
+		else if (line[i] >= '0' && line[i] <= '9')
+		{
+			j = i;
+			while (line[j] >= '0' && line[j] <= '9')
+				j++;
+			break ;
+		}
+		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
+			errormsg(5);
+	}
+	temp = ft_substr(line, i, j);
+	rt->ray_bounce = ft_atoi(temp);
+	if (rt->ray_bounce < 0 || rt->ray_bounce > 12)
+		errormsg(43);
+	free(temp);
+}
 
 static void	rt_id_polys(char *line, t_rt *rt)
 {
@@ -24,13 +53,15 @@ static void	rt_id_polys(char *line, t_rt *rt)
 		get_cylinder(line, rt);
 	else if (ft_strncmp(line, "tr ", 3) == 0)
 		get_triangle(line, rt);
+	else if (ft_strncmp(line, "bn ", 3) == 0)
+		get_bounce(line, rt);
 }
 
 static int	valid_poly(char *line)
 {
 	if (ft_strncmp(line, "sp ", 3) == 0 || ft_strncmp(line, "pl ", 3) == 0 ||
 	ft_strncmp(line, "sq ", 3) == 0 || ft_strncmp(line, "cy ", 3) == 0 ||
-	ft_strncmp(line, "tr ", 3) == 0)
+	ft_strncmp(line, "tr ", 3) == 0 || ft_strncmp(line, "bn ", 3) == 0)
 		return (1);
 	else
 		return (0);

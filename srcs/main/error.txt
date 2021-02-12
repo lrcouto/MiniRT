@@ -41,3 +41,4 @@ ERROR: Failed to write .bmp file.
 ERROR: Specular value must be between 0.0 and 1.0;
 ERROR: Shininess value must be between 0.0 and 500.0;
 ERROR: Reflection value must be between 0.0. and 1.0;
+ERROR: Raytracing recursion limit (i.e. number of ray "bounces") must be between 0 and 12. Do you really want to sit here and wait forever for the render?

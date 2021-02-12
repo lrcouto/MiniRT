@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:52:39 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/10 21:36:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:35:17 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static int	ft_get_reflect(char *line, int check, int i, t_phong *phong)
 			i = get_index(line, i);
 			check++;
 		}
-		i++;
 	}
 	if (reflect > 1 || reflect < 0)
 		errormsg(42);
