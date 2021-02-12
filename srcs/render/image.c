@@ -25,6 +25,7 @@ void	create_images(t_rt *rt, t_mlx *mlx)
 		raycaster(rt, mlx, current_cam);
 		if (rt->savefile == 1)
 			create_bmp(rt, mlx, current_cam);
+		rt->qts.cam = rt->qts.cam - 1;
 		current_cam = current_cam->next;
 	}
 }
@@ -34,9 +35,7 @@ int			next_cam(int keycode, t_mlx *mlx)
 	if (keycode == 0xFF1B)
 		exit(0);
 	if (keycode != 0x20)
-	{	printf("keypress\n");
 		return (0);
-	}
 	if (mlx->cam->next)
 	{
 		mlx->cam = mlx->cam->next;

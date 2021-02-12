@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:12 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/10 21:11:37 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:56:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static int		verification_loop(char *line, int j)
 		}
 		j++;
 	}
-	j++;
-	if (line[j] >= '0' && line[j] <= '9')
+	if (line[j] != '\0')
+		j++;
+	if ((line[j] >= '0' && line[j] <= '9') && line[j] != '\0')
 	{
 		while (line[j] >= '0' && line[j] <= '9')
 			j++;

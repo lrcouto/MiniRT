@@ -59,7 +59,7 @@ void				raycaster(t_rt *rt, t_mlx *mlx, t_cam *cam)
 			rc.x = rc.x + 1;
 		}
 		rc.y = rc.y + 1;
-		loading_bar(rc.y / rt->reso.height, rt->reso.height);
+		loading_bar(rc.y / rt->reso.height, rt->reso.height, rt);
 	}
 }
 

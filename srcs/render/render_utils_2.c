@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 18:46:42 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:20:25 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,30 @@ void				normalize_pixel_color(t_rgba *lt_output)
 		lt_output->b = 0;
 }
 
-void				loading_bar(double percent, int total)
+void				loading_bar(double percent, int total, t_rt *rt)
 {
 	int			ten;
 	static int	counter;
+	char		*camera;
 
 	ten = total / 10;
 	if (counter == 0)
-		ft_putstr_fd("Rendering... [", 1);
+		ft_putstr_fd("Rendering... \n▒", 1);
 	if (counter == ten)
 	{
-		ft_putstr_fd("#", 1);
+		ft_putstr_fd("▒", 1);
 		counter = 0;
 	}
 	counter++;
 	if (percent == 1)
-		ft_putstr_fd("] 100%\nDone!\n", 1);
+	{
+		camera = ft_itoa(rt->qts.cam);
+		ft_putstr_fd(" 100%\n", 1);
+		ft_putstr_fd("Camera ", 1);
+		ft_putstr_fd(camera, 1);
+		ft_putstr_fd(" rendered successfully.\n", 1);
+		free(camera);
+	}
 }
 
 int					is_shadowed(t_comps comps, t_rt *rt, t_light *light)
