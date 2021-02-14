@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cam_view.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 20:46:59 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 18:31:02 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:11:14 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int				get_cam_view(char *line, int check, int i, t_cam *cam)
 
 	idx = &i;
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
+	comma_check(line, *idx, 12);
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

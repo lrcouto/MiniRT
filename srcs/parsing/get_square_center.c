@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_square_center.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 14:00:40 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/10/18 18:38:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:13:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_square *square)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 23);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

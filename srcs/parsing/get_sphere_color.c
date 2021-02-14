@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:47:22 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/10 20:12:57 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:12:15 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				get_sphere_color(char *line, int check, int i, t_sphere *sphere)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 17);
 	rgb = (int *)ec_malloc((sizeof(int) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

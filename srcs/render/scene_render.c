@@ -6,44 +6,38 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 16:51:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 17:09:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void		get_poly_props(t_polys poly, t_comps *comps)
+static void		set_comps_normal_and_phong(t_comps *comps, t_polys poly,
+t_matrix transform, t_phong poly_phong)
+{
+	comps->normal_vec = normal_at(transform,
+			comps->position, poly);
+	comps->phong = poly_phong;
+}
+
+static void		get_poly_props(t_polys poly, t_comps *comps, t_rt *rt)
 {
 	if (poly.obj_type == SPHERE)
-	{
-		comps->normal_vec = normal_at(poly.sphere->transform,
-			comps->position, poly);
-		comps->phong = poly.sphere->phong;
-	}
+		set_comps_normal_and_phong(comps, poly, poly.sphere->transform,
+			poly.sphere->phong);
 	if (poly.obj_type == PLANE)
-	{
-		comps->normal_vec = normal_at(poly.plane->transform,
-			comps->position, poly);
-		comps->phong = poly.plane->phong;
-	}
+		set_comps_normal_and_phong(comps, poly, poly.plane->transform,
+				poly.plane->phong);
 	if (poly.obj_type == SQUARE)
-	{
-		comps->normal_vec = normal_at(poly.square->transform,
-			comps->position, poly);
-		comps->phong = poly.square->phong;
-	}
+		set_comps_normal_and_phong(comps, poly, poly.square->transform,
+			poly.square->phong);
 	if (poly.obj_type == CYLINDER)
-	{
-		comps->normal_vec = normal_at(poly.cylinder->transform,
-			comps->position, poly);
-		comps->phong = poly.cylinder->phong;
-	}
+		set_comps_normal_and_phong(comps, poly, poly.cylinder->transform,
+			poly.cylinder->phong);
 	if (poly.obj_type == TRIANGLE)
-	{
-		comps->normal_vec = normal_at(poly.triangle->transform,
-			comps->position, poly);
-		comps->phong = poly.triangle->phong;
-	}
+		set_comps_normal_and_phong(comps, poly, poly.triangle->transform,
+			poly.triangle->phong);
+	comps->phong.ambient = rt->ambi.light;
 }
 
 void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
@@ -53,7 +47,7 @@ void			prepare_computations(t_comps *comps, t_rt *rt, t_raycaster *rc)
 	comps->poly = rc->hit->poly;
 	comps->position = ray_position(rc->ray, comps->t);
 	comps->eye_vec = negate_tuple(rc->ray.direction);
-	get_poly_props(comps->poly, comps);
+	get_poly_props(comps->poly, comps, rt);
 	if (dot_product(comps->normal_vec, comps->eye_vec) < 0)
 	{
 		comps->inside = 1;
@@ -82,43 +76,4 @@ t_rgba			shade_hit(t_comps comps, t_rt *rt, int bounce)
 	}
 	lt_color = add_color(lt_color, reflect_color(comps, rt, bounce));
 	return (lt_color);
-}
-
-static t_matrix	calculate_orientation(t_tuple left, t_tuple true_up,
-t_tuple forward, t_tuple from)
-{
-	t_matrix	temp;
-	t_matrix	translate;
-	t_matrix	orientation;
-
-	temp = create_matrix(4, 4);
-	temp.matrix[0][0] = left.x;
-	temp.matrix[0][1] = left.y;
-	temp.matrix[0][2] = left.z;
-	temp.matrix[1][0] = true_up.x;
-	temp.matrix[1][1] = true_up.y;
-	temp.matrix[1][2] = true_up.z;
-	temp.matrix[2][0] = -1.0 * forward.x;
-	temp.matrix[2][1] = -1.0 * forward.y;
-	temp.matrix[2][2] = -1.0 * forward.z;
-	temp.matrix[3][3] = 1.0;
-	translate = translation(-1.0 * from.x, -1.0 * from.y, -1.0 * from.z);
-	orientation = mult_matrix(temp, translate);
-	free_matrix(temp);
-	free_matrix(translate);
-	return (orientation);
-}
-
-t_matrix		view_transform(t_tuple from, t_tuple to, t_tuple up)
-{
-	t_tuple		forward;
-	t_tuple		up_normal;
-	t_tuple		left;
-	t_tuple		true_up;
-
-	forward = normalize_v(subtract_tuple(to, from));
-	up_normal = normalize_v(up);
-	left = cross_product(forward, up_normal);
-	true_up = cross_product(left, forward);
-	return (calculate_orientation(left, true_up, forward, from));
 }

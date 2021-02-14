@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/11 23:05:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 19:57:21 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void		init_light(t_rt *rt)
 	baselight->pos.x = 0;
 	baselight->pos.y = 0;
 	baselight->pos.z = 0;
-	baselight->pos.w = 0;
+	baselight->pos.w = 1;
 	baselight->light = 0;
 	baselight->color.r = 0;
 	baselight->color.g = 0;
 	baselight->color.b = 0;
-	baselight->intensity = create_rgba(1, 1, 1, 1);
+	baselight->intensity = create_rgba(0, 0, 0, 0);
 	baselight->next = NULL;
 	rt->light = baselight;
 }
@@ -52,9 +52,10 @@ static void		init_camera(t_rt *rt)
 	basecam->view.x = 0;
 	basecam->view.y = 0;
 	basecam->view.z = 0;
+	basecam->view.w = 1;
 	basecam->pos.x = 0;
 	basecam->pos.y = 0;
-	basecam->pos.z = 0;
+	basecam->pos.z = 1;
 	basecam->pos.w = 0;
 	basecam->fov = 0;
 	basecam->origin = create_tuple(0, 0, 0, 1);
@@ -68,8 +69,8 @@ void			init_rt(t_rt *rt)
 	t_ambi	ambi;
 
 	init_qts(rt);
-	reso.width = 0;
-	reso.height = 0;
+	reso.width = 200;
+	reso.height = 200;
 	ambi.light = 0.0;
 	ambi.color.b = 0;
 	ambi.color.r = 0;

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:39:34 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/10 20:12:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:12:24 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				get_plane_color(char *line, int check, int i, t_plane *plane)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 20);
 	rgb = (int *)ec_malloc((sizeof(int) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

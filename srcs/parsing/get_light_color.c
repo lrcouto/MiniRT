@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:24:09 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 17:27:44 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/02/13 21:12:32 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int				get_light_color(char *line, int check, int i, t_light *light)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 7);
 	rgb = (int *)ec_malloc((sizeof(int) * 3));
+	comma_check(line, *idx, 7);
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

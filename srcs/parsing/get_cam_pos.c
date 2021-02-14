@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 20:56:04 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:10:54 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int				get_cam_pos(char *line, int check, int i, t_cam *cam)
 
 	idx = &i;
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
+	comma_check(line, *idx, 13);
 	while (line[*idx] != ' ' && line[*idx] != '\0')
 	{
 		if (line[*idx] == '1' || line[*idx] == '0' || line[*idx] == '-')

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:12 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/12 00:56:01 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:17:07 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int		verification_loop(char *line, int j)
 		}
 		j++;
 	}
+	if (line[j] == '.' && (line[j] < '0' && line[j] > '9'))
+		errormsg(5);
 	if (line[j] != '\0')
 		j++;
 	if ((line[j] >= '0' && line[j] <= '9') && line[j] != '\0')
@@ -61,4 +63,34 @@ double			get_coord(char *line, int i)
 	coord = ft_atof(temp);
 	free(temp);
 	return (coord);
+}
+
+double			get_single_double(char *line, int i)
+{
+	double	coord;
+	char	*temp;
+	int		j;
+
+	j = check_double_format(line, i);
+	if (line[j] == ',')
+		errormsg(49);
+	temp = ft_substr(line, i, i + j);
+	coord = ft_atof(temp);
+	free(temp);
+	return (coord);
+}
+
+void			comma_check(char *line, int idx, int error)
+{
+	int commas;
+
+	commas = 0;
+	while (line[idx] != ' ' && line[idx] != '\0')
+	{
+		if (line[idx] == ',')
+			commas++;
+		idx++;
+	}
+	if (commas != 2)
+		errormsg(error);
 }

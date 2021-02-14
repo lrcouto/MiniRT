@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_resolution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:49 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 19:50:13 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:01:00 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,25 @@ static void		validate_reso(int i, int check, char *line, t_rt *rt)
 		errormsg(4);
 }
 
-void			get_resolution(char *line, t_rt *rt)
+static void		check_reso_limits(t_rt *rt, t_mlx *mlx)
+{
+	int		max_x;
+	int		max_y;
+
+	mlx_get_screen_size(mlx->mlx, &max_x, &max_y);
+	if (rt->reso.width > max_x)
+		rt->reso.width = max_x;
+	if (rt->reso.height > max_y)
+		rt->reso.height = max_y;
+	if (rt->reso.width < 1 || rt->reso.height < 1)
+		errormsg(3);
+}
+
+void			get_resolution(char *line, t_rt *rt, t_mlx *mlx)
 {
 	int		i;
 	int		check;
-
+	
 	check = 0;
 	i = 1;
 	while (line[i] != '\0')
@@ -75,4 +89,5 @@ void			get_resolution(char *line, t_rt *rt)
 			errormsg(5);
 	}
 	validate_reso(i, check, line, rt);
+	check_reso_limits(rt, mlx);
 }

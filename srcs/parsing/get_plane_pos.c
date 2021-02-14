@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_plane_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:34:59 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/10/18 18:35:49 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:13:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_plane *plane)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 19);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

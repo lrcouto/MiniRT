@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:52:39 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/12 00:35:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/12 21:58:02 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_get_reflect(char *line, int check, int i, t_phong *phong)
 
 static int	ft_get_shininess(char *line, int check, int i, t_phong *phong)
 {
-		double shininess;
+	double shininess;
 
 	while (line[i] != ' ' && line[i] != '\0')
 	{
@@ -71,35 +71,41 @@ static int	ft_get_specular(char *line, int check, int i, t_phong *phong)
 	return (check);
 }
 
+static int	material_values(char *line, int i, int *chkptr, t_phong *phong)
+{
+	if (*chkptr == 0)
+	{
+		*chkptr = ft_get_specular(line, *chkptr, i, phong);
+		i = get_index(line, i);
+	}
+	else if (*chkptr == 1)
+	{
+		*chkptr = ft_get_shininess(line, *chkptr, i, phong);
+		i = get_index(line, i);
+	}
+	else if (*chkptr == 2)
+	{
+		*chkptr = ft_get_reflect(line, *chkptr, i, phong);
+		i = get_index(line, i);
+	}
+	if (*chkptr == 3 && line[i] != '\0')
+		errormsg(44);
+	return (i);
+}
+
 void		get_material(t_phong *phong, char *line, int i)
 {
 	int	check;
+	int *chkptr;
 
 	check = 0;
+	chkptr = &check;
 	while (line[i] != '\0')
 	{
 		if (line[i] == ' ')
 			i++;
 		else if (line[i] >= '0' && line[i] <= '9')
-		{
-			if (check == 0)
-			{
-				check = ft_get_specular(line, check, i, phong);
-				i = get_index(line, i);
-			}
-			else if (check == 1)
-			{
-				check = ft_get_shininess(line, check, i, phong);
-				i = get_index(line, i);
-			}
-			else if (check == 2)
-			{
-				check = ft_get_reflect(line, check, i, phong);
-				i = get_index(line, i);
-			}
-			if (check == 3 && line[i] != '\0')
-				errormsg(0);
-		}
+			i = material_values(line, i, chkptr, phong);
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}

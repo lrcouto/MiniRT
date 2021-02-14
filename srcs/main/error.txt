@@ -12,7 +12,7 @@ ERROR: You cannot have more than one ambient light parameter.
 ERROR: Camera FoV value must be an integer between 0 and 180.
 ERROR: Camera view point parameters must be passed as X,Y,Z coordinates (e.g. 0.0,0.0,20.6).
 ERROR: Camera orientation vector parameters must be passed as X,Y,Z coordinates between -1.0 and 1.0.
-ERROR: Coordinates must be entered as a decimal number (e.g. 10.5).
+ERROR: Coordinates must be entered as a decimal nmber (e.g. 10.5).
 ERROR: Scene light parameter should receive one set of X,Y,Z coordinates, one intensity value, and one set of RGB values.
 ERROR: Scene light intensity value must be between 0.0 and 1.0.
 ERROR: Sphere parameter should receive one set of X,Y,Z coordinates, one diameter value, and one set of RGB values.
@@ -42,3 +42,10 @@ ERROR: Specular value must be between 0.0 and 1.0;
 ERROR: Shininess value must be between 0.0 and 500.0;
 ERROR: Reflection value must be between 0.0. and 1.0;
 ERROR: Raytracing recursion limit (i.e. number of ray "bounces") must be between 0 and 12. Do you really want to sit here and wait forever for the render?
+ERROR: Material property values must be entered as such: Specular 0.0 to 1.0, Shininess 0.0 to 500.0, Reflectivity 0.0 to 1.0, in that order.
+ERROR: Please insert square side length value.
+ERROR: Please insert sphere diameter value.
+ERROR: Please insert cylinder diameter value.
+ERROR: Please insert cylinder height value.
+ERROR: Check if your number of parameters is correct. (Tip: It's probably height, size, diameter or light intensity ^_~ ).
+ERROR: You set a value that cannot be negative as negative.

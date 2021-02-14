@@ -22,7 +22,7 @@ DIRS = main parsing operations render
 
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 
-# main:		error.c free_lists.c free_polys.c init_rt.c minirt.c
+# main:		error.c init_rt.c minirt.c
 #
 # parsing:	fill_collor.c get_ambi_rgb.c get_ambient.c /
 #			get_cam_fov.c get_cam_pos.c get_cam_view get_camera.c /
@@ -47,7 +47,7 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			ray_test.c scene_test.c
 #
 # render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c /
-#			intersect_polys.c bitmap.c
+#			intersect_polys.c bitmap.c render_utils_3.c image.c
 
 SOURCES = $(foreach dir,$(SOURCEDIRS),$(wildcard $(dir)/*.c))
 

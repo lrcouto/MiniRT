@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ambient.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:52:38 by lcouto            #+#    #+#             */
-/*   Updated: 2020/09/13 21:50:28 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:05:10 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		ambient_loop(char *line, int i, int check, t_ambi *ambi)
 	{
 		if (line[i] == ' ')
 			i++;
-		else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
+		else if (line[i] >= '0' && line[i] <= '9')
 		{
 			if (check == 0)
 			{
@@ -51,6 +51,8 @@ static int		ambient_loop(char *line, int i, int check, t_ambi *ambi)
 				i = get_index(line, i);
 			}
 		}
+		else if (line[i] == '-')
+			errormsg(50);
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}

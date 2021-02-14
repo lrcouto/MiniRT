@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 16:22:38 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:12:40 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				get_plane_norm(char *line, int check, int i, t_plane *plane)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 21);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[*idx] != ' ' && line[*idx] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:05:37 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/10 20:11:31 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:11:33 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_triangle *triangle)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 29);
 	rgb = (int *)ec_malloc((sizeof(int) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

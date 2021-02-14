@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/10 16:20:12 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 16:33:3330 by lcouto           ###   ########.fr       */
+/*   Created: 2021/02/12 21:49:18 by lcouto            #+#    #+#             */
+/*   Updated: 2021/02/12 21:51:47 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct			s_light
 ** Holds values for a Phong material.
 */
 
-typedef struct 			s_phong
+typedef struct			s_phong
 {
 	t_rgba				color;
 	double				diffuse;
@@ -82,7 +82,7 @@ typedef struct 			s_phong
 }						t_phong;
 
 /*
-** Arguments to be used in the lighting() function.
+** Arguments to be used in the lighting function.
 */
 
 typedef struct			s_ltargs
@@ -95,7 +95,7 @@ typedef struct			s_ltargs
 }						t_ltargs;
 
 /*
-** Variables to be used in the lighting() function.
+** Variables to be used in the lighting function.
 */
 
 typedef struct			s_ltparams
@@ -105,11 +105,10 @@ typedef struct			s_ltparams
 	t_tuple				effective_color;
 	t_tuple				light_v;
 	t_tuple				ambient;
-	t_tuple 			diffuse;
-	t_tuple 			specular;
+	t_tuple				diffuse;
+	t_tuple				specular;
 	t_tuple				reflect_v;
-}						t_ltparams;;
-
+}						t_ltparams;
 
 /*
 ** Holds values for spheres.

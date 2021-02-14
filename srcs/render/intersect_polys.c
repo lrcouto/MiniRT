@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 16:31:04 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:05:07 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 17:07:13 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,4 @@ void			intersect_all_triangles(t_rt *rt, t_raycaster *rc)
 		intersect_triangle(rc->ray, current_triangle, rc->intersec_list);
 		current_triangle = current_triangle->next;
 	}
-}
-
-void			intersect_all_polys(t_rt *rt, t_raycaster *rc)
-{
-	intersect_all_spheres(rt, rc);
-	intersect_all_planes(rt, rc);
-	intersect_all_squares(rt, rc);
-	intersect_all_cylinders(rt, rc);
-	intersect_all_triangles(rt, rc);
 }

@@ -6,18 +6,19 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:55:21 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/09 22:30:16 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 16:57:19 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void		ft_pixelput(t_cam *cam, int *coords, 
+void		ft_pixelput(t_cam *cam, int *coords,
 t_mlx *mlx, int color)
 {
 	char	*dst;
 
-	dst = cam->address + (coords[1] * mlx->line_leng + coords[0] * (mlx->bpp / 8));
+	dst = cam->address + (coords[1] * mlx->line_leng +
+	coords[0] * (mlx->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
