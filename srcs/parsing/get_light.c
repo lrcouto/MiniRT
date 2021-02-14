@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:06:37 by lcouto            #+#    #+#             */
-/*   Updated: 2020/11/14 20:19:59 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:20:56 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int		get_light_light(char *line, int check, int i, t_light *light)
 	{
 		if ((line[i] == '1' || line[i] == '0') && check == 3)
 		{
-			lumi = get_coord(line, i);
+			lumi = get_single_double(line, i);
 			i = get_index(line, i);
 			check++;
 		}

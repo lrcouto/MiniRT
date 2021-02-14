@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:03:05 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/10 20:13:08 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:13:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_cylinder *cylinder)
 
 	idx = &i;
 	rgb = (int *)ec_malloc((sizeof(int) * 3));
+	comma_check(line, *idx, 26);
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')

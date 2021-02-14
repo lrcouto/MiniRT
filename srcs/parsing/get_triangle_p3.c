@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_triangle_p3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:19:39 by lcouto            #+#    #+#             */
-/*   Updated: 2020/10/18 18:37:24 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:14:01 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_triangle *triangle)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 28);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{

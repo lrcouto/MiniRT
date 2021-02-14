@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsenra-a <gsenra-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 21:11:41 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/07 18:53:23:2 by gsenra-a         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:08:50 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,32 +63,15 @@ void				raycaster(t_rt *rt, t_mlx *mlx, t_cam *cam)
 	}
 }
 
-void				canvas(t_rt *rt)
+void				canvas(t_rt *rt, t_mlx *mlx)
 {
-	t_mlx	mlx;
-	int		max_x;
-	int		max_y;
-
-	mlx.mlx = mlx_init();
-	mlx_get_screen_size(mlx.mlx, &max_x, &max_y);
-	if (rt->reso.width > max_x)
-		rt->reso.width = max_x;
-	if (rt->reso.height > max_y)
-		rt->reso.height = max_y;
-	if (rt->reso.width < 1 || rt->reso.height < 1)
-		errormsg(3);
-	create_images(rt, &mlx);
-	mlx.cam = rt->cam;
-	mlx.begin = mlx.cam;
+	create_images(rt, mlx);
 	if (rt->savefile == 1)
 		exit(0);
 	else
 	{
-		mlx.win = mlx_new_window(mlx.mlx, rt->reso.width,
+		mlx->win = mlx_new_window(mlx->mlx, rt->reso.width,
 		rt->reso.height, "MiniRT");
-		mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.cam->img, 0, 0);
+		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cam->img, 0, 0);
 	}
-	mlx_hook(mlx.win, 17, 1L << 17, close_program, 0);
-	mlx_hook(mlx.win, 2, 1, next_cam, &mlx);
-	mlx_loop(mlx.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:42:20 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/10 21:23:03 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 16:52:54 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,50 +49,38 @@ static void		push_sphere(t_rt *rt, t_sphere *new_sphere)
 	rt->qts.sp = rt->qts.sp + 1;
 }
 
-static int		get_sphere_diameter(char *line, int check, int i,
+static int		loop_get_values(char *line, int i, int *chkptr,
 t_sphere *sphere)
 {
-	double	diameter;
-
-	while (line[i] != ' ' && line[i] != '\0')
+	if (*chkptr == 0)
 	{
-		if ((line[i] >= '0' || line[i] <= '9') && check == 3)
-		{
-			diameter = get_coord(line, i);
-			i = get_index(line, i);
-			check++;
-		}
-		i++;
+		*chkptr = get_sphere_center(line, *chkptr, i, sphere);
+		i = get_index(line, i);
 	}
-	sphere->diameter = diameter;
-	sphere->radius = diameter / 2;
-	return (check);
+	else if (*chkptr == 3)
+	{
+		*chkptr = get_sphere_diameter(line, *chkptr, i, sphere);
+		i = get_index(line, i);
+	}
+	else if (*chkptr == 4)
+	{
+		*chkptr = get_sphere_color(line, *chkptr, i, sphere);
+		i = get_index(line, i);
+	}
+	return (i);
 }
 
 static int		sphere_loop(char *line, int i, int check, t_sphere *sphere)
 {
+	int *chkptr;
+
+	chkptr = &check;
 	while (line[i] != '\0' && check < 7)
 	{
 		if (line[i] == ' ')
 			i++;
 		else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
-		{
-			if (check == 0)
-			{
-				check = get_sphere_center(line, check, i, sphere);
-				i = get_index(line, i);
-			}
-			else if (check == 3)
-			{
-				check = get_sphere_diameter(line, check, i, sphere);
-				i = get_index(line, i);
-			}
-			else if (check == 4)
-			{
-				check = get_sphere_color(line, check, i, sphere);
-				i = get_index(line, i);
-			}
-		}
+			i = loop_get_values(line, i, chkptr, sphere);
 		else if ((!(line[i] >= '0' && line[i] <= '9')) || (!(line[i] == ' ')))
 			errormsg(5);
 	}

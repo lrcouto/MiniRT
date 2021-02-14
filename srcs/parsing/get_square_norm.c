@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 16:47:39 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/06 21:54:17 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:14:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				get_square_norm(char *line, int check, int i, t_square *square)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 24);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[*idx] != ' ' && line[*idx] != '\0')
 	{

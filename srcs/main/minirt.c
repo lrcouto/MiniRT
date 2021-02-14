@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:08 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/10 18:43:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 19:50:28 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 **   no modo "básico" para a entrega.
 **
 ** WISHLIST:
-** - Associar o material ao arquivo .rt
-** - Associais limitador da recursão ao arquivo .rt
 ** - Reorganizar código pra fazer sentido.
 */
 
@@ -49,17 +47,36 @@ static void	check_savefile(t_rt *rt, char *arg)
 		rt->savefile = 1;
 }
 
-/*
-** Test functions need to be removed before final push.
-*/
+
+static void	parse(t_rt *rt, int fd, t_mlx *mlx)
+{
+	char	*line;
+	
+	while (get_next_line(fd, &line) == 1)
+	{
+		rt_identify(line, rt, mlx);
+		free(line);
+	}
+	rt_identify(line, rt, mlx);
+	free(line);
+	add_ambient_to_lights(rt);
+}
+
+static	void	mlx_loops(t_mlx *mlx)
+{
+	mlx_hook(mlx->win, 17, 1L << 17, close_program, 0);
+	mlx_hook(mlx->win, 2, 1, next_cam, mlx);
+	mlx_loop(mlx->mlx);
+}
 
 int			main(int argc, char **argv)
 {
 	int		fd;
-	char	*line;
 	t_rt	rt;
-
+	t_mlx	mlx;
+	
 	init_rt(&rt);
+	mlx.mlx = mlx_init();
 	if (argc == 1)
 		errormsg(0);
 	else if (argc == 2 || (argc == 3 &&
@@ -71,13 +88,8 @@ int			main(int argc, char **argv)
 	}
 	else
 		errormsg(1);
-	while (get_next_line(fd, &line) == 1)
-	{
-		rt_identify(line, &rt);
-		free(line);
-	}
-	rt_identify(line, &rt);
-	free(line);
-	canvas(&rt);
+	parse(&rt, fd, &mlx);
+	canvas(&rt, &mlx);
+	mlx_loops(&mlx);
 	return (0);
 }

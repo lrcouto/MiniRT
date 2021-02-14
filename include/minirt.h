@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/07 16:444:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:08:37 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,19 +137,21 @@ void				init_triangle(t_rt *rt);
 void				errormsg(int errornum);
 void				*ec_malloc(size_t size);
 void				*ec_calloc(size_t n, size_t size);
-void				rt_identify(char *line, t_rt *rt);
+void				rt_identify(char *line, t_rt *rt, t_mlx *mlx);
 int					get_index(char *line, int i);
 int					get_index_nocomma(char *line, int i);
 double				get_coord(char *line, int i);
 int					get_color(char *line, int i);
 void				get_material(t_phong *phong, char *line, int i);
 t_color				fill_color(int r, int g, int b);
+double				get_single_double(char *line, int i);
+void				comma_check(char *line, int idx, int error);
 
 /*
 ** Window resolution parsing functions.
 */
 
-void				get_resolution(char *line, t_rt *rt);
+void				get_resolution(char *line, t_rt *rt, t_mlx *mlx);
 
 /*
 ** Ambient light and color parsing functions.
@@ -185,6 +187,8 @@ int					get_sphere_center(char *line, int check, int i,
 					t_sphere *light);
 int					get_sphere_color(char *line, int check, int i,
 					t_sphere *light);
+int					get_sphere_diameter(char *line, int check, int i,
+					t_sphere *sphere);
 
 /*
 ** Plane parsing functions.
@@ -244,20 +248,6 @@ int					get_triangle_color(char *line, int check, int i,
 					t_triangle *light);
 
 /*
-** Free functions.
-*/
-
-void				free_lists(t_rt *rt);
-void				free_camera(t_rt *rt);
-void				free_light(t_rt *rt);
-void				free_sphere(t_rt *rt);
-void				free_plane(t_rt *rt);
-void				free_square(t_rt *rt);
-void				free_cylinder(t_rt *rt);
-void				free_triangle(t_rt *rt);
-void				free_intersecs(t_intersec *intersec);
-
-/*
 ** Float utils
 */
 
@@ -266,35 +256,10 @@ double				radians_to_degrees(double rad);
 double				degrees_to_radians(double degr);
 
 /*
-** Test functions.
-*/
-
-void				rt_window(t_rt *rt);
-void				projectile_test(char *times);
-void				matrix_test(int row, int col);
-void				test_translation(double mx, double my, double mz,
-					double px, double py, double pz);
-void				test_scaling(double mx, double my, double mz,
-					double px, double py, double pz);
-void				test_rotation();
-void				test_shearing(void);
-void				test_chain_transform(void);
-void				test_clock(t_rt *rt);
-void				test_ray_position(void);
-void				test_intersection(t_rt *rt);
-void				test_transform_ray(void);
-void				test_sphere_ray_transform(t_rt *rt);
-void				test_canvas(t_rt *rt);
-void				intersect_world_test(t_rt *rt);
-void				test_multiple_transforms(void);
-void				test_view_transformation(void);
-void				ray_for_pixel_cam_test(t_rt *rt);
-
-/*
 ** Render utilities.
 */
 
-void				ft_pixelput(t_cam *cam, int *coords, 
+void				ft_pixelput(t_cam *cam, int *coords,
 					t_mlx *mlx, int color);
 int					create_trgb(int t, int r, int g, int b);
 int					close_wndw(int keycode, t_mlx *mlx);
@@ -303,12 +268,14 @@ int					next_cam(int keycode, t_mlx *mlx);
 void				normalize_pixel_color(t_rgba *lt_output);
 void				loading_bar(double percent, int total, t_rt *rt);
 void				create_bmp(t_rt *rt, t_mlx *mlx, t_cam *cam);
+void				add_ambient_to_lights(t_rt *rt);
+void				free_intersecs(t_intersec *intersec);
 
 /*
 ** Core render functions.
 */
 
-void				canvas(t_rt *rt);
+void				canvas(t_rt *rt, t_mlx *mlx);
 void				raycaster(t_rt *rt, t_mlx *mlx, t_cam *cam);
 void				cast_pixel(t_raycaster *rc, t_rt *rt,
 					t_mlx *mlx, t_cam *cam);
@@ -336,9 +303,10 @@ void				create_images(t_rt *rt, t_mlx *mlx);
 
 void				intersect_all_spheres(t_rt *rt, t_raycaster *rc);
 void				intersect_all_polys(t_rt *rt, t_raycaster *rc);
+void				intersect_all_planes(t_rt *rt, t_raycaster *rc);
 void				intersect_all_squares(t_rt *rt, t_raycaster *rc);
 void				intersect_all_cylinders(t_rt *rt, t_raycaster *rc);
-void				intersect_all_triangle(t_rt *rt, t_raycaster *rc);
+void				intersect_all_triangles(t_rt *rt, t_raycaster *rc);
 void				render_sphere_transform(t_sphere *sphere);
 void				render_plane_transform(t_plane *plane);
 void				render_square_transform(t_square *square);

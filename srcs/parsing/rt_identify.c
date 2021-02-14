@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:01:19 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/11 23:41:39 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 18:54:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ static int	valid_poly(char *line)
 		return (0);
 }
 
-void		rt_identify(char *line, t_rt *rt)
+void		rt_identify(char *line, t_rt *rt, t_mlx *mlx)
 {
 	if (line[0] == 'R' && line[1] == ' ')
 	{
 		rt->qts.reso = rt->qts.reso + 1;
 		if (rt->qts.reso > 1)
 			errormsg(9);
-		get_resolution(line, rt);
+		get_resolution(line, rt, mlx);
 	}
 	else if (line[0] == 'A' && line[1] == ' ')
 	{

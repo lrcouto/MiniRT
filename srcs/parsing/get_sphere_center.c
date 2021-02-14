@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sphere_center.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcouto <lcouto@student.42sp.org.br>        +#+  +:+       +#+        */
+/*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:55:09 by gsenra-a          #+#    #+#             */
-/*   Updated: 2020/10/18 18:36:18 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/13 21:13:29 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_sphere *sphere)
 	int		*idx;
 
 	idx = &i;
+	comma_check(line, *idx, 18);
 	xyz = (double *)ec_malloc((sizeof(double) * 3));
 	while (line[i] != ' ' && line[i] != '\0')
 	{
@@ -61,5 +62,27 @@ t_sphere *sphere)
 		errormsg(18);
 	sphere->center = create_tuple(xyz[0], xyz[1], xyz[2], 1);
 	free(xyz);
+	return (check);
+}
+
+int				get_sphere_diameter(char *line, int check, int i,
+t_sphere *sphere)
+{
+	double	diameter;
+
+	while (line[i] != ' ' && line[i] != '\0')
+	{
+		if ((line[i] >= '0' || line[i] <= '9') && check == 3)
+		{
+			diameter = get_single_double(line, i);
+			i = get_index(line, i);
+			check++;
+		}
+		i++;
+	}
+	if (check != 4 || diameter <= 0)
+		errormsg(46);
+	sphere->diameter = diameter;
+	sphere->radius = diameter / 2;
 	return (check);
 }

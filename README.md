@@ -110,6 +110,8 @@ February 7th 2021 - Our raytracer now renders multiple cameras and is officially
 February 10th 2021 - Updated our parser to be able to control material properties of different objects separately. If no material parameters are input, the program will fall back on default values.
 
 February 12th 2021 - Did some minor additions to the program. The user can now directly control the raytracing recursion limit through a new parameter on the .rt file, with a "bn" identifier followed by a single int between 0 and 12. Also fixed some very minor memory leaks, and made our loading bar a little prettier.
+
+February 13th 2021 - Did a lot of testing and  error-proofing on our input system, and ironed out some last minute mistakes and errors on the structure of our program. Seems like it runs smoothly now, and we're preparing our scenes to deliver.
 ___
 
 </details>
