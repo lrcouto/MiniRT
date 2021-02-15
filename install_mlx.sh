@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    install_mlx.sh                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/02/15 16:47:21 by lcouto            #+#    #+#              #
+#    Updated: 2021/02/15 16:47:23 by lcouto           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/bash
 
 #Install MiniLibX dependencies.
@@ -36,13 +48,12 @@ echo "
      XXXX        :://///XXXXXXXXX######X/#######      #   ###    #
      XXXX        ::////XXXXXXXXX#######/ #     #      ####   #  #
       XXXX/:     ::////XXXXXXXXXX#####/  #     #########      ##
-       ""XX//::::::////XXXXXXXXXXXXXX/###########     #       #
-           "::::::::////XXXXXXXXXXXX/    #     #     #      ##
+       XXX//::::::////XXXXXXXXXXXXXX/###########     #       #
+           X::::::::////XXXXXXXXXXXX/    #     #     #      ##
                  ::::////XXXXXXXXXX/##################   ###
                      ::::://XXXXXX/#    #     #   #######
                          ::::::::/################
                                 /
                                /
-MiniLibX installed! Now go render something!
-"
+							  /   MiniLibX installed! Now go render something!"
 
