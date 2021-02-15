@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 16:05:37 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/13 21:11:33 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:51:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int	get_b_triangle(char *line, int check, int *idx, int *rgb)
 	return (check);
 }
 
+static int	get_color_values(char *line, int check, int *idx, int *rgb)
+{
+	if (check == 9)
+		check = get_r_triangle(line, check, idx, rgb);
+	else if (check == 10)
+		check = get_g_triangle(line, check, idx, rgb);
+	else if (check == 11)
+		check = get_b_triangle(line, check, idx, rgb);
+	return (check);
+}
+
 int			get_triangle_color(char *line, int check, int i,
 t_triangle *triangle)
 {
@@ -48,14 +59,7 @@ t_triangle *triangle)
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
-		{
-			if (check == 9)
-				check = get_r_triangle(line, check, idx, rgb);
-			else if (check == 10)
-				check = get_g_triangle(line, check, idx, rgb);
-			else if (check == 11)
-				check = get_b_triangle(line, check, idx, rgb);
-		}
+			check = get_color_values(line, check, idx, rgb);
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
 	if (check != 12)

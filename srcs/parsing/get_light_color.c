@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 17:24:09 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 21:12:32 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:28:35 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int		get_b_light(char *line, int check, int *idx, int *rgb)
 	return (check);
 }
 
+static int		get_color_values(char *line, int check, int *idx, int *rgb)
+{
+	if (check == 4)
+		check = get_r_light(line, check, idx, rgb);
+	else if (check == 5)
+		check = get_g_light(line, check, idx, rgb);
+	else if (check == 6)
+		check = get_b_light(line, check, idx, rgb);
+	return (check);
+}
+
 int				get_light_color(char *line, int check, int i, t_light *light)
 {
 	int		*rgb;
@@ -48,14 +59,7 @@ int				get_light_color(char *line, int check, int i, t_light *light)
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
-		{
-			if (check == 4)
-				check = get_r_light(line, check, idx, rgb);
-			else if (check == 5)
-				check = get_g_light(line, check, idx, rgb);
-			else if (check == 6)
-				check = get_b_light(line, check, idx, rgb);
-		}
+			check = get_color_values(line, check, idx, rgb);
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
 	if (check != 7)

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:16:27 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 19:57:21 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 14:21:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void			init_rt(t_rt *rt)
 	t_ambi	ambi;
 
 	init_qts(rt);
-	reso.width = 200;
-	reso.height = 200;
+	reso.width = 0;
+	reso.height = 0;
 	ambi.light = 0.0;
 	ambi.color.b = 0;
 	ambi.color.r = 0;

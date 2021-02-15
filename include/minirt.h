@@ -6,16 +6,16 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 16:08:11 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 21:08:37 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:12:02 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "mlx.h"
+# include <mlx.h>
+# include <mlx_int.h>
 # include "../libft/libft.h"
-# include "mlx_int.h"
 # include "vector.h"
 # include "elements.h"
 # include "ray.h"
