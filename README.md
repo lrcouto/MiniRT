@@ -112,6 +112,8 @@ February 10th 2021 - Updated our parser to be able to control material propertie
 February 12th 2021 - Did some minor additions to the program. The user can now directly control the raytracing recursion limit through a new parameter on the .rt file, with a "bn" identifier followed by a single int between 0 and 12. Also fixed some very minor memory leaks, and made our loading bar a little prettier.
 
 February 13th 2021 - Did a lot of testing and  error-proofing on our input system, and ironed out some last minute mistakes and errors on the structure of our program. Seems like it runs smoothly now, and we're preparing our scenes to deliver.
+
+February 15th 2021 - Some final tweaks on the code, made it compliant with the latest version of MiniLibX, tested it on the 42 Linux VM, and double checked the Norme and memory leaks. Seems like everything is working, and we are now ready to turn in!
 ___
 
 </details>

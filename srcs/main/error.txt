@@ -49,3 +49,5 @@ ERROR: Please insert cylinder diameter value.
 ERROR: Please insert cylinder height value.
 ERROR: Check if your number of parameters is correct. (Tip: It's probably height, size, diameter or light intensity ^_~ ).
 ERROR: You set a value that cannot be negative as negative.
+ERROR: Input file not found.
+ERROR: Output window height and/or width is zero. I can't draw anything on a window that doesn't exist.

@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:18:07 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 19:50:12 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 14:13:04 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int			next_cam(int keycode, t_mlx *mlx)
 	return (1);
 }
 
-void	add_ambient_to_lights(t_rt *rt)
+void		add_ambient_to_lights(t_rt *rt)
 {
 	t_light *current_lt;
 
 	current_lt = rt->light;
-	while(current_lt)
+	while (current_lt)
 	{
 		current_lt->intensity = add_color(current_lt->intensity,
 			(scalar_color(normalize_color(rt->ambi.color.r,

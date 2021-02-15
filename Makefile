@@ -43,9 +43,6 @@ SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 #			intersect_plane.c intersect_square.c intersect_cylinder.c /
 #			intersect_triangle.c
 #
-# tests: 	rainbow.c matrix_test.c rt_window.c transform_test.c clock_test.c /
-#			ray_test.c scene_test.c
-#
 # render:	canvas.c render_utils.c mlx_utils.c render_utils_2.c scene_render.c /
 #			intersect_polys.c bitmap.c render_utils_3.c image.c
 

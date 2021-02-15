@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 15:03:05 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/13 21:13:29 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:35:51 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int		get_b_cylinder(char *line, int check, int *idx, int *rgb)
 	return (check);
 }
 
+static int		get_color_values(char *line, int check, int *idx, int *rgb)
+{
+	if (check == 8)
+		check = get_r_cylinder(line, check, idx, rgb);
+	else if (check == 9)
+		check = get_g_cylinder(line, check, idx, rgb);
+	else if (check == 10)
+		check = get_b_cylinder(line, check, idx, rgb);
+	return (check);
+}
+
 int				get_cylinder_color(char *line, int check, int i,
 t_cylinder *cylinder)
 {
@@ -48,14 +59,7 @@ t_cylinder *cylinder)
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
-		{
-			if (check == 8)
-				check = get_r_cylinder(line, check, idx, rgb);
-			else if (check == 9)
-				check = get_g_cylinder(line, check, idx, rgb);
-			else if (check == 10)
-				check = get_b_cylinder(line, check, idx, rgb);
-		}
+			check = get_color_values(line, check, idx, rgb);
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
 	if (check != 11)

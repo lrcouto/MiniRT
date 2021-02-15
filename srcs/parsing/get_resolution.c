@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 22:00:49 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 21:01:00 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:00:15 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			get_resolution(char *line, t_rt *rt, t_mlx *mlx)
 {
 	int		i;
 	int		check;
-	
+
 	check = 0;
 	i = 1;
 	while (line[i] != '\0')

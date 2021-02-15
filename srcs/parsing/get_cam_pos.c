@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 20:56:04 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 21:10:54 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/14 23:38:34 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int		get_z_pos(char *line, int check, int *idx, double *xyz)
 	xyz[2] = get_coord(line, *idx);
 	*idx = get_index(line, *idx);
 	check++;
+	if (xyz[0] == 0 && xyz[1] == 0 && xyz[2] == 0)
+		xyz[2] = 1;
 	return (check);
 }
 

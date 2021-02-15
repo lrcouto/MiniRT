@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 18:39:34 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/13 21:12:24 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:09:36 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int		get_b_plane(char *line, int check, int *idx, int *rgb)
 	return (check);
 }
 
+static int		get_color_values(char *line, int check, int *idx, int *rgb)
+{
+	if (check == 6)
+		check = get_r_plane(line, check, idx, rgb);
+	else if (check == 7)
+		check = get_g_plane(line, check, idx, rgb);
+	else if (check == 8)
+		check = get_b_plane(line, check, idx, rgb);
+	return (check);
+}
+
 int				get_plane_color(char *line, int check, int i, t_plane *plane)
 {
 	int		*rgb;
@@ -47,14 +58,7 @@ int				get_plane_color(char *line, int check, int i, t_plane *plane)
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
-		{
-			if (check == 6)
-				check = get_r_plane(line, check, idx, rgb);
-			else if (check == 7)
-				check = get_g_plane(line, check, idx, rgb);
-			else if (check == 8)
-				check = get_b_plane(line, check, idx, rgb);
-		}
+			check = get_color_values(line, check, idx, rgb);
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
 	if (check != 9)

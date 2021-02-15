@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:47:22 by gsenra-a          #+#    #+#             */
-/*   Updated: 2021/02/13 21:12:15 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:53:47 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int		get_b_sphere(char *line, int check, int *idx, int *rgb)
 	return (check);
 }
 
+static int		get_color_values(char *line, int check, int *idx, int *rgb)
+{
+	if (check == 4)
+		check = get_r_sphere(line, check, idx, rgb);
+	else if (check == 5)
+		check = get_g_sphere(line, check, idx, rgb);
+	else if (check == 6)
+		check = get_b_sphere(line, check, idx, rgb);
+	return (check);
+}
+
 int				get_sphere_color(char *line, int check, int i, t_sphere *sphere)
 {
 	int		*rgb;
@@ -47,14 +58,7 @@ int				get_sphere_color(char *line, int check, int i, t_sphere *sphere)
 	while (line[i] != ' ' && line[i] != '\0')
 	{
 		if ((line[*idx] >= '0' && line[*idx] <= '9') || line[*idx] == '-')
-		{
-			if (check == 4)
-				check = get_r_sphere(line, check, idx, rgb);
-			else if (check == 5)
-				check = get_g_sphere(line, check, idx, rgb);
-			else if (check == 6)
-				check = get_b_sphere(line, check, idx, rgb);
-		}
+			check = get_color_values(line, check, idx, rgb);
 		*idx = (line[*idx]) == '\0' ? *idx : *idx + 1;
 	}
 	if (check != 7)
