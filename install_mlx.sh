@@ -24,3 +24,25 @@ sudo cp libmlx.a /usr/local/lib/
 sudo cp mlx.h /usr/local/include/
 sudo cp mlx_int.h /usr/local/include/
 
+echo "
+                                                /
+                                               /
+                               xxX###xx       /
+                                ::XXX        /
+                         xxXX::::::###XXXXXx/#####
+                    :::XXXXX::::::XXXXXXXXX/    ####
+         xXXX//::::::://///////:::::::::::/#####    #         ##########
+      XXXXXX//:::::://///xXXXXXXXXXXXXXXX/#    #######      ###   ###
+     XXXX        :://///XXXXXXXXX######X/#######      #   ###    #
+     XXXX        ::////XXXXXXXXX#######/ #     #      ####   #  #
+      XXXX/:     ::////XXXXXXXXXX#####/  #     #########      ##
+       ""XX//::::::////XXXXXXXXXXXXXX/###########     #       #
+           "::::::::////XXXXXXXXXXXX/    #     #     #      ##
+                 ::::////XXXXXXXXXX/##################   ###
+                     ::::://XXXXXX/#    #     #   #######
+                         ::::::::/################
+                                /
+                               /
+MiniLibX installed! Now go render something!
+"
+
