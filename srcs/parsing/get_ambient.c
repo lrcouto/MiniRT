@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:52:38 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/13 20:05:10 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/19 18:28:16 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		get_ambi_light(char *line, int check, int i, t_ambi *ambi)
 	{
 		if ((line[i] == '1' || line[i] == '0') && check == 0)
 		{
-			light = get_coord(line, i);
+			light = get_single_double(line, i);
 			i = get_index(line, i);
 			check++;
 		}
