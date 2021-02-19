@@ -6,7 +6,7 @@
 /*   By: lcouto <lcouto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 16:07:19 by lcouto            #+#    #+#             */
-/*   Updated: 2021/02/15 01:31:59 by lcouto           ###   ########.fr       */
+/*   Updated: 2021/02/19 18:11:41 by lcouto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void		errormsg(int errornum)
 		i++;
 	}
 	if (errstring)
-		ft_putstr_fd(errstring, 1);
+		ft_putstr_fd(errstring, 2);
 	else
-		ft_putstr_fd("ERROR: Error file not found", 1);
-	write(1, "\n", 1);
+		ft_putstr_fd("ERROR: Error file not found", 2);
+	write(1, "\n", 2);
 	close(fd);
 	exit(0);
 }
