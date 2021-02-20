@@ -179,4 +179,4 @@ bn  5
 ```
 Will render the following scene:
 
-<img src="scenes/cornell_box.png" width="50%">
+<img src="cornell_box.png" width="50%">
