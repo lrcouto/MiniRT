@@ -4,6 +4,8 @@ MiniRT is a small raytracer written in C, made as a student project at <a href='
 
 # How to Run It
 
+### Downloading MiniRT
+
 MiniRT relies on its libft submodule and on the <a href='https://harm-smits.github.io/42docs/libs/minilibxMiniLibX/'>MiniLibX</a> library to run.
 
 On your terminal, run:
@@ -12,11 +14,16 @@ On your terminal, run:
 git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibx-linux
 ```
 
+### Installing dependencies
+
 Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*. If you're running minilibx-linux, you can run the install_mlx.sh script and it will install MiniLibX and its dependencies.
 
-You can use *SANITIZE_L=true* or *SANITIZE_A=true* with make to compile the program with the *-fsanitize=leak* and *-fsanitize=address* flags respectively.
+
+### Running MiniRT
 
 Run MiniRT with a .rt file as an argument. You can use one of the examples located in the scenes folder, or <a href='scenes/README.md'>write your own</a>. If you wish to save your render as a bitmap file, add *--save* after the file name.
+
+You can use *SANITIZE_L=true* or *SANITIZE_A=true* with make to compile the program with the *-fsanitize=leak* and *-fsanitize=address* flags respectively.
 
 # Render Examples
 
