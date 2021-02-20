@@ -1,6 +1,6 @@
 # MiniRT
 
-MiniRT is a small raytracer written in C, made as a student project at <a href='https://www.42sp.org.br/'>42 São Paulo</a>. It renders primitive polygons like spheres, planes, squares, triangles and cylinders, has a simple implementation of a <a href='https://www.scratchapixel.com/lessons/3d-basic-rendering/phong-shader-BRDF/'>phong shader</a> in which the user can control the color, specular, shininess and reflectivity of every individual object. It also handles multiple light sources and cameras.
+MiniRT is a small raytracer written in C, made as a student project at <a href='https://www.42sp.org.br/'>42 São Paulo</a>. It renders primitive polygons like spheres, planes, squares, triangles and cylinders. It features a simple implementation of a <a href='https://www.scratchapixel.com/lessons/3d-basic-rendering/phong-shader-BRDF/'>phong shader</a> in which the user can control the color, specular, shininess and reflectivity of every individual object. It also handles multiple light sources and cameras.
 
 # How to Run It
 
