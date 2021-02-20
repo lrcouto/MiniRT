@@ -23,6 +23,8 @@ Inside the libs directory on the MiniRT folder, you will find the MiniLibX libra
 
 Run MiniRT with a .rt file as an argument. You can use one of the examples located in the scenes folder, or <a href='scenes/README.md'>write your own</a>. If you wish to save your render as a bitmap file, add *--save* after the file name.
 
+If your scene contains multiple cameras, use the spacebar to iterate through them on your rendered scene.
+
 You can use *SANITIZE_L=true* or *SANITIZE_A=true* with make to compile the program with the *-fsanitize=leak* and *-fsanitize=address* flags respectively.
 
 # Render Examples
