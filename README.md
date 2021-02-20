@@ -1,9 +1,10 @@
 # MiniRT
-A basic raytracer made as a student project at 42 São Paulo. It is currently a work in progress, and you can check the work history on the collapsible section below.
+
+MiniRT is a small raytracer written in C, made as a student project at <a href='https://www.42sp.org.br/'>42 São Paulo</a>. It renders primitive polygons like spheres, planes, squares, triangles and cylinders, has a simple implementation of a <a href='https://www.scratchapixel.com/lessons/3d-basic-rendering/phong-shader-BRDF/'>phong shader</a> in which the user can control the color, specular, shininess and reflectivity of every individual object.
 
 # How to Run It
 
-MiniRT relies on its libft submodule and on the MiniLibX library to run.
+MiniRT relies on its libft submodule and on the <a href='https://harm-smits.github.io/42docs/libs/minilibxMiniLibX/'>MiniLibX</a> library to run.
 
 On your terminal, run:
 
@@ -11,11 +12,33 @@ On your terminal, run:
 git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibx-linux
 ```
 
-Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*.
+Inside the libs directory on the MiniRT folder, you will find the MiniLibX library. Follow the install instructions contained on the library folder, then, on the root of the MiniRT directory, run *make*. If you're running minilibx-linux, you can run the install_mlx.sh script and it will install MiniLibX and its dependencies.
 
 You can use *SANITIZE_L=true* or *SANITIZE_A=true* with make to compile the program with the *-fsanitize=leak* and *-fsanitize=address* flags respectively.
 
-Run MiniRT with a .rt file as an argument.
+Run MiniRT with a .rt file as an argument. You can use one of the examples located in the scenes folder, or write your own. If you wish to save your render as a bitmap file, add *--save* after the file name.
+
+# Render Examples
+
+- Phong properties test, showing how individual objects can be set up differently in the same scene.
+
+<img src="scenes/phong_material.png" width="75%">
+
+- Standard Cornell Box test.
+
+<img src="scenes/cornell_box.png" width="75%">
+
+- 800-triangle Utah Teapot model, converted from an .obj file using <a href='https://github.com/matboivin/miniRT-mesh-converter'>matboivin's mesh converter script</a>. Go give him some kudos!
+
+<img src="scenes/utah_teapot.png" width="75%">
+
+# References
+
+- <a href='http://raytracerchallenge.com/'>The Raytracer Challenge</a>
+- <a href='https://www.scratchapixel.com/'>Scratchapixel</a>
+- <a href='https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab/'>Essence of Linear Algebra</a>
+- <a href='https://users.csc.calpoly.edu/~zwood/teaching/csc471/final09/nkowshik_webpage/'>Raytracing in a Nutshell</a>
+- <a href='https://engineering.purdue.edu/ece264/17au/hw/HW15/'>The BMP file format</a>
 
 # Work History
 <details>
