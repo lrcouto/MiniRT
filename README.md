@@ -6,12 +6,12 @@ MiniRT is a small raytracer written in C, made as a student project at <a href='
 
 ### Downloading MiniRT
 
-MiniRT relies on its libft submodule and on the <a href='https://harm-smits.github.io/42docs/libs/minilibxMiniLibX/'>MiniLibX</a> library to run.
+MiniRT relies on its `libft` submodule and on the <a href='https://github.com/42Paris/minilibx-linux/'>MiniLibX</a> library to run. As of August 14th 2021, the project has been provided with a static version of `libft` to ensure compatibility.
 
 On your terminal, run:
 
 ```
-git clone http://github.com/lrcouto/MiniRT.git && cd MiniRT && git clone http://github.com/lrcouto/libft.git && git clone https://github.com/42Paris/minilibx-linux.git libs/minilibx-linux
+git clone git@github.com:lrcouto/MiniRT.git && cd MiniRT && git clone git@github.com:42Paris/minilibx-linux.git libs/minilibx-linux
 ```
 
 ### Installing dependencies
